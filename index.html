@@ -1360,5 +1360,21 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 renderProducts();
 updateCart();
-</script></body>
+</script>
+
+<!-- RENZOTA DATABASE CONNECTION -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const RENZOTA_SUPABASE_URL = "https://sbhgunhmorjqvcprlqow.supabase.co";
+const RENZOTA_SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+const renzotaSupabase = window.supabase.createClient(
+  RENZOTA_SUPABASE_URL,
+  RENZOTA_SUPABASE_KEY
+);
+
+console.log("RENZOTA database client initialized.");
+</script>
+
+</body>
 </html>
