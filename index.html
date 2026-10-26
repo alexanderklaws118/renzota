@@ -1,868 +1,894 @@
-
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f44336">
-<meta name="description" content="RENZOTA — Discover celebrity merchandise, events, Tesla cars, sandwiches and amazing products in one place.">
-<title>RENZOTA | Discover More. Shop Everything.</title><style>
+<meta name="theme-color" content="#08111f">
+<meta name="description" content="RENZOTA — Discover celebrity merchandise, events, cars, fashion and more from around the world.">
+<title>RENZOTA | Discover More. Shop Everything.</title>
+
+<style>
 :root {
-  --primary: #f44336;
-  --primary-dark: #d92f25;
-  --accent: #ffcf33;
-  --ink: #202124;
-  --muted: #737373;
-  --bg: #f7f7f7;
-  --card: #ffffff;
-  --line: #eeeeee;
-  --radius: 12px;
+  --bg:#f6f7fa;
+  --white:#fff;
+  --ink:#182033;
+  --muted:#71788a;
+  --line:#e8eaf0;
+  --navy:#08111f;
+  --navy2:#111d30;
+  --gold:#d9bd79;
+  --green:#14583f;
+  --red:#b92c42;
+  --radius:15px;
 }
 
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+img{max-width:100%}
 
-html { scroll-behavior: smooth; }
+.top-strip{
+  background:var(--navy);
+  color:white;
+  text-align:center;
+  padding:9px 12px;
+  font-size:12px;
+  letter-spacing:.5px;
+}
+.top-strip strong{color:var(--gold)}
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+header{
+  background:white;
+  position:sticky;
+  top:0;
+  z-index:20;
+  box-shadow:0 3px 15px #00000008;
+}
+.header-main{
+  max-width:1400px;
+  margin:auto;
+  padding:14px 4%;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.logo{
+  font-size:29px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  color:var(--navy);
+  white-space:nowrap;
+}
+.logo span{color:var(--gold)}
+
+.search{
+  display:flex;
+  flex:1;
+  min-width:70px;
+  border:1px solid var(--line);
+  border-radius:30px;
+  overflow:hidden;
+  background:#f7f8fa;
+}
+.search input{
+  flex:1;
+  width:100%;
+  min-width:0;
+  padding:13px 17px;
+  border:0;
+  outline:none;
+  background:transparent;
+}
+.search button{
+  width:48px;
+  border:0;
+  background:var(--navy);
+  color:white;
+  font-size:22px;
+}
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+.currency-select{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:white;
+  color:var(--ink);
+  max-width:115px;
+  font-size:12px;
+  font-weight:700;
+}
+.action-btn{
+  background:transparent;
+  border:0;
+  font-weight:700;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.cart-btn{font-size:23px;position:relative}
+.cart-count{
+  position:absolute;
+  top:-7px;
+  right:-9px;
+  border-radius:50px;
+  background:var(--red);
+  color:white;
+  padding:3px 6px;
+  font-size:10px;
 }
 
-button, input, select, textarea {
-  font: inherit;
+.nav{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  padding:12px 15px;
+  border-top:1px solid var(--line);
+  overflow-x:auto;
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:700;
+}
+.nav a:hover{color:#a37d32}
+
+main{
+  max-width:1400px;
+  margin:auto;
+  padding:20px 4%;
 }
 
-button { cursor: pointer; }
-
-a { color: inherit; text-decoration: none; }
-
-.top-strip {
-  background: #252525;
-  color: white;
-  text-align: center;
-  padding: 9px 12px;
-  font-size: 12px;
+.hero{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  overflow:hidden;
+  min-height:370px;
+  border-radius:20px;
+  background:linear-gradient(125deg,#fff2e5,#f6e9d6,#e9edf7);
 }
-
-.top-strip strong { color: var(--accent); }
-
-header {
-  background: white;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  box-shadow: 0 2px 10px #00000008;
+.hero-copy{
+  padding:45px 38px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
 }
-
-.header-main {
-  max-width: 1400px;
-  margin: auto;
-  padding: 14px 4%;
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.eyebrow{
+  background:white;
+  color:#8a672c;
+  border-radius:30px;
+  padding:9px 13px;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-
-.logo {
-  font-size: 29px;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-  color: var(--primary);
-  white-space: nowrap;
+.hero h1{
+  margin:20px 0 12px;
+  font-size:clamp(36px,5vw,61px);
+  line-height:1.02;
+  letter-spacing:-2px;
 }
-
-.logo span { color: #242424; }
-
-.search {
-  flex: 1;
-  display: flex;
-  background: #f3f3f3;
-  border: 1px solid #e7e7e7;
-  border-radius: 30px;
-  overflow: hidden;
-  min-width: 80px;
+.hero h1 span{color:#a37d32}
+.hero p{
+  max-width:440px;
+  color:#5d6370;
+  line-height:1.8;
+  font-size:14px;
 }
-
-.search input {
-  flex: 1;
-  width: 100%;
-  min-width: 0;
-  border: 0;
-  outline: none;
-  background: transparent;
-  padding: 13px 18px;
-  font-size: 14px;
-}
-
-.search button {
-  width: 52px;
-  border: 0;
-  background: var(--primary);
-  color: white;
-  font-size: 20px;
-}
-
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.action-btn {
-  border: 0;
-  background: transparent;
-  color: #292929;
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.cart-btn { position: relative; font-size: 25px; }
-
-.cart-count {
-  position: absolute;
-  top: -6px;
-  right: -8px;
-  border-radius: 20px;
-  background: var(--primary);
-  color: white;
-  font-size: 11px;
-  padding: 3px 6px;
-}
-
-.nav {
-  border-top: 1px solid var(--line);
-  display: flex;
-  justify-content: center;
-  gap: 27px;
-  padding: 12px 15px;
-  overflow-x: auto;
-  white-space: nowrap;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.nav a:hover { color: var(--primary); }
-
-main {
-  max-width: 1400px;
-  margin: auto;
-  padding: 20px 4%;
-}
-
-.hero {
-  min-height: 340px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  border-radius: 18px;
-  overflow: hidden;
-  background: linear-gradient(120deg, #ffebe2, #fff3d1 60%, #ffe0db);
-}
-
-.hero-copy {
-  padding: 42px 35px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.eyebrow {
-  display: inline-block;
-  background: white;
-  border-radius: 30px;
-  padding: 8px 13px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: var(--primary);
-}
-
-.hero h1 {
-  font-size: clamp(34px, 5vw, 58px);
-  line-height: 1.02;
-  letter-spacing: -2px;
-  margin: 18px 0 12px;
-  max-width: 500px;
-}
-
-.hero h1 span { color: var(--primary); }
-
-.hero p {
-  color: #5e514d;
-  line-height: 1.6;
-  font-size: 15px;
-  max-width: 430px;
-}
-
-.primary-btn {
-  background: var(--primary);
-  color: white;
-  border: 0;
-  border-radius: 7px;
-  padding: 13px 21px;
-  font-weight: 800;
-  margin-top: 12px;
-}
-
-.primary-btn:hover { background: var(--primary-dark); }
-
-.hero-image {
-  min-height: 300px;
+.hero-image{
+  min-height:300px;
   background:
-    linear-gradient(90deg, #ffe9df00, #ffe9df00),
+    linear-gradient(90deg,#f7e9dc00,#08111f08),
     url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1100&q=85")
     center/cover;
 }
 
-.benefits {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin: 18px 0 30px;
+.primary-btn{
+  background:var(--navy);
+  color:white;
+  border:0;
+  border-radius:8px;
+  padding:14px 20px;
+  font-weight:800;
+  margin-top:12px;
+}
+.primary-btn:hover{background:#233653}
+.gold-btn{
+  background:var(--gold);
+  color:#161a22;
+  border:0;
+  border-radius:8px;
+  padding:14px 20px;
+  font-weight:900;
+}
+.wide-btn{width:100%;margin-top:15px}
+
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin:18px 0 32px;
+}
+.benefit{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:12px;
+  font-size:12px;
+}
+.benefit .icon{font-size:25px}
+.benefit strong{display:block;margin-bottom:5px}
+
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin:32px 0 16px;
+}
+.section-heading h2{font-size:23px;margin:0;letter-spacing:-.5px}
+.section-heading p{font-size:13px;color:var(--muted);margin:6px 0 0}
+.text-btn{
+  border:0;
+  background:transparent;
+  color:#9a742f;
+  font-size:12px;
+  font-weight:900;
 }
 
-.benefit {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 15px 12px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
+.categories{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:12px;
+}
+.category{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:0;
+  overflow:hidden;
+  text-align:left;
+  transition:.2s;
+}
+.category:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px #0000000b;
+}
+.category img{
+  width:100%;
+  aspect-ratio:1/.8;
+  object-fit:cover;
+  display:block;
+}
+.category-name{
+  display:block;
+  padding:12px 10px;
+  font-size:12px;
+  font-weight:800;
 }
 
-.benefit .icon { font-size: 25px; }
+.promo{
+  margin:32px 0;
+  border-radius:16px;
+  padding:27px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  background:linear-gradient(120deg,#17243c,#453052);
+  color:white;
+}
+.promo h2{margin:0 0 9px;font-size:25px}
+.promo p{margin:0;color:#e5e2ed;font-size:13px;line-height:1.7}
 
-.benefit strong { display: block; margin-bottom: 4px; }
+.christmas{
+  position:relative;
+  overflow:hidden;
+  margin:32px 0;
+  padding:35px;
+  border-radius:18px;
+  color:white;
+  background:
+    radial-gradient(circle at 85% 15%,#d9bd7933,transparent 35%),
+    linear-gradient(120deg,#07140f,#103c2a 55%,#10151e);
+  border:1px solid #c8ab6340;
+}
+.christmas .eyebrow{
+  color:#c9ad69;
+  background:#ffffff12;
+  border:1px solid #d9bd7955;
+}
+.christmas h2{
+  font-family:Georgia,serif;
+  font-size:clamp(30px,4vw,45px);
+  margin:18px 0 10px;
+  color:#e5cf92;
+}
+.christmas p{
+  color:#e0e7e1;
+  font-size:14px;
+  line-height:1.8;
+  max-width:650px;
+}
+.christmas .small-note{
+  color:#cbd8cd;
+  font-size:11px;
+  line-height:1.7;
+}
+.christmas-products{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:13px;
+  margin-top:22px;
+}
+.christmas-card{
+  background:#ffffff0b;
+  border:1px solid #d9bd793b;
+  border-radius:12px;
+  overflow:hidden;
+}
+.christmas-card img{
+  display:block;
+  width:100%;
+  aspect-ratio:1.15/1;
+  object-fit:cover;
+}
+.christmas-card div{padding:12px}
+.christmas-card strong{display:block;font-size:13px;margin-bottom:7px}
+.christmas-card span{font-size:12px;color:#e5cf92}
 
-.section-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 30px 0 15px;
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:15px 0;
+}
+.filter-btn{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:30px;
+  padding:9px 15px;
+  font-size:12px;
+  font-weight:700;
+}
+.filter-btn.active,.filter-btn:hover{
+  background:var(--navy);
+  color:white;
+  border-color:var(--navy);
 }
 
-.section-heading h2 {
-  font-size: 23px;
-  letter-spacing: -0.5px;
-  margin: 0;
+.products{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:15px;
+}
+.product{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  min-width:0;
+  transition:.2s;
+}
+.product:hover{
+  transform:translateY(-3px);
+  box-shadow:0 7px 20px #0000000c;
+}
+.product-image-wrap{position:relative;background:#eee}
+.product-image{
+  display:block;
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+}
+.badge{
+  position:absolute;
+  left:8px;
+  top:8px;
+  background:var(--navy);
+  color:white;
+  border-radius:4px;
+  padding:5px 7px;
+  font-size:9px;
+  font-weight:900;
+}
+.product-body{padding:11px}
+.product-title{
+  font-size:13px;
+  line-height:1.5;
+  min-height:39px;
+  margin-bottom:8px;
+}
+.price{font-size:17px;font-weight:900}
+.old-price{
+  font-size:11px;
+  color:#999;
+  text-decoration:line-through;
+  margin-left:5px;
+}
+.rating{font-size:11px;color:#a37d32;margin:7px 0}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:5px;
+}
+.add-btn{
+  border:1px solid var(--navy);
+  color:var(--navy);
+  background:white;
+  border-radius:6px;
+  padding:8px 9px;
+  font-size:11px;
+  font-weight:900;
+}
+.add-btn:hover{background:var(--navy);color:white}
+.empty-state{
+  grid-column:1/-1;
+  text-align:center;
+  padding:35px 15px;
+  border-radius:12px;
+  background:white;
+  color:var(--muted);
+  line-height:1.8;
 }
 
-.section-heading p {
-  margin: 5px 0 0;
-  font-size: 13px;
-  color: var(--muted);
+.seller-banner{
+  margin-top:35px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:25px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+.seller-banner h2{margin:0 0 8px;font-size:22px}
+.seller-banner p{color:var(--muted);font-size:13px;line-height:1.7;margin:0}
+
+footer{
+  margin-top:40px;
+  background:var(--navy);
+  color:white;
+  padding:35px 5% 20px;
+}
+.footer-inner{
+  max-width:1300px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+footer h3{font-size:13px}
+footer p,footer a{
+  font-size:12px;
+  line-height:1.9;
+  color:#c5ccda;
+}
+.footer-links{display:flex;flex-direction:column}
+.copyright{
+  border-top:1px solid #ffffff20;
+  margin-top:25px;
+  padding-top:15px;
+  text-align:center;
+  font-size:11px;
+  color:#abb5c7;
 }
 
-.text-btn {
-  color: var(--primary);
-  font-weight: 800;
-  border: 0;
-  background: transparent;
-  font-size: 13px;
+.overlay{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  background:#0009;
 }
-
-.categories {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
+.overlay.open{display:flex}
+.modal{
+  width:100%;
+  max-width:520px;
+  max-height:90vh;
+  overflow-y:auto;
+  background:white;
+  border-radius:15px;
+  padding:22px;
 }
-
-.category {
-  border: 1px solid #eeeeee;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  padding: 0;
-  text-align: left;
-  transition: transform .2s, box-shadow .2s;
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:17px;
 }
-
-.category:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 18px #0000000c;
+.modal-header h2{font-size:20px;margin:0}
+.close-btn{
+  border:0;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#f0f1f4;
+  font-size:21px;
 }
-
-.category img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / .82;
-  object-fit: cover;
-  background: #eee;
+.form-group{margin-bottom:14px}
+.form-group label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:7px;
 }
-
-.category-name {
-  display: block;
-  padding: 12px 10px;
-  font-size: 12px;
-  font-weight: 800;
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;
+  border:1px solid #dfe2e9;
+  padding:12px;
+  border-radius:7px;
+  outline-color:#b69a5a;
+  background:white;
 }
-
-.promo {
-  margin: 30px 0;
-  padding: 26px;
-  border-radius: 15px;
-  background: linear-gradient(115deg, #2c153a, #62336f);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+.form-group textarea{min-height:85px;resize:vertical}
+.form-note{
+  background:#f5f6f8;
+  color:#73788a;
+  border-radius:8px;
+  padding:12px;
+  font-size:11px;
+  line-height:1.7;
 }
-
-.promo h2 { margin: 0 0 8px; font-size: 25px; }
-
-.promo p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #eee0f3;
+.cart-item{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
 }
-
-.promo button {
-  background: var(--accent);
-  color: #242424;
-  border: 0;
-  border-radius: 7px;
-  padding: 13px 17px;
-  font-weight: 900;
-  white-space: nowrap;
+.cart-item img{
+  width:65px;
+  height:65px;
+  object-fit:cover;
+  border-radius:7px;
 }
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 15px 0;
+.cart-item-info{flex:1;font-size:12px;line-height:1.7}
+.cart-item-info strong{display:block}
+.cart-total{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+  font-size:19px;
+  font-weight:900;
 }
-
-.filter-btn {
-  padding: 9px 15px;
-  border: 1px solid #e6e6e6;
-  background: white;
-  border-radius: 30px;
-  font-size: 12px;
-  font-weight: 700;
+.toast{
+  display:none;
+  position:fixed;
+  z-index:100;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#172033;
+  color:white;
+  border-radius:30px;
+  padding:13px 20px;
+  font-size:12px;
+  text-align:center;
+  max-width:90%;
 }
+.toast.show{display:block}
+.mobile-nav{display:none}
 
-.filter-btn.active,
-.filter-btn:hover {
-  color: var(--primary);
-  border-color: var(--primary);
-  background: #fff2f0;
+@media(max-width:1000px){
+  .products{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .categories{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 15px;
-}
-
-.product {
-  background: white;
-  border: 1px solid #ededed;
-  border-radius: 11px;
-  overflow: hidden;
-  min-width: 0;
-  position: relative;
-  transition: transform .2s, box-shadow .2s;
-}
-
-.product:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px #0000000b;
-}
-
-.product-image-wrap {
-  position: relative;
-  background: #f1f1f1;
-}
-
-.product-image {
-  width: 100%;
-  aspect-ratio: 1 / 1.02;
-  object-fit: cover;
-  display: block;
-}
-
-.badge {
-  position: absolute;
-  top: 9px;
-  left: 8px;
-  background: var(--primary);
-  color: white;
-  border-radius: 4px;
-  padding: 5px 7px;
-  font-size: 10px;
-  font-weight: 900;
-}
-
-.product-body { padding: 11px; }
-
-.product-title {
-  font-size: 13px;
-  line-height: 1.45;
-  height: 37px;
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.price {
-  font-size: 18px;
-  font-weight: 900;
-}
-
-.old-price {
-  font-size: 11px;
-  color: #999;
-  text-decoration: line-through;
-  margin-left: 5px;
-}
-
-.rating {
-  font-size: 11px;
-  color: #b47700;
-  margin: 7px 0;
-}
-
-.product-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-}
-
-.add-btn {
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  background: white;
-  border-radius: 6px;
-  padding: 8px 10px;
-  font-weight: 900;
-  font-size: 12px;
-}
-
-.add-btn:hover {
-  background: var(--primary);
-  color: white;
-}
-
-.empty-state {
-  grid-column: 1 / -1;
-  background: white;
-  padding: 35px 15px;
-  border-radius: 10px;
-  text-align: center;
-  color: var(--muted);
-}
-
-.seller-banner {
-  margin-top: 35px;
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
-
-.seller-banner h2 { margin: 0 0 7px; font-size: 22px; }
-
-.seller-banner p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-footer {
-  margin-top: 40px;
-  background: #222;
-  color: white;
-  padding: 35px 5% 20px;
-}
-
-.footer-inner {
-  max-width: 1300px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 30px;
-}
-
-footer h3 { font-size: 14px; }
-
-footer p, footer a {
-  font-size: 12px;
-  line-height: 1.9;
-  color: #c9c9c9;
-}
-
-.footer-links { display: flex; flex-direction: column; }
-
-.copyright {
-  border-top: 1px solid #444;
-  margin-top: 25px;
-  padding-top: 15px;
-  font-size: 11px;
-  color: #aaa;
-  text-align: center;
-}
-
-.overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: #0008;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-}
-
-.overlay.open { display: flex; }
-
-.modal {
-  background: white;
-  width: 100%;
-  max-width: 510px;
-  max-height: 90vh;
-  overflow-y: auto;
-  border-radius: 14px;
-  padding: 23px;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 17px;
-}
-
-.modal-header h2 { font-size: 21px; margin: 0; }
-
-.close-btn {
-  background: #f2f2f2;
-  border: 0;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  font-size: 20px;
-}
-
-.form-group { margin-bottom: 14px; }
-
-.form-group label {
-  display: block;
-  font-size: 12px;
-  font-weight: 800;
-  margin-bottom: 7px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 7px;
-  background: white;
-  outline-color: var(--primary);
-}
-
-.form-group textarea { min-height: 85px; resize: vertical; }
-
-.form-note {
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--muted);
-  background: #f7f7f7;
-  padding: 12px;
-  border-radius: 7px;
-}
-
-.cart-item {
-  display: flex;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.cart-item img {
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-  border-radius: 7px;
-}
-
-.cart-item-info { flex: 1; font-size: 13px; }
-
-.cart-item-info strong { display: block; margin-bottom: 7px; }
-
-.cart-total {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 900;
-  font-size: 19px;
-  margin-top: 20px;
-}
-
-.wide-btn { width: 100%; margin-top: 15px; }
-
-.toast {
-  position: fixed;
-  z-index: 100;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #252525;
-  color: white;
-  border-radius: 30px;
-  padding: 13px 20px;
-  font-size: 13px;
-  display: none;
-  max-width: 90%;
-  text-align: center;
-}
-
-.toast.show { display: block; }
-
-.mobile-nav { display: none; }
-
-@media (max-width: 1000px) {
-  .products { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .hero { min-height: 290px; }
-  .header-main { gap: 12px; }
-  .header-actions { gap: 8px; }
-}
-
-@media (max-width: 650px) {
-  .top-strip { font-size: 10px; }
-  .header-main {
-    flex-wrap: wrap;
-    padding: 12px 4%;
-    gap: 10px;
+@media(max-width:650px){
+  .top-strip{font-size:10px}
+  .header-main{flex-wrap:wrap;gap:10px;padding:12px 3%}
+  .logo{font-size:25px}
+  .header-actions{margin-left:auto;gap:9px}
+  .account-label{display:none}
+  .currency-select{font-size:11px;max-width:100px;padding:8px}
+  .search{order:3;flex-basis:100%}
+  .nav{justify-content:flex-start;gap:20px;font-size:11px}
+  main{padding:13px 3%}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:28px 22px}
+  .hero h1{font-size:40px}
+  .hero-image{min-height:180px}
+  .benefits{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .benefit{padding:11px 8px;font-size:10px}
+  .benefit .icon{font-size:21px}
+  .section-heading h2{font-size:19px}
+  .categories{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .category-name{font-size:10px;padding:9px 7px}
+  .promo{padding:20px 15px;align-items:flex-start;flex-direction:column}
+  .promo h2{font-size:21px}
+  .christmas{padding:22px 15px}
+  .christmas-products{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .product-body{padding:9px}
+  .product-title{font-size:12px}
+  .price{font-size:16px}
+  .seller-banner{align-items:flex-start;flex-direction:column;padding:20px}
+  .footer-inner{grid-template-columns:1fr 1fr;gap:20px}
+  .footer-inner>div:first-child{grid-column:1/-1}
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:25;
+    background:white;
+    border-top:1px solid var(--line);
+    justify-content:space-around;
+    padding:9px 3px calc(9px + env(safe-area-inset-bottom));
   }
-  .logo { font-size: 26px; }
-  .header-actions { margin-left: auto; }
-  .account-label { display: none; }
-  .search { order: 3; flex-basis: 100%; }
-  .search input { padding: 11px 14px; }
-  .nav { justify-content: flex-start; gap: 20px; font-size: 12px; }
-  main { padding: 14px 3%; }
-  .hero { grid-template-columns: 1fr; }
-  .hero-copy { padding: 27px 22px; }
-  .hero h1 { font-size: 39px; }
-  .hero-image { min-height: 175px; }
-  .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-  .benefit { padding: 11px 8px; font-size: 10px; }
-  .benefit .icon { font-size: 22px; }
-  .section-heading h2 { font-size: 19px; }
-  .categories { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .category-name { padding: 9px 7px; font-size: 11px; }
-  .promo { padding: 20px 15px; align-items: flex-start; flex-direction: column; }
-  .promo h2 { font-size: 21px; }
-  .products { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .product-body { padding: 9px; }
-  .product-title { font-size: 12px; }
-  .price { font-size: 17px; }
-  .seller-banner { align-items: flex-start; flex-direction: column; padding: 20px; }
-  .footer-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .footer-inner > div:first-child { grid-column: 1 / -1; }
-  .mobile-nav {
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 25;
-    background: white;
-    border-top: 1px solid #eee;
-    justify-content: space-around;
-    padding: 9px 3px calc(9px + env(safe-area-inset-bottom));
+  .mobile-nav button{
+    background:transparent;
+    border:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    font-size:10px;
+    color:#444;
   }
-  .mobile-nav button {
-    background: transparent;
-    border: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    font-size: 10px;
-    color: #444;
-  }
-  .mobile-nav span { font-size: 20px; }
-  body { padding-bottom: 65px; }
+  .mobile-nav span{font-size:19px}
+  body{padding-bottom:65px}
 }
+</style>
+</head>
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
-}
-</style></head><body><div class="top-strip">
-  WELCOME TO <strong>RENZOTA</strong> &nbsp;·&nbsp; Discover more. Shop everything.
-</div><header>
-  <div class="header-main">
-    <a class="logo" href="#" aria-label="RENZOTA home">RENZO<span>TA</span></a><form class="search" id="searchForm" role="search">
-  <input id="searchInput" type="search"
-    placeholder="Search products, celebrities, cars..."
-    aria-label="Search products">
-  <button type="submit" aria-label="Search">⌕</button>
-</form>
+<body>
 
-<div class="header-actions">
-  <button class="action-btn" onclick="openAccount()">
-    <span style="font-size:21px">♙</span>
-    <span class="account-label">Sign in / Join</span>
-  </button>
-  <button class="action-btn cart-btn" onclick="openCart()" aria-label="Open cart">
-    🛒 <span class="cart-count" id="cartCount">0</span>
-  </button>
+<div class="top-strip">
+  WELCOME TO <strong>RENZOTA</strong> · Discover more. Shop everything.
 </div>
 
-  </div>  <nav class="nav" aria-label="Main navigation">
+<header>
+  <div class="header-main">
+    <a class="logo" href="#" aria-label="RENZOTA home">RENZO<span>TA</span></a>
+
+    <form class="search" id="searchForm" role="search">
+      <input id="searchInput" type="search"
+        placeholder="Search products, celebrities, cars..."
+        aria-label="Search products">
+      <button type="submit" aria-label="Search">⌕</button>
+    </form>
+
+    <div class="header-actions">
+      <select class="currency-select" id="currencySelect"
+        aria-label="Choose currency">
+        <option value="USD">USD ($)</option>
+        <option value="GBP">GBP (£)</option>
+        <option value="EUR">EUR (€)</option>
+        <option value="CAD">CAD ($)</option>
+        <option value="AUD">AUD ($)</option>
+      </select>
+
+      <button class="action-btn" onclick="openAccount()">
+        <span style="font-size:21px">♙</span>
+        <span class="account-label">Sign in / Join</span>
+      </button>
+
+      <button class="action-btn cart-btn" onclick="openCart()"
+        aria-label="Open shopping cart">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="nav" aria-label="Main navigation">
     <a href="#categories">Categories</a>
     <a href="#products" onclick="setCategory('All')">All Products</a>
     <a href="#products" onclick="setCategory('Celebrity')">Celebrity World</a>
-    <a href="#products" onclick="setCategory('Cars')">Cars & Tesla</a>
-    <a href="#products" onclick="setCategory('Food')">Food & Sandwiches</a>
+    <a href="#christmas">Christmas Collection</a>
+    <a href="#products" onclick="setCategory('Cars')">Cars</a>
+    <a href="#products" onclick="setCategory('Food')">Food</a>
     <a href="#products" onclick="setCategory('Events')">Events</a>
     <a href="#seller">Become a Seller</a>
   </nav>
-</header><main>
+</header>
+
+<main>
   <section class="hero">
     <div class="hero-copy">
       <span class="eyebrow">WELCOME TO RENZOTA</span>
       <h1>Discover More.<br><span>Shop Everything.</span></h1>
       <p>
-        From celebrity merchandise and unforgettable experiences
-        to cars, sandwiches and amazing products. Explore it all in one place.
+        Discover celebrity merchandise, unforgettable experiences,
+        fashion, cars, sandwiches and products from businesses around the world.
       </p>
       <button class="primary-btn" onclick="scrollToProducts()">
-        EXPLORE PRODUCTS &nbsp; →
+        EXPLORE PRODUCTS →
       </button>
     </div>
     <div class="hero-image" role="img" aria-label="Fashion and shopping"></div>
-  </section>  <section class="benefits" aria-label="Shopping features">
+  </section>
+
+  <section class="benefits">
     <div class="benefit">
       <span class="icon">🌍</span>
-      <div><strong>Explore More</strong>Multiple categories</div>
+      <div><strong>Global Discovery</strong>Explore more categories</div>
     </div>
     <div class="benefit">
       <span class="icon">🛍️</span>
-      <div><strong>Easy Shopping</strong>Simple browsing</div>
+      <div><strong>Easy Shopping</strong>Discover new products</div>
     </div>
     <div class="benefit">
-      <span class="icon">📸</span>
-      <div><strong>Visual Discovery</strong>Explore products</div>
+      <span class="icon">⭐</span>
+      <div><strong>Celebrity World</strong>Merchandise and events</div>
     </div>
     <div class="benefit">
       <span class="icon">🤝</span>
       <div><strong>Seller Community</strong>Discover businesses</div>
     </div>
-  </section>  <section id="categories">
+  </section>
+
+  <section id="categories">
     <div class="section-heading">
       <div>
         <h2>Shop by Category</h2>
         <p>Find something you love.</p>
       </div>
-    </div><div class="categories">
-  <button class="category" onclick="setCategory('Celebrity')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80"
-      alt="Fashion and celebrity merchandise">
-    <span class="category-name">⭐ Celebrity World</span>
-  </button>
+    </div>
 
-  <button class="category" onclick="setCategory('Cars')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=500&q=80"
-      alt="Electric car">
-    <span class="category-name">🚘 Cars & Tesla</span>
-  </button>
+    <div class="categories">
+      <button class="category" onclick="setCategory('Celebrity')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80"
+          alt="Celebrity fashion merchandise">
+        <span class="category-name">⭐ Celebrity World</span>
+      </button>
 
-  <button class="category" onclick="setCategory('Food')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1553909489-cd47e0ef937f?auto=format&fit=crop&w=500&q=80"
-      alt="Fresh sandwich">
-    <span class="category-name">🥪 Food & Sandwiches</span>
-  </button>
+      <button class="category" onclick="setCategory('Cars')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=500&q=80"
+          alt="Electric car">
+        <span class="category-name">🚘 Cars & Electric Vehicles</span>
+      </button>
 
-  <button class="category" onclick="setCategory('Events')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=500&q=80"
-      alt="Live music event">
-    <span class="category-name">🎟️ Events & Bookings</span>
-  </button>
+      <button class="category" onclick="setCategory('Food')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1553909489-cd47e0ef937f?auto=format&fit=crop&w=500&q=80"
+          alt="Fresh sandwich">
+        <span class="category-name">🥪 Food & Sandwiches</span>
+      </button>
 
-  <button class="category" onclick="setCategory('Fashion')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
-      alt="T-shirt">
-    <span class="category-name">👕 Custom T-shirts</span>
-  </button>
+      <button class="category" onclick="setCategory('Events')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=500&q=80"
+          alt="Live music event">
+        <span class="category-name">🎟️ Events & Bookings</span>
+      </button>
 
-  <button class="category" onclick="setCategory('Other')">
-    <img loading="lazy"
-      src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=500&q=80"
-      alt="Shopping products">
-    <span class="category-name">🛍️ More Products</span>
-  </button>
-</div>
+      <button class="category" onclick="setCategory('Fashion')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
+          alt="T-shirt">
+        <span class="category-name">👕 Custom T-shirts</span>
+      </button>
 
-  </section>  <section class="promo">
+      <button class="category" onclick="setCategory('Other')">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&fit=crop&w=500&q=80"
+          alt="Shopping products">
+        <span class="category-name">🛍️ More Products</span>
+      </button>
+    </div>
+  </section>
+
+  <section class="promo">
     <div>
       <h2>✨ Discover Your Next Favourite</h2>
-      <p>Explore unique products, celebrity merchandise and experiences.</p>
+      <p>Explore products, merchandise and experiences from around the world.</p>
     </div>
-    <button onclick="scrollToProducts()">START EXPLORING →</button>
-  </section>  <section id="products">
+    <button class="gold-btn" onclick="scrollToProducts()">START EXPLORING →</button>
+  </section>
+
+  <section id="christmas" class="christmas">
+    <span class="eyebrow">THE FESTIVE EDIT · 2026</span>
+    <h2>Christmas, the RENZOTA Way.</h2>
+    <p>
+      Discover festive fashion, thoughtful gifts and Christmas experiences
+      in an elegant world of emerald green, champagne gold, midnight black
+      and winter white.
+    </p>
+    <button class="gold-btn" onclick="setCategory('Christmas')">
+      EXPLORE CHRISTMAS →
+    </button>
+
+    <div class="christmas-products">
+      <article class="christmas-card">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=500&q=80"
+          alt="Elegant festive fashion">
+        <div><strong>Festive Fashion</strong><span>Holiday style and gifts</span></div>
+      </article>
+
+      <article class="christmas-card">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=500&q=80"
+          alt="Christmas decorations">
+        <div><strong>Christmas Collection</strong><span>Celebrate the season</span></div>
+      </article>
+
+      <article class="christmas-card">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=500&q=80"
+          alt="Special festive occasion">
+        <div><strong>Festive Experiences</strong><span>Make special memories</span></div>
+      </article>
+    </div>
+
+    <p class="small-note">
+      Event tickets and celebrity merchandise are listed only when the relevant
+      products, availability and permissions have been confirmed.
+    </p>
+  </section>
+
+  <section id="products">
     <div class="section-heading">
       <div>
         <h2 id="productHeading">Explore Products</h2>
         <p>Discover what's available on RENZOTA.</p>
       </div>
       <button class="text-btn" onclick="resetFilters()">View all →</button>
-    </div><div class="filters" id="filters">
-  <button class="filter-btn active" data-category="All" onclick="setCategory('All')">All</button>
-  <button class="filter-btn" data-category="Celebrity" onclick="setCategory('Celebrity')">Celebrity</button>
-  <button class="filter-btn" data-category="Cars" onclick="setCategory('Cars')">Cars</button>
-  <button class="filter-btn" data-category="Food" onclick="setCategory('Food')">Food</button>
-  <button class="filter-btn" data-category="Events" onclick="setCategory('Events')">Events</button>
-  <button class="filter-btn" data-category="Fashion" onclick="setCategory('Fashion')">T-shirts</button>
-  <button class="filter-btn" data-category="Other" onclick="setCategory('Other')">Other</button>
-</div>
+    </div>
 
-<div class="products" id="productGrid" aria-live="polite"></div>
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-category="All"
+        onclick="setCategory('All')">All</button>
+      <button class="filter-btn" data-category="Celebrity"
+        onclick="setCategory('Celebrity')">Celebrity</button>
+      <button class="filter-btn" data-category="Cars"
+        onclick="setCategory('Cars')">Cars</button>
+      <button class="filter-btn" data-category="Food"
+        onclick="setCategory('Food')">Food</button>
+      <button class="filter-btn" data-category="Events"
+        onclick="setCategory('Events')">Events</button>
+      <button class="filter-btn" data-category="Fashion"
+        onclick="setCategory('Fashion')">T-shirts</button>
+      <button class="filter-btn" data-category="Christmas"
+        onclick="setCategory('Christmas')">Christmas</button>
+      <button class="filter-btn" data-category="Other"
+        onclick="setCategory('Other')">Other</button>
+    </div>
 
-  </section>  <section class="seller-banner" id="seller">
+    <div class="products" id="productGrid" aria-live="polite"></div>
+  </section>
+
+  <section class="seller-banner" id="seller">
     <div>
       <h2>Have Products to Sell? 🛍️</h2>
       <p>
-        Bring your business to RENZOTA. Create a product listing with pictures,
-        a description and a price. Seller approval and permanent image storage
-        will be connected in the next development stage.
+        Bring your business to RENZOTA. Submit products with images,
+        descriptions and prices. Listings added through this demo are temporary;
+        permanent uploads and seller approval require the connected backend.
       </p>
     </div>
     <button class="primary-btn" onclick="openSellerForm()">ADD A PRODUCT +</button>
   </section>
-</main><footer>
+</main>
+
+<footer>
   <div class="footer-inner">
     <div>
-      <a class="logo" href="#" style="color:#ff6255">RENZO<span style="color:white">TA</span></a>
+      <a class="logo" href="#" style="color:white">RENZO<span>TA</span></a>
       <p>
-        Discover celebrity merchandise, events, cars, sandwiches and
-        products from independent sellers — all in one place.
+        Discover celebrity merchandise, events, cars, sandwiches, fashion
+        and products from independent sellers around the world.
       </p>
     </div>
     <div>
@@ -870,6 +896,7 @@ footer p, footer a {
       <div class="footer-links">
         <a href="#categories">Categories</a>
         <a href="#products">Products</a>
+        <a href="#christmas">Christmas Collection</a>
         <a href="#seller">Become a Seller</a>
       </div>
     </div>
@@ -884,7 +911,9 @@ footer p, footer a {
   <div class="copyright">
     © <span id="year"></span> RENZOTA. All rights reserved.
   </div>
-</footer><nav class="mobile-nav" aria-label="Mobile navigation">
+</footer>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <span>⌂</span>Home
   </button>
@@ -900,7 +929,10 @@ footer p, footer a {
   <button onclick="openAccount()">
     <span>♙</span>Account
   </button>
-</nav><!-- Shopping cart --><div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')">
+</nav>
+
+<!-- SHOPPING CART -->
+<div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')">
   <div class="modal">
     <div class="modal-header">
       <h2>🛒 Your Shopping Cart</h2>
@@ -909,147 +941,257 @@ footer p, footer a {
     <div id="cartItems"></div>
     <div class="cart-total">
       <span>Subtotal</span>
-      <span id="cartTotal">₦0</span>
+      <span id="cartTotal">$0.00</span>
     </div>
     <p class="form-note">
-      This is a demonstration cart. Live checkout, order processing and payment
-      verification have not been connected yet.
+      This is a demonstration cart. Live checkout, secure payments, order
+      processing and payment verification have not been connected yet.
     </p>
-    <button class="primary-btn wide-btn" onclick="checkoutMessage()">CONTINUE TO CHECKOUT</button>
+    <button class="primary-btn wide-btn" onclick="checkoutMessage()">
+      CONTINUE TO CHECKOUT
+    </button>
   </div>
-</div><!-- Account dialog --><div class="overlay" id="accountOverlay" onclick="overlayClose(event,'accountOverlay')">
+</div>
+
+<!-- ACCOUNT -->
+<div class="overlay" id="accountOverlay" onclick="overlayClose(event,'accountOverlay')">
   <div class="modal">
     <div class="modal-header">
       <h2>Welcome to RENZOTA 👋</h2>
       <button class="close-btn" onclick="closeModal('accountOverlay')">×</button>
     </div>
-    <p>Create your account to enjoy a more personalised shopping experience.</p>
+    <p>Create your account for a personalised shopping experience.</p>
     <div class="form-group">
       <label for="accountEmail">Email address</label>
       <input id="accountEmail" type="email" placeholder="you@example.com">
     </div>
     <p class="form-note">
-      Account registration and secure sign-in will be enabled when we connect
-      the authentication backend. This form does not create a real account yet.
+      Real registration and secure sign-in still need to be connected to
+      Supabase authentication. This form does not create an account yet.
     </p>
     <button class="primary-btn wide-btn" onclick="accountMessage()">CONTINUE</button>
   </div>
-</div><!-- Seller product form --><div class="overlay" id="sellerOverlay" onclick="overlayClose(event,'sellerOverlay')">
+</div>
+
+<!-- SELLER PRODUCT FORM -->
+<div class="overlay" id="sellerOverlay" onclick="overlayClose(event,'sellerOverlay')">
   <div class="modal">
     <div class="modal-header">
       <h2>Add a Product</h2>
       <button class="close-btn" onclick="closeModal('sellerOverlay')">×</button>
-    </div><form id="sellerForm">
-  <div class="form-group">
-    <label for="sellerProductName">Product name *</label>
-    <input id="sellerProductName" required maxlength="100"
-      placeholder="e.g. Custom celebrity T-shirt">
-  </div>
+    </div>
 
-  <div class="form-group">
-    <label for="sellerCategory">Category *</label>
-    <select id="sellerCategory" required>
-      <option value="Celebrity">Celebrity merchandise</option>
-      <option value="Fashion">Custom T-shirts</option>
-      <option value="Cars">Cars & Tesla</option>
-      <option value="Food">Food & sandwiches</option>
-      <option value="Events">Events & experiences</option>
-      <option value="Other">Other products</option>
-    </select>
-  </div>
+    <form id="sellerForm">
+      <div class="form-group">
+        <label for="sellerProductName">Product name *</label>
+        <input id="sellerProductName" required maxlength="100"
+          placeholder="e.g. Custom celebrity T-shirt">
+      </div>
 
-  <div class="form-group">
-    <label for="sellerPrice">Price in NGN (₦) *</label>
-    <input id="sellerPrice" type="number" min="1" step="1" required
-      placeholder="e.g. 25000">
-  </div>
+      <div class="form-group">
+        <label for="sellerCategory">Category *</label>
+        <select id="sellerCategory" required>
+          <option value="Celebrity">Celebrity merchandise</option>
+          <option value="Fashion">Custom T-shirts</option>
+          <option value="Cars">Cars & electric vehicles</option>
+          <option value="Food">Food & sandwiches</option>
+          <option value="Events">Events & experiences</option>
+          <option value="Christmas">Christmas collection</option>
+          <option value="Other">Other products</option>
+        </select>
+      </div>
 
-  <div class="form-group">
-    <label for="sellerDescription">Description</label>
-    <textarea id="sellerDescription" maxlength="1000"
-      placeholder="Describe your product..."></textarea>
-  </div>
+      <div class="form-group">
+        <label for="sellerPrice">
+          Price (<span id="sellerCurrencyLabel">$ USD</span>) *
+        </label>
+        <input id="sellerPrice" type="number" min="0.01"
+          step="0.01" required placeholder="e.g. 25.00">
+      </div>
 
-  <div class="form-group">
-    <label for="sellerPhotos">Product pictures *</label>
-    <input id="sellerPhotos" type="file" accept="image/*" multiple required>
-    <p class="form-note">
-      Choose one or more pictures from your phone. This first version
-      previews images in your current browser session. Persistent uploads
-      that other customers can see require the next step: connecting
-      RENZOTA to secure online image storage.
-    </p>
-    <div id="photoPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"></div>
-  </div>
+      <div class="form-group">
+        <label for="sellerDescription">Description</label>
+        <textarea id="sellerDescription" maxlength="1000"
+          placeholder="Describe your product..."></textarea>
+      </div>
 
-  <button class="primary-btn wide-btn" type="submit">ADD PRODUCT TO DEMO SHOP</button>
-</form>
+      <div class="form-group">
+        <label for="sellerPhotos">Product pictures *</label>
+        <input id="sellerPhotos" type="file" accept="image/*" multiple required>
+        <p class="form-note">
+          Select up to 8 pictures from your phone. Images currently preview
+          in this browser only; persistent uploads require online storage.
+        </p>
+        <div id="photoPreview"
+          style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"></div>
+      </div>
 
+      <button class="primary-btn wide-btn" type="submit">
+        ADD PRODUCT TO DEMO SHOP
+      </button>
+    </form>
   </div>
-</div><div class="toast" id="toast" role="status"></div><script>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/*
+  RENZOTA CURRENCY DISPLAY
+
+  Products use USD as the demo base currency.
+  These example rates are fixed display estimates, NOT live exchange rates.
+  Update them using a trusted exchange-rate service before a real launch.
+*/
+
+const currencySettings = {
+  USD: {symbol:"$", rate:1, label:"USD"},
+  GBP: {symbol:"£", rate:0.75, label:"GBP"},
+  EUR: {symbol:"€", rate:0.86, label:"EUR"},
+  CAD: {symbol:"CA$", rate:1.38, label:"CAD"},
+  AUD: {symbol:"A$", rate:1.53, label:"AUD"}
+};
+
+let currentCurrency = "USD";
+
+function money(usdAmount) {
+  const settings = currencySettings[currentCurrency];
+  const converted = Number(usdAmount || 0) * settings.rate;
+
+  return new Intl.NumberFormat("en", {
+    style:"currency",
+    currency:currentCurrency,
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  }).format(converted);
+}
+
+function convertToUSD(amount, currency) {
+  const settings = currencySettings[currency] || currencySettings.USD;
+  return Number(amount) / settings.rate;
+}
+
+function updateCurrencyLabels() {
+  const settings = currencySettings[currentCurrency];
+  document.getElementById("sellerCurrencyLabel").textContent =
+    settings.symbol + " " + settings.label;
+}
+
+/* DEMO PRODUCTS: PRICES ARE STORED IN USD */
+
 const initialProducts = [
   {
-    id: 1, name: "Custom Celebrity Graphic T-Shirt",
-    category: "Celebrity", price: 12500, oldPrice: 16000,
-    rating: "★ 4.8", badge: "POPULAR",
-    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
+    id:1,
+    name:"Custom Celebrity Graphic T-Shirt",
+    category:"Celebrity",
+    price:25,
+    oldPrice:32,
+    rating:"★ 4.8",
+    badge:"POPULAR",
+    image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 2, name: "Premium Graphic Print T-Shirt",
-    category: "Fashion", price: 14500, oldPrice: 18000,
-    rating: "★ 4.7", badge: "TRENDING",
-    image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=600&q=80"
+    id:2,
+    name:"Premium Graphic Print T-Shirt",
+    category:"Fashion",
+    price:35,
+    oldPrice:42,
+    rating:"★ 4.7",
+    badge:"TRENDING",
+    image:"https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 3, name: "Electric Vehicle — Example Listing",
-    category: "Cars", price: 0, oldPrice: null,
-    rating: "PREORDER", badge: "ENQUIRE",
-    image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=600&q=80",
-    customPrice: "Request price"
+    id:3,
+    name:"Electric Vehicle — Example Listing",
+    category:"Cars",
+    price:0,
+    rating:"PREORDER",
+    badge:"ENQUIRE",
+    customPrice:"Request a quote",
+    image:"https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 4, name: "Fresh Gourmet Chicken Sandwich",
-    category: "Food", price: 4500, oldPrice: null,
-    rating: "★ 4.9", badge: "FRESH",
-    image: "https://images.unsplash.com/photo-1553909489-cd47e0ef937f?auto=format&fit=crop&w=600&q=80"
+    id:4,
+    name:"Fresh Gourmet Chicken Sandwich",
+    category:"Food",
+    price:12,
+    rating:"★ 4.9",
+    badge:"FRESH",
+    image:"https://images.unsplash.com/photo-1553909489-cd47e0ef937f?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 5, name: "Classic Grilled Sandwich",
-    category: "Food", price: 3500, oldPrice: null,
-    rating: "★ 4.6", badge: "",
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80"
+    id:5,
+    name:"Classic Grilled Sandwich",
+    category:"Food",
+    price:9,
+    rating:"★ 4.6",
+    badge:"",
+    image:"https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 6, name: "Live Music & Concert Experience",
-    category: "Events", price: 0, oldPrice: null,
-    rating: "EVENT", badge: "DISCOVER",
-    image: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80",
-    customPrice: "View availability"
+    id:6,
+    name:"Live Music & Concert Experience",
+    category:"Events",
+    price:0,
+    rating:"EVENT",
+    badge:"DISCOVER",
+    customPrice:"Check availability",
+    image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 7, name: "Celebrity-Inspired Streetwear",
-    category: "Celebrity", price: 18000, oldPrice: 22000,
-    rating: "★ 4.8", badge: "NEW",
-    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"
+    id:7,
+    name:"Celebrity-Inspired Streetwear",
+    category:"Celebrity",
+    price:39,
+    rating:"★ 4.8",
+    badge:"NEW",
+    image:"https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 8, name: "Premium Casual T-Shirt",
-    category: "Fashion", price: 9500, oldPrice: null,
-    rating: "★ 4.5", badge: "",
-    image: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80"
+    id:8,
+    name:"Premium Casual T-Shirt",
+    category:"Fashion",
+    price:22,
+    rating:"★ 4.5",
+    badge:"",
+    image:"https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 9, name: "Tesla-Style Electric Car Listing",
-    category: "Cars", price: 0, oldPrice: null,
-    rating: "PREORDER", badge: "ENQUIRE",
-    image: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=600&q=80",
-    customPrice: "Request price"
+    id:9,
+    name:"Electric Car — Example Listing",
+    category:"Cars",
+    price:0,
+    rating:"PREORDER",
+    badge:"ENQUIRE",
+    customPrice:"Request a quote",
+    image:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=600&q=80"
   },
   {
-    id: 10, name: "Fresh Sandwich Meal",
-    category: "Food", price: 5000, oldPrice: null,
-    rating: "★ 4.7", badge: "",
-    image: "https://images.unsplash.com/photo-1539252554453-80ab65ce3586?auto=format&fit=crop&w=600&q=80"
+    id:10,
+    name:"Fresh Sandwich Meal",
+    category:"Food",
+    price:14,
+    rating:"★ 4.7",
+    badge:"",
+    image:"https://images.unsplash.com/photo-1539252554453-80ab65ce3586?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id:11,
+    name:"Christmas Gift Collection",
+    category:"Christmas",
+    price:29,
+    rating:"FESTIVE EDIT",
+    badge:"SEASONAL",
+    image:"https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id:12,
+    name:"Festive Fashion Gift",
+    category:"Christmas",
+    price:45,
+    rating:"GIFT IDEA",
+    badge:"CHRISTMAS",
+    image:"https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
@@ -1061,14 +1203,13 @@ let nextId = 100;
 let selectedPhotos = [];
 let toastTimer;
 
-const money = amount => new Intl.NumberFormat("en-NG", {
-  style: "currency", currency: "NGN", maximumFractionDigits: 0
-}).format(amount);
-
 function safeText(value) {
   return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;",
-    '"': "&quot;", "'": "&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   })[char]);
 }
 
@@ -1077,32 +1218,40 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 3200);
 }
 
 function renderProducts() {
   const grid = document.getElementById("productGrid");
+
   const filtered = products.filter(product => {
-    const categoryMatch = activeCategory === "All" ||
-      product.category === activeCategory;
-    const text = (
-      product.name + " " + product.category + " " +
+    const categoryMatch =
+      activeCategory === "All" || product.category === activeCategory;
+
+    const searchable = (
+      product.name + " " +
+      product.category + " " +
       (product.description || "")
     ).toLowerCase();
-    return categoryMatch && text.includes(searchQuery.toLowerCase());
+
+    return categoryMatch && searchable.includes(searchQuery.toLowerCase());
   });
 
   document.getElementById("productHeading").textContent =
-    activeCategory === "All" ? "Explore Products" : activeCategory + " Products";
+    activeCategory === "All"
+      ? "Explore Products"
+      : activeCategory + " Products";
 
   document.querySelectorAll(".filter-btn").forEach(button => {
     button.classList.toggle(
-      "active", button.dataset.category === activeCategory
+      "active",
+      button.dataset.category === activeCategory
     );
   });
 
   if (!filtered.length) {
-    grid.innerHTML = '<div class="empty-state">No matching products found. Try another search.</div>';
+    grid.innerHTML =
+      '<div class="empty-state">No matching products found. Try another search or category.</div>';
     return;
   }
 
@@ -1114,19 +1263,34 @@ function renderProducts() {
           alt="${safeText(product.name)}"
           loading="lazy"
           onerror="this.onerror=null;this.src='https://placehold.co/500x500/f5f5f5/555?text=RENZOTA'">
-        ${product.badge ? `<span class="badge">${safeText(product.badge)}</span>` : ""}
+        ${product.badge
+          ? `<span class="badge">${safeText(product.badge)}</span>`
+          : ""}
       </div>
+
       <div class="product-body">
         <div class="product-title">${safeText(product.name)}</div>
+
         <div>
-          <span class="price">${product.customPrice || money(product.price)}</span>
-          ${product.oldPrice ? `<span class="old-price">${money(product.oldPrice)}</span>` : ""}
+          <span class="price">
+            ${product.customPrice || money(product.price)}
+          </span>
+          ${product.oldPrice
+            ? `<span class="old-price">${money(product.oldPrice)}</span>`
+            : ""}
         </div>
+
         <div class="rating">${safeText(product.rating || "Discover more")}</div>
+
         <div class="product-bottom">
-          <span style="font-size:10px;color:#777">${safeText(product.category)}</span>
+          <span style="font-size:10px;color:#777">
+            ${safeText(product.category)}
+          </span>
           <button class="add-btn" onclick="addToCart(${product.id})">
-            ${product.category === "Cars" || product.category === "Events" ? "Enquire" : "+ Add"}
+            ${product.category === "Cars" ||
+              product.category === "Events"
+              ? "Enquire"
+              : "+ Add"}
           </button>
         </div>
       </div>
@@ -1147,7 +1311,7 @@ function resetFilters() {
 }
 
 function scrollToProducts() {
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
 }
 
 document.getElementById("searchForm").addEventListener("submit", event => {
@@ -1155,7 +1319,7 @@ document.getElementById("searchForm").addEventListener("submit", event => {
   searchQuery = document.getElementById("searchInput").value.trim();
   activeCategory = "All";
   renderProducts();
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+  scrollToProducts();
 });
 
 document.getElementById("searchInput").addEventListener("input", event => {
@@ -1163,21 +1327,30 @@ document.getElementById("searchInput").addEventListener("input", event => {
   renderProducts();
 });
 
+document.getElementById("currencySelect").addEventListener("change", event => {
+  currentCurrency = event.target.value;
+  updateCurrencyLabels();
+  renderProducts();
+  updateCart();
+  showToast("Display currency changed to " + currentCurrency + ".");
+});
+
 function addToCart(id) {
   const product = products.find(item => item.id === id);
   if (!product) return;
 
   if (product.category === "Cars" || product.category === "Events") {
-    showToast("Live enquiries and bookings will be enabled in a later stage.");
+    showToast("Live enquiries and bookings are not connected yet.");
     return;
   }
 
   const existing = cart.find(item => item.id === id);
+
   if (existing) existing.quantity++;
-  else cart.push({ id, quantity: 1 });
+  else cart.push({id, quantity:1});
 
   updateCart();
-  showToast("Added to your demo cart!");
+  showToast("Added to your demo cart.");
 }
 
 function updateCart() {
@@ -1192,8 +1365,9 @@ function updateCart() {
       '<div class="empty-state">Your cart is empty. Explore products to get started!</div>';
   } else {
     itemsContainer.innerHTML = cart.map(item => {
-      const product = products.find(product => product.id === item.id);
+      const product = products.find(p => p.id === item.id);
       if (!product) return "";
+
       total += product.price * item.quantity;
 
       return `
@@ -1208,7 +1382,8 @@ function updateCart() {
               <button class="text-btn" onclick="removeFromCart(${item.id})">Remove</button>
             </div>
           </div>
-        </div>`;
+        </div>
+      `;
     }).join("");
   }
 
@@ -1216,10 +1391,15 @@ function updateCart() {
 }
 
 function changeQuantity(id, amount) {
-  const item = cart.find(item => item.id === id);
+  const item = cart.find(entry => entry.id === id);
   if (!item) return;
+
   item.quantity += amount;
-  if (item.quantity <= 0) cart = cart.filter(item => item.id !== id);
+
+  if (item.quantity <= 0) {
+    cart = cart.filter(entry => entry.id !== id);
+  }
+
   updateCart();
 }
 
@@ -1234,7 +1414,7 @@ function openCart() {
 }
 
 function checkoutMessage() {
-  showToast("Live checkout is not connected yet. No payment has been taken.");
+  showToast("Checkout is not connected. No payment has been taken.");
 }
 
 function openAccount() {
@@ -1243,23 +1423,27 @@ function openAccount() {
 
 function accountMessage() {
   const email = document.getElementById("accountEmail").value.trim();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     showToast("Please enter a valid email address.");
     return;
   }
-  showToast("Account creation is not connected yet. Your details were not saved.");
+
+  showToast("Real account creation still needs to be connected.");
 }
 
 function openSellerForm() {
   selectedPhotos = [];
   document.getElementById("sellerForm").reset();
   document.getElementById("photoPreview").innerHTML = "";
+  updateCurrencyLabels();
   openModal("sellerOverlay");
 }
 
 document.getElementById("sellerPhotos").addEventListener("change", event => {
   const files = Array.from(event.target.files || []);
   const preview = document.getElementById("photoPreview");
+
   preview.innerHTML = "";
   selectedPhotos = [];
 
@@ -1274,19 +1458,21 @@ document.getElementById("sellerPhotos").addEventListener("change", event => {
       showToast("Please select image files only.");
       continue;
     }
+
     if (file.size > 5 * 1024 * 1024) {
       showToast("Each picture must be 5 MB or smaller.");
       continue;
     }
 
     const objectUrl = URL.createObjectURL(file);
-    selectedPhotos.push({ file, objectUrl });
+    selectedPhotos.push({file, objectUrl});
 
     const img = document.createElement("img");
     img.src = objectUrl;
     img.alt = "Selected product picture";
     img.style.cssText =
       "width:75px;height:75px;object-fit:cover;border-radius:7px;border:1px solid #ddd";
+
     preview.appendChild(img);
   }
 });
@@ -1301,35 +1487,43 @@ document.getElementById("sellerForm").addEventListener("submit", event => {
 
   const name = document.getElementById("sellerProductName").value.trim();
   const category = document.getElementById("sellerCategory").value;
-  const price = Number(document.getElementById("sellerPrice").value);
+  const enteredPrice = Number(document.getElementById("sellerPrice").value);
   const description = document.getElementById("sellerDescription").value.trim();
 
-  if (!name || !Number.isFinite(price) || price <= 0) {
+  if (!name || !Number.isFinite(enteredPrice) || enteredPrice <= 0) {
     showToast("Enter a product name and a valid price.");
     return;
   }
 
+  /*
+    Convert the entered display-currency amount to the USD demo base.
+    These calculations use illustrative fixed rates, not live FX data.
+  */
+  const priceUSD = convertToUSD(enteredPrice, currentCurrency);
+
   const product = {
-    id: nextId++,
+    id:nextId++,
     name,
     category,
-    price,
-    oldPrice: null,
-    rating: "NEW LISTING",
-    badge: "JUST ADDED",
-    image: selectedPhotos[0].objectUrl,
+    price:priceUSD,
+    oldPrice:null,
+    rating:"NEW LISTING",
+    badge:"JUST ADDED",
+    image:selectedPhotos[0].objectUrl,
     description
   };
 
   products.unshift(product);
+
   activeCategory = "All";
   searchQuery = "";
   document.getElementById("searchInput").value = "";
+
   renderProducts();
   closeModal("sellerOverlay");
   scrollToProducts();
 
-  showToast("Product added to this demo page. Online saving is not enabled yet.");
+  showToast("Product added to this demo page. Online saving is not enabled.");
 });
 
 function openModal(id) {
@@ -1339,6 +1533,7 @@ function openModal(id) {
 
 function closeModal(id) {
   document.getElementById(id).classList.remove("open");
+
   if (!document.querySelector(".overlay.open")) {
     document.body.style.overflow = "";
   }
@@ -1358,22 +1553,40 @@ document.addEventListener("keydown", event => {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+updateCurrencyLabels();
 renderProducts();
 updateCart();
 </script>
 
-<!-- RENZOTA DATABASE CONNECTION -->
+<!-- SUPABASE CONNECTION SETUP -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const RENZOTA_SUPABASE_URL = "https://sbhgunhmorjqvcprlqow.supabase.co";
-const RENZOTA_SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+/*
+  Replace the placeholder below with the Publishable key from your
+  RENZOTA Supabase project.
 
-const renzotaSupabase = window.supabase.createClient(
-  RENZOTA_SUPABASE_URL,
-  RENZOTA_SUPABASE_KEY
-);
+  Never put a service_role key or secret key in this public website file.
+  Initialising this client alone does not connect the shop features.
+*/
+const RENZOTA_SUPABASE_URL =
+  "https://sbhgunhmorjqvcprlqow.supabase.co";
 
-console.log("RENZOTA database client initialized.");
+const RENZOTA_SUPABASE_KEY =
+  "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+if (
+  window.supabase &&
+  RENZOTA_SUPABASE_KEY !== "PASTE_YOUR_PUBLISHABLE_KEY_HERE"
+) {
+  window.renzotaSupabase = window.supabase.createClient(
+    RENZOTA_SUPABASE_URL,
+    RENZOTA_SUPABASE_KEY
+  );
+
+  console.log("RENZOTA Supabase client initialised.");
+} else {
+  console.log("RENZOTA database connection needs its publishable key.");
+}
 </script>
 
 </body>
