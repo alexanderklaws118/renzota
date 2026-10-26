@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070B14">
-<meta name="description" content="StarVolt — Explore entertainment, exclusive fan experiences, automotive opportunities and investment education.">
-<title>STARVOLT | Entertainment Meets Innovation</title>
+<meta name="description" content="StarVolt — Trust. Innovation. Opportunity. Explore entertainment, fan experiences, automotive opportunities and investment information.">
+<title>STARVOLT | Trust. Innovation. Opportunity.</title>
 
 <style>
 :root{
@@ -56,9 +56,7 @@ nav a:hover{color:var(--ice)}
   color:white;transition:.2s;
 }
 .btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
-.btn-outline{
-  background:transparent;border:1px solid var(--blue);
-}
+.btn-outline{background:transparent;border:1px solid var(--blue)}
 .menu-btn{display:none;background:none;color:white;border:0;font-size:25px}
 .hero{
   padding:100px 0 85px;
@@ -137,7 +135,8 @@ footer p,footer a{font-size:13px;color:var(--muted)}
 footer h4{margin-bottom:10px}
 footer a{display:block;margin:6px 0}
 footer a:hover{color:var(--ice)}
-.disclaimer{font-size:11px;color:#8391A8;margin-top:25px}
+.disclaimer{font-size:12px;color:#A5B4CC;margin-top:25px;max-width:950px}
+.footer-brand{font-weight:800;color:var(--ice);letter-spacing:1px;margin-bottom:10px}
 .modal{
   display:none;position:fixed;inset:0;z-index:50;
   background:rgba(0,0,0,.8);align-items:center;justify-content:center;padding:18px;
@@ -150,7 +149,6 @@ footer a:hover{color:var(--ice)}
 .modal-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
 .close{background:none;border:0;color:white;font-size:25px}
 #noticeBox{display:none;margin-top:15px;padding:12px;border-radius:8px;background:#17243A;color:var(--ice);font-size:13px}
-.empty-state{padding:20px;color:var(--muted);font-size:14px}
 @media(max-width:850px){
   nav{
     display:none;position:absolute;top:76px;left:0;right:0;
@@ -195,17 +193,16 @@ footer a:hover{color:var(--ice)}
   <div class="container">
     <div class="eyebrow">Entertainment · Innovation · Opportunity</div>
     <h1>Where Entertainment<br>Meets <span class="gradient">Innovation.</span></h1>
-    <p>Discover live events, explore exclusive fan experiences and learn about investment opportunities—all through one modern destination.</p>
+    <p>Welcome to StarVolt—a modern destination for entertainment discovery, fan experiences, automotive information and investment education.</p>
     <div class="hero-actions">
       <a href="#events" class="btn">Explore Events →</a>
-      <a href="#investments" class="btn btn-outline">Explore Investments</a>
+      <a href="#investments" class="btn btn-outline">Explore Opportunities</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><strong>01</strong><span>One destination</span></div>
       <div class="stat"><strong>Global</strong><span>Explore opportunities</span></div>
-      <div class="stat"><strong>Secure*</strong><span>Designed with care</span></div>
+      <div class="stat"><strong>StarVolt</strong><span>Built for discovery</span></div>
     </div>
-    <p class="small">*Security depends on the services configured and verified before launch.</p>
   </div>
 </section>
 
@@ -214,7 +211,7 @@ footer a:hover{color:var(--ice)}
     <div class="section-head">
       <div class="eyebrow">Live experiences</div>
       <h2>Events & Celebrity Tickets</h2>
-      <p>Discover upcoming shows and live experiences. Availability, ticket prices and booking terms must be confirmed for each event.</p>
+      <p>Discover upcoming shows and live experiences. Ticket prices, availability and booking terms are confirmed individually.</p>
     </div>
     <div class="grid">
       <article class="card">
@@ -222,7 +219,7 @@ footer a:hover{color:var(--ice)}
         <div class="card-body">
           <span class="tag">Live Music</span>
           <h3>Concert Experiences</h3>
-          <p>Explore listed concerts, event details, available ticket categories and booking information.</p>
+          <p>Explore concert details, ticket categories and booking information.</p>
           <button class="btn" onclick="eventInfo('Concert Experiences')">Explore Events</button>
         </div>
       </article>
@@ -231,7 +228,7 @@ footer a:hover{color:var(--ice)}
         <div class="card-body">
           <span class="tag">Special Access</span>
           <h3>Celebrity Bookings</h3>
-          <p>Submit an enquiry for an appearance or booking, subject to availability and authorization.</p>
+          <p>Enquire about appearances and bookings, subject to availability and authorization.</p>
           <button class="btn" onclick="eventInfo('Celebrity Bookings')">Make an Enquiry</button>
         </div>
       </article>
@@ -240,7 +237,7 @@ footer a:hover{color:var(--ice)}
         <div class="card-body">
           <span class="tag">Seasonal</span>
           <h3>Christmas Events</h3>
-          <p>Discover seasonal performances and event listings as confirmed information becomes available.</p>
+          <p>Discover seasonal performances and Christmas event information.</p>
           <button class="btn" onclick="eventInfo('Christmas Events')">View Details</button>
         </div>
       </article>
@@ -253,24 +250,36 @@ footer a:hover{color:var(--ice)}
     <div class="section-head">
       <div class="eyebrow">Your fan journey</div>
       <h2>Digital Fan Cards & Memberships</h2>
-      <p>Explore proposed membership levels. Final prices, benefits and delivery details will be published once confirmed.</p>
+      <p>Explore membership concepts and fan experiences. Final prices and benefits will be shown with each confirmed listing.</p>
     </div>
     <div class="grid">
-      <article class="card"><div class="card-art">🥈</div><div class="card-body">
-        <span class="tag">Membership</span><h3>Volt Silver</h3>
-        <p>A proposed entry-level fan membership with benefits to be confirmed.</p>
-        <button class="btn" onclick="membershipInfo('Volt Silver')">View Membership</button>
-      </div></article>
-      <article class="card"><div class="card-art">🥇</div><div class="card-body">
-        <span class="tag">Membership</span><h3>Volt Gold</h3>
-        <p>A proposed enhanced membership with benefits to be confirmed.</p>
-        <button class="btn" onclick="membershipInfo('Volt Gold')">View Membership</button>
-      </div></article>
-      <article class="card"><div class="card-art">💎</div><div class="card-body">
-        <span class="tag">Premium</span><h3>Volt Elite</h3>
-        <p>A proposed premium fan experience with benefits to be confirmed.</p>
-        <button class="btn" onclick="membershipInfo('Volt Elite')">View Membership</button>
-      </div></article>
+      <article class="card">
+        <div class="card-art">🥈</div>
+        <div class="card-body">
+          <span class="tag">Membership</span>
+          <h3>Volt Silver</h3>
+          <p>Discover the entry-level fan membership experience.</p>
+          <button class="btn" onclick="membershipInfo('Volt Silver')">View Membership</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-art">🥇</div>
+        <div class="card-body">
+          <span class="tag">Membership</span>
+          <h3>Volt Gold</h3>
+          <p>Explore a proposed enhanced fan membership experience.</p>
+          <button class="btn" onclick="membershipInfo('Volt Gold')">View Membership</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card-art">💎</div>
+        <div class="card-body">
+          <span class="tag">Premium</span>
+          <h3>Volt Elite</h3>
+          <p>Explore a premium fan experience with details to be confirmed.</p>
+          <button class="btn" onclick="membershipInfo('Volt Elite')">View Membership</button>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -279,38 +288,42 @@ footer a:hover{color:var(--ice)}
   <div class="container">
     <div class="section-head">
       <div class="eyebrow">Explore opportunities</div>
-      <h2>StarVolt Investment Center</h2>
-      <p>Explore categories and learn about different opportunities. Investment availability, eligibility, risks and terms must be verified for each offering.</p>
+      <h2>StarVolt Opportunity Center</h2>
+      <p>Discover information about automotive, property, technology, energy and financial markets. Details and eligibility vary by opportunity.</p>
     </div>
 
     <div class="grid" id="categoryGrid">
-      <article class="card"><div class="card-art">🚗</div><div class="card-body"><h3>Cars & Automotive</h3><p>Explore automotive opportunities and vehicle-related information.</p><button class="btn" onclick="selectCategory('Cars & Automotive')">Explore Category</button></div></article>
-      <article class="card"><div class="card-art">🏠</div><div class="card-body"><h3>Real Estate</h3><p>Learn about property opportunities, ownership structures and risks.</p><button class="btn" onclick="selectCategory('Real Estate & Properties')">Explore Category</button></div></article>
-      <article class="card"><div class="card-art">📈</div><div class="card-body"><h3>Stocks & Shares</h3><p>Explore market education and understand investment risks.</p><button class="btn" onclick="selectCategory('Stocks & Shares')">Explore Category</button></div></article>
-      <article class="card"><div class="card-art">🤖</div><div class="card-body"><h3>Technology & AI</h3><p>Learn about technology, artificial intelligence and related sectors.</p><button class="btn" onclick="selectCategory('Technology & AI')">Explore Category</button></div></article>
-      <article class="card"><div class="card-art">⚡</div><div class="card-body"><h3>Energy</h3><p>Explore energy and renewable-power topics.</p><button class="btn" onclick="selectCategory('Energy & Renewable Power')">Explore Category</button></div></article>
-      <article class="card"><div class="card-art">🌐</div><div class="card-body"><h3>Other Opportunities</h3><p>Discover additional opportunities when verified listings become available.</p><button class="btn" onclick="selectCategory('Other Opportunities')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">🚗</div><div class="card-body"><h3>Cars & Automotive</h3><p>Explore vehicle information and automotive opportunities.</p><button class="btn" onclick="selectCategory('Cars & Automotive')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">🏠</div><div class="card-body"><h3>Real Estate</h3><p>Learn about properties, ownership structures and related considerations.</p><button class="btn" onclick="selectCategory('Real Estate & Properties')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">📈</div><div class="card-body"><h3>Stocks & Shares</h3><p>Explore market education and learn about investment risks.</p><button class="btn" onclick="selectCategory('Stocks & Shares')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">🤖</div><div class="card-body"><h3>Technology & AI</h3><p>Discover technology and artificial intelligence sectors.</p><button class="btn" onclick="selectCategory('Technology & AI')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">⚡</div><div class="card-body"><h3>Energy</h3><p>Explore energy and renewable-power information.</p><button class="btn" onclick="selectCategory('Energy & Renewable Power')">Explore Category</button></div></article>
+      <article class="card"><div class="card-art">🌐</div><div class="card-body"><h3>Other Opportunities</h3><p>Discover additional categories as verified listings become available.</p><button class="btn" onclick="selectCategory('Other Opportunities')">Explore Category</button></div></article>
     </div>
 
     <div class="invest-layout" style="margin-top:35px">
       <div class="panel">
         <h3>How it works</h3>
-        <p class="small">1. Choose an available category and opportunity.</p><br>
-        <p class="small">2. Review the package, permitted amount, terms and risks.</p><br>
-        <p class="small">3. Select a proposed payout date or investment duration.</p><br>
-        <p class="small">4. Review the terms and submit your request.</p><br>
-        <p class="small">5. Follow your request through your customer account once account services are configured.</p>
-        <div class="notice">This first version is a website demonstration. It does not accept investment funds, execute investments, calculate investment profits or process withdrawals.</div>
-        <h3>Early-withdrawal policy</h3>
-        <p class="small">A 20% early-withdrawal fee may apply before the agreed payout date only where legally permitted and disclosed in the applicable agreement. No early-withdrawal fee applies for withdrawal on the agreed payout date. Investment losses, eligibility and other terms may affect the amount payable.</p>
+        <p class="small">1. Explore a category and learn about an opportunity.</p><br>
+        <p class="small">2. Review its details, conditions and risks.</p><br>
+        <p class="small">3. Explore the available package or duration information.</p><br>
+        <p class="small">4. Make an enquiry when a verified listing is available.</p><br>
+        <p class="small">5. Account and transaction services will be introduced when securely configured.</p>
+
+        <div class="notice">
+          The interest form below is currently a demonstration. It does not save or send information, accept funds, execute investments or process withdrawals.
+        </div>
+
+        <h3>Investment information</h3>
+        <p class="small">Investment values can rise or fall, and returns are not guaranteed. Any applicable fees, withdrawal conditions and payment arrangements must be clearly stated in the relevant agreement before a real transaction.</p>
       </div>
 
       <form class="panel" id="investmentForm">
-        <h3>Investment Interest Form</h3>
-        <p class="small" style="margin-bottom:20px">Explore your choices. Submitting this demonstration form does not create an investment or request payment.</p>
+        <h3>Opportunity Interest Form</h3>
+        <p class="small" style="margin-bottom:20px">Use this form to explore an example request. Your details will not be saved or sent.</p>
 
         <div class="field">
-          <label for="category">Investment category *</label>
+          <label for="category">Category *</label>
           <select id="category" required>
             <option value="">Choose a category</option>
             <option>Cars & Automotive</option>
@@ -324,21 +337,23 @@ footer a:hover{color:var(--ice)}
 
         <div class="field">
           <label for="opportunity">Opportunity or product *</label>
-          <input id="opportunity" required maxlength="100" placeholder="Enter the listed opportunity">
+          <input id="opportunity" required maxlength="100" placeholder="Enter an opportunity">
         </div>
 
         <div class="field">
           <label for="package">Choose a package *</label>
           <select id="package" required>
             <option value="">Choose a package</option>
-            <option>Starter</option><option>Growth</option>
-            <option>Premium</option><option>Elite</option>
+            <option>Starter</option>
+            <option>Growth</option>
+            <option>Premium</option>
+            <option>Elite</option>
           </select>
         </div>
 
         <div class="form-row">
           <div class="field">
-            <label for="amount">Amount *</label>
+            <label for="amount">Illustrative amount *</label>
             <input id="amount" type="number" min="1" step="0.01" required placeholder="Enter amount">
           </div>
           <div class="field">
@@ -352,7 +367,7 @@ footer a:hover{color:var(--ice)}
         </div>
 
         <div class="field">
-          <label>How would you like to choose your payout date? *</label>
+          <label for="dateMode">Preferred duration or date *</label>
           <select id="dateMode" required>
             <option value="duration">Choose a duration</option>
             <option value="calendar">Choose a date</option>
@@ -360,200 +375,28 @@ footer a:hover{color:var(--ice)}
         </div>
 
         <div class="field" id="durationField">
-          <label for="duration">Investment duration *</label>
+          <label for="duration">Illustrative duration *</label>
           <select id="duration">
-            <option value="30">30 days</option><option value="60">60 days</option>
-            <option value="90">90 days</option><option value="182">6 months (approx.)</option>
+            <option value="30">30 days</option>
+            <option value="60">60 days</option>
+            <option value="90">90 days</option>
+            <option value="182">6 months (approx.)</option>
             <option value="365">1 year (approx.)</option>
           </select>
         </div>
 
         <div class="field" id="dateField" style="display:none">
-          <label for="payoutDate">Preferred payout date *</label>
+          <label for="payoutDate">Preferred date *</label>
           <input type="date" id="payoutDate">
-          <p class="small">This is a requested date, not a guaranteed payout date.</p>
+          <p class="small">This is an illustrative preference, not a promised payout date.</p>
         </div>
 
         <div class="field">
           <label for="fullName">Full name *</label>
           <input id="fullName" required maxlength="100" autocomplete="name" placeholder="Your full name">
         </div>
+
         <div class="form-row">
           <div class="field">
             <label for="email">Email address *</label>
-            <input id="email" type="email" required maxlength="150" autocomplete="email" placeholder="you@example.com">
-          </div>
-          <div class="field">
-            <label for="phone">Phone number</label>
-            <input id="phone" type="tel" maxlength="30" autocomplete="tel" placeholder="Phone number">
-          </div>
-        </div>
-
-        <div class="summary">
-          <div><span>Amount entered</span><strong id="summaryAmount">—</strong></div>
-          <div><span>Package</span><strong id="summaryPackage">—</strong></div>
-          <div><span>Requested payout date</span><strong id="summaryDate">—</strong></div>
-          <div><span>Early-withdrawal fee example (20%)</span><strong id="summaryFee">—</strong></div>
-          <div><span>Amount after illustrative fee</span><strong id="summaryNet">—</strong></div>
-          <p class="small" style="margin-top:10px">Illustration only. The actual fee basis and amount payable depend on the lawful, agreed terms of the relevant investment.</p>
-        </div>
-
-        <label class="checkbox">
-          <input type="checkbox" id="terms" required>
-          <span>I have read the displayed investment information, understand that returns are not guaranteed, and understand that any applicable early-withdrawal terms must be agreed before a real investment.</span>
-        </label>
-
-        <button class="btn full" type="submit">SUBMIT INTEREST REQUEST</button>
-        <div id="noticeBox" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-  </div>
-</section>
-
-<section id="automotive" style="background:#090F1D">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Automotive & innovation</div>
-      <h2>Tesla & Automotive Experiences</h2>
-      <p>Explore vehicle information, automotive opportunities and enquiries. StarVolt is not presented as an official Tesla partner or dealer unless that relationship is verified.</p>
-    </div>
-    <div class="grid">
-      <article class="card"><div class="card-art">🚘</div><div class="card-body"><h3>Vehicle Enquiries</h3><p>Ask about vehicle availability, specifications and purchasing arrangements.</p><button class="btn" onclick="eventInfo('Vehicle Enquiry')">Make an Enquiry</button></div></article>
-      <article class="card"><div class="card-art">🔋</div><div class="card-body"><h3>Electric Mobility</h3><p>Learn about electric vehicles, charging and ownership considerations.</p><button class="btn" onclick="eventInfo('Electric Mobility Information')">Learn More</button></div></article>
-      <article class="card"><div class="card-art">🧠</div><div class="card-body"><h3>Technology & Innovation</h3><p>Explore general information about automotive technology and innovation.</p><button class="btn" onclick="eventInfo('Technology Information')">Explore</button></div></article>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">The StarVolt vision</div>
-      <h2>One destination. New possibilities.</h2>
-      <p>StarVolt brings entertainment discovery, fan experiences, automotive information and investment education together in a modern digital destination.</p>
-    </div>
-    <div class="grid">
-      <article class="card"><div class="card-body"><h3>🔐 Transparency</h3><p>Clear product details and terms before customers make decisions.</p></div></article>
-      <article class="card"><div class="card-body"><h3>🌍 Accessibility</h3><p>A mobile-friendly experience designed for customers across locations.</p></div></article>
-      <article class="card"><div class="card-body"><h3>📚 Informed Choices</h3><p>Information to help visitors understand opportunities and their risks.</p></div></article>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div><a class="logo" href="#home">STAR<span>VOLT</span></a><p style="margin-top:12px">Entertainment, innovation and informed exploration.</p></div>
-      <div><h4>Explore</h4><a href="#events">Events & Tickets</a><a href="#fan-cards">Fan Memberships</a><a href="#investments">Investment Center</a><a href="#automotive">Automotive</a></div>
-      <div><h4>Information</h4><a href="#about">About StarVolt</a><a href="#investmentNotice">Investment Notice</a><a href="mailto:bigrenzo3588@gmail.com">Contact Founder</a></div>
-    </div>
-    <p class="disclaimer" id="investmentNotice">Risk notice: This website interface is a demonstration, not an offer to invest or a payment service. Investments can lose value. No returns or payouts are guaranteed. Before accepting real investment funds, StarVolt must establish the required legal and regulatory arrangements, clear agreements, verified payment processes, customer protections and appropriate recordkeeping.</p>
-    <p style="margin-top:18px">© <span id="year"></span> StarVolt. All rights reserved.</p>
-  </div>
-</footer>
-
-<div class="modal" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
-  <div class="modal-box">
-    <div class="modal-top"><h2 id="accountTitle">StarVolt Account</h2><button class="close" onclick="closeAccount()" aria-label="Close">×</button></div>
-    <p class="small">Customer account services are not connected yet. Authentication will be enabled after the secure database setup.</p>
-    <div class="field" style="margin-top:20px"><label for="accountEmail">Email address</label><input id="accountEmail" type="email" placeholder="you@example.com" autocomplete="email"></div>
-    <button class="btn full" onclick="accountInfo()">Continue</button>
-    <div id="accountMessage" class="notice" style="display:none"></div>
-  </div>
-</div>
-
-<script>
-const $ = id => document.getElementById(id);
-
-$("year").textContent = new Date().getFullYear();
-
-$("menuBtn").addEventListener("click", () => {
-  const open = $("mainNav").classList.toggle("open");
-  $("menuBtn").setAttribute("aria-expanded", String(open));
-});
-document.querySelectorAll("#mainNav a").forEach(link => link.addEventListener("click", () => {
-  $("mainNav").classList.remove("open");
-  $("menuBtn").setAttribute("aria-expanded","false");
-}));
-
-function openAccount(){
-  $("accountModal").classList.add("show");
-  $("accountEmail").focus();
-}
-function closeAccount(){ $("accountModal").classList.remove("show"); }
-$("accountModal").addEventListener("click",e=>{if(e.target === $("accountModal"))closeAccount();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeAccount();});
-
-function eventInfo(name){
-  alert(name + "\\n\\nThis section is a website demonstration. Confirmed listings, availability and booking services will be added before launch.");
-}
-function membershipInfo(name){
-  alert(name + "\\n\\nMembership details, prices and benefits will be published when finalized.");
-}
-function selectCategory(name){
-  $("category").value=name;
-  $("investments").scrollIntoView({behavior:"smooth"});
-  $("opportunity").focus({preventScroll:true});
-  updateSummary();
-}
-function accountInfo(){
-  $("accountMessage").style.display="block";
-  $("accountMessage").textContent="Account registration is not connected yet. No account has been created. Secure authentication will be set up in the next stage.";
-}
-
-function currencySymbol(){
-  return {"USD":"$","EUR":"€","GBP":"£"}[$("currency").value] || "";
-}
-function formatMoney(value){
-  return currencySymbol()+Number(value).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-}
-function getPayoutDate(){
-  const today=new Date();
-  if($("dateMode").value==="calendar"){
-    return $("payoutDate").value || "";
-  }
-  const days=Number($("duration").value || 30);
-  today.setDate(today.getDate()+days);
-  return today.toISOString().slice(0,10);
-}
-function updateSummary(){
-  const amount=Number($("amount").value);
-  const valid=Number.isFinite(amount)&&amount>0;
-  $("summaryAmount").textContent=valid?formatMoney(amount):"—";
-  $("summaryPackage").textContent=$("package").value||"—";
-  $("summaryDate").textContent=getPayoutDate()||"Select a date";
-  $("summaryFee").textContent=valid?formatMoney(amount*.2):"—";
-  $("summaryNet").textContent=valid?formatMoney(amount*.8):"—";
-}
-function updateDateMode(){
-  const calendar=$("dateMode").value==="calendar";
-  $("dateField").style.display=calendar?"block":"none";
-  $("durationField").style.display=calendar?"none":"block";
-  $("payoutDate").required=calendar;
-  if(calendar){
-    const min=new Date();
-    min.setDate(min.getDate()+1);
-    $("payoutDate").min=min.toISOString().slice(0,10);
-  }else{
-    $("payoutDate").value="";
-  }
-  updateSummary();
-}
-["amount","currency","package","duration","payoutDate","category","dateMode"].forEach(id=>{
-  $(id).addEventListener("input",updateSummary);
-  $(id).addEventListener("change",updateSummary);
-});
-$("dateMode").addEventListener("change",updateDateMode);
-updateDateMode();
-
-$("investmentForm").addEventListener("submit",e=>{
-  e.preventDefault();
-  const box=$("noticeBox");
-  box.style.display="block";
-  box.textContent="This demonstration form has not sent or saved your details. No investment has been created and no payment has been taken. Secure database storage, verified investment terms and payment services must be connected before accepting real requests.";
-  box.scrollIntoView({behavior:"smooth",block:"nearest"});
-});
-</script>
-</body>
-</html>
+            <input id="email
