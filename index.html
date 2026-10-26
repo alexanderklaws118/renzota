@@ -2,1417 +2,797 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10100c">
-
-<title>RENZOTA — Discover More. Shop Everything.</title>
-
-<meta name="description" content="Discover events, shopping, tickets, fashion, celebrity experiences and more with RENZOTA.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f45b13">
+<meta name="description" content="RENZOTA — Discover More. Shop Everything.">
+<title>RENZOTA | Discover More. Shop Everything.</title>
 
 <style>
 :root {
-  --bg: #10100c;
-  --panel: #1a1913;
-  --panel2: #242116;
-  --gold: #e7c879;
-  --gold-light: #f8e7b0;
-  --red: #9c252b;
-  --cream: #fff7e6;
-  --muted: #c2baa7;
-  --border: rgba(231,200,121,.25);
-  --green: #b4d7a2;
+  --orange: #f45b13;
+  --black: #171717;
+  --gray: #f5f5f5;
+  --border: #e8e8e8;
 }
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; }
 body {
-  background: var(--bg);
-  color: var(--cream);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--black);
+  background: white;
 }
+button, input, select, textarea { font: inherit; }
+button, a { cursor: pointer; }
+a { text-decoration: none; color: inherit; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.topbar {
-  background: #6d171e;
-  text-align: center;
-  padding: 9px 14px;
-  font-size: 12px;
-  letter-spacing: 1px;
+.announcement {
+  background: #171717;
   color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
 }
+.announcement strong { color: #ff9a65; }
 
 header {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(16,16,12,.96);
-  backdrop-filter: blur(12px);
+  z-index: 10;
+  background: white;
   border-bottom: 1px solid var(--border);
 }
-
-.nav {
-  max-width: 1250px;
+.header {
+  max-width: 1200px;
   margin: auto;
-  padding: 15px 22px;
+  padding: 14px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 15px;
 }
-
 .logo {
   font-size: 27px;
   font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--gold);
+  color: var(--orange);
 }
+.logo span { color: #171717; }
 
-.logo span {
+.search {
+  display: flex;
+  flex: 1;
+  min-width: 100px;
+  border: 2px solid var(--orange);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.search input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: none;
+  outline: none;
+}
+.search button {
+  padding: 12px 18px;
+  background: var(--orange);
   color: white;
-}
-
-.tagline {
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.navlinks {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-.navlinks a {
-  font-size: 13px;
-  color: #eee5d2;
-}
-
-.navlinks a:hover {
-  color: var(--gold);
-}
-
-.cart-button,
-.gold-button {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  border: 0;
-  border-radius: 5px;
-  color: #20190b;
+  border: none;
   font-weight: bold;
-  padding: 11px 16px;
 }
-
-.hero {
-  min-height: 520px;
-  padding: 85px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at top, rgba(150,34,40,.3), transparent 60%),
-    linear-gradient(145deg, #21180e, #10100c 60%, #261d0f);
-  border-bottom: 1px solid var(--border);
-}
-
-.hero-inner {
-  max-width: 850px;
-}
-
-.eyebrow {
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: clamp(38px, 7vw, 76px);
-  line-height: 1.08;
-  margin-bottom: 22px;
-}
-
-.hero h1 span {
-  color: var(--gold);
-}
-
-.hero p {
-  max-width: 650px;
-  margin: 0 auto 28px;
-  color: #ddd3bf;
-  font-size: 17px;
-}
-
-.hero-actions {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.button {
-  display: inline-block;
-  padding: 13px 20px;
-  border-radius: 5px;
+.cart-button, .primary {
+  background: var(--orange);
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 6px;
   font-weight: bold;
-  border: 1px solid var(--gold);
-  background: transparent;
-  color: var(--gold);
 }
-
-.button:hover {
-  background: rgba(231,200,121,.12);
-}
-
-.gold-button:hover {
-  filter: brightness(1.08);
-}
-
-.section {
-  max-width: 1250px;
-  padding: 65px 22px;
-  margin: auto;
-}
-
-.section-heading {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.section-heading .eyebrow {
-  margin-bottom: 8px;
-}
-
-.section-heading h2 {
-  font-size: clamp(26px, 4vw, 42px);
-  margin-bottom: 10px;
-}
-
-.section-heading p {
-  color: var(--muted);
-  max-width: 700px;
-  margin: auto;
-}
-
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-  gap: 13px;
-}
-
-.category-card {
-  border: 1px solid var(--border);
-  background: linear-gradient(145deg, #252116, #17150f);
-  padding: 25px 12px;
-  border-radius: 8px;
-  text-align: center;
-  transition: .2s;
-}
-
-.category-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-}
-
-.category-card .icon {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.category-card h3 {
-  font-size: 14px;
-}
-
-.search-row {
+.categories {
   display: flex;
   gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
+  overflow-x: auto;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 14px 12px;
 }
+.categories a {
+  background: var(--gray);
+  border-radius: 20px;
+  padding: 9px 14px;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+.categories a:hover { background: #ffe2d3; }
 
-.search-row input,
-.search-row select,
-.form-control {
-  min-width: 0;
-  width: 100%;
-  padding: 12px;
-  background: #201e17;
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px;
+}
+.hero {
+  border-radius: 12px;
+  padding: 45px;
   color: white;
-  border: 1px solid var(--border);
-  border-radius: 5px;
-}
-
-.search-row input {
-  flex: 2;
-}
-
-.search-row select {
-  flex: 1;
-}
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  background: linear-gradient(120deg,#ff7628,#ed3d05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
 }
+.hero h1 {
+  font-size: clamp(32px,5vw,55px);
+  margin: 10px 0;
+}
+.hero p {
+  max-width: 550px;
+  line-height: 1.7;
+}
+.hero-icon { font-size: clamp(70px,15vw,150px); }
+.white-button {
+  display: inline-block;
+  background: white;
+  color: #c83e06;
+  padding: 13px 17px;
+  border-radius: 6px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+section { margin: 35px 0; }
+.section-heading { margin-bottom: 18px; }
+.section-heading h2 { margin-bottom: 7px; }
+.section-heading p { color: #666; font-size: 14px; }
 
+.promos {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 12px;
+}
+.promo {
+  padding: 18px;
+  border-radius: 9px;
+  background: #fff0e7;
+}
+.promo:nth-child(2) { background: #f0ecff; }
+.promo:nth-child(3) { background: #eaf8ef; }
+.promo:nth-child(4) { background: #fff7d9; }
+.promo .emoji { font-size: 32px; }
+.promo h3 { font-size: 15px; }
+.promo p { font-size: 12px; line-height: 1.6; }
+
+.event-banner {
+  background: #171717;
+  color: white;
+  padding: 28px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+.event-banner h2 {
+  font-size: clamp(25px,4vw,40px);
+  margin: 12px 0;
+}
+.event-banner p { color: #ddd; line-height: 1.7; }
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 15px;
+}
 .product {
-  background: var(--panel);
   border: 1px solid var(--border);
   border-radius: 9px;
   overflow: hidden;
+  min-width: 0;
   display: flex;
   flex-direction: column;
+  background: white;
 }
-
-.product-art {
-  min-height: 165px;
+.product-photo {
+  height: 165px;
+  background: #f3f3f3;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 20px;
-  font-size: 55px;
-  background:
-    radial-gradient(circle at center, rgba(231,200,121,.13), transparent 70%),
-    linear-gradient(145deg, #302718, #17150f);
+  position: relative;
+  overflow: hidden;
 }
-
-.product-body {
-  padding: 19px;
+.product-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.placeholder { font-size: 65px; }
+.product-info {
+  padding: 13px;
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-
-.product-category {
-  color: var(--gold);
-  text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: 1.5px;
-  margin-bottom: 7px;
-}
-
-.product h3 {
-  font-size: 18px;
-  line-height: 1.35;
-  margin-bottom: 9px;
-}
-
-.product-description {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 15px;
-  flex: 1;
-}
-
-.product-price {
-  color: var(--gold-light);
-  font-size: 23px;
-  font-weight: 800;
-  margin-bottom: 7px;
-}
-
-.product-note {
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 13px;
-}
-
-.product .button,
-.product .gold-button {
-  text-align: center;
-  width: 100%;
-  margin-top: 7px;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 35px 10px;
-  color: var(--muted);
-  display: none;
-}
-
-.christmas {
-  background:
-    radial-gradient(ellipse at top right, rgba(153,31,39,.25), transparent 45%),
-    linear-gradient(135deg, #151a12, #24170f);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-
-.christmas .section {
-  padding-top: 60px;
-  padding-bottom: 60px;
-}
-
-.christmas-banner {
-  text-align: center;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 30px 20px;
-  margin-bottom: 28px;
-  background: rgba(0,0,0,.15);
-}
-
-.christmas-banner h2 {
-  font-size: clamp(27px, 5vw, 45px);
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-
-.christmas-banner p {
-  color: var(--muted);
-  max-width: 720px;
-  margin: auto;
-}
-
-.price-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-.price-card {
-  border: 1px solid var(--border);
-  background: rgba(10,10,8,.55);
-  border-radius: 8px;
-  padding: 22px;
-}
-
-.price-card h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.price-card .price {
-  color: var(--gold);
-  font-size: 29px;
+.product h3 { font-size: 14px; line-height: 1.5; }
+.product p { color: #666; font-size: 12px; line-height: 1.6; }
+.price {
+  font-size: 20px;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-top: auto;
+}
+.product button {
+  margin-top: 12px;
+  padding: 11px 8px;
+  border: 1px solid var(--orange);
+  background: #fff2eb;
+  color: #c83e06;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.product button:hover {
+  background: var(--orange);
+  color: white;
 }
 
-.price-card p {
-  color: var(--muted);
-  font-size: 12px;
-  margin-bottom: 15px;
-}
-
-.price-card button {
-  width: 100%;
-}
-
-.notice {
-  margin-top: 25px;
-  padding: 15px;
-  border: 1px solid rgba(231,200,121,.25);
-  background: rgba(0,0,0,.2);
-  border-radius: 6px;
-  font-size: 12px;
-  color: #d8cfbb;
-}
-
-.celebrity-panel {
+.tesla {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  gap: 25px;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  background: #f5f5f5;
+  border-radius: 12px;
+  overflow: hidden;
 }
-
-.celebrity-art {
-  min-height: 320px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background:
-    radial-gradient(circle, rgba(231,200,121,.16), transparent 65%),
-    linear-gradient(145deg, #2a1e14, #13120e);
+.tesla-copy { padding: 28px; }
+.tesla-copy h2 { font-size: 32px; }
+.tesla-price {
+  font-size: 32px;
+  color: var(--orange);
+  font-weight: 900;
+}
+.tesla-photo {
+  min-height: 240px;
+  background: #e7e7e7;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 25px;
+  overflow: hidden;
 }
-
-.celebrity-art div {
-  font-size: 60px;
-}
-
-.celebrity-art p {
-  color: var(--gold);
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-top: 12px;
-}
-
-.celebrity-copy h3 {
-  font-size: 30px;
-  margin-bottom: 12px;
-}
-
-.celebrity-copy p {
-  color: var(--muted);
-  margin-bottom: 15px;
-}
-
-.celebrity-copy ul {
-  list-style: none;
-  margin: 15px 0 22px;
-}
-
-.celebrity-copy li {
-  margin-bottom: 8px;
-}
-
-.celebrity-copy li::before {
-  content: "✦ ";
-  color: var(--gold);
-}
-
-.tesla-note {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 15px;
-}
-
-.form-wrap {
-  max-width: 750px;
-  margin: auto;
-  padding: 25px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 9px;
-}
-
-.form-wrap label {
-  display: block;
-  font-size: 13px;
-  margin: 15px 0 6px;
-}
-
-.form-wrap .gold-button {
+.tesla-photo img {
   width: 100%;
-  margin-top: 18px;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
 }
+.tesla-photo .placeholder { font-size: 110px; }
 
-.form-wrap small {
+.upload-box {
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 9px;
+  background: #fafafa;
+}
+.upload-box label {
   display: block;
-  margin-top: 12px;
-  color: var(--muted);
+  margin: 12px 0 6px;
+  font-weight: bold;
+  font-size: 13px;
 }
-
-#formMessage {
+.upload-box input,
+.upload-box select {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.preview {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-top: 15px;
-  color: var(--gold);
-  overflow-wrap: anywhere;
 }
-
+.preview img {
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 7px;
+  border: 1px solid #ddd;
+}
+.notice {
+  font-size: 12px;
+  line-height: 1.7;
+  color: #666;
+  margin-top: 14px;
+}
+.seller {
+  padding: 25px;
+  background: #fff2e9;
+  border-radius: 10px;
+}
 footer {
-  border-top: 1px solid var(--border);
-  background: #0b0b08;
-  padding: 35px 20px;
+  margin-top: 40px;
+  background: #171717;
+  color: white;
+  padding: 30px 16px;
   text-align: center;
 }
-
-footer .logo {
-  margin-bottom: 8px;
-}
-
-footer p {
-  color: var(--muted);
-  font-size: 12px;
-  margin: 7px auto;
-  max-width: 760px;
-}
-
-.footer-links {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 17px 0;
-  font-size: 12px;
-}
-
-.modal-backdrop {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(0,0,0,.8);
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-}
-
-.modal-backdrop.open {
-  display: flex;
-}
+footer p { color: #ccc; font-size: 13px; }
 
 .modal {
-  width: 100%;
-  max-width: 520px;
-  max-height: 90vh;
-  overflow-y: auto;
-  background: #19170f;
-  border: 1px solid var(--gold);
-  border-radius: 9px;
-  padding: 25px;
+  display: none;
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  background: #0009;
+  overflow: auto;
+  padding: 15px;
 }
-
-.modal h2 {
-  color: var(--gold);
-  margin-bottom: 12px;
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 35px auto;
+  padding: 22px;
 }
-
-.modal p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 15px;
-}
-
-.modal label {
+.modal-content label {
   display: block;
   font-size: 13px;
-  margin: 12px 0 5px;
+  font-weight: bold;
+  margin: 13px 0 6px;
 }
-
-.modal input,
-.modal select,
-.modal textarea {
+.modal-content input,
+.modal-content textarea {
   width: 100%;
-  padding: 11px;
-  background: #242116;
-  color: white;
-  border: 1px solid var(--border);
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+.modal-content textarea { min-height: 75px; }
+.close {
+  float: right;
+  border: none;
+  background: #eee;
+  padding: 8px 12px;
   border-radius: 5px;
 }
+.modal-content .primary { width: 100%; margin-top: 15px; }
 
-.modal textarea {
-  min-height: 90px;
+@media(max-width:800px) {
+  .header { flex-wrap: wrap; }
+  .search { order: 3; flex-basis: 100%; }
+  .promos { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .products { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .product-photo { height: 135px; }
 }
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.modal-actions button {
-  flex: 1;
-}
-
-.close-button {
-  background: transparent;
-  color: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: 5px;
-  padding: 10px;
-}
-
-@media(max-width:750px) {
-  .nav {
-    justify-content: center;
-  }
-
-  .navlinks {
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .hero {
-    min-height: 440px;
-    padding: 65px 18px;
-  }
-
-  .celebrity-panel {
-    grid-template-columns: 1fr;
-  }
-
-  .celebrity-art {
-    min-height: 220px;
-  }
-}
-
-@media(max-width:450px) {
-  .logo {
-    font-size: 23px;
-  }
-
-  .navlinks a {
-    font-size: 12px;
-  }
-
-  .section {
-    padding: 45px 15px;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-wrap {
-    padding: 18px;
-  }
+@media(max-width:500px) {
+  main { padding: 12px; }
+  .hero { padding: 25px 20px; }
+  .hero-icon { font-size: 65px; }
+  .tesla { grid-template-columns: 1fr; }
+  .tesla-photo { order: -1; }
+  .product-info { padding: 10px; }
+  .logo { font-size: 24px; }
 }
 </style>
 </head>
 
 <body>
-
-<div class="topbar">
-  ✨ THE RENZOTA HOLIDAY EDITION · DISCOVER SOMETHING EXTRAORDINARY ✨
+<div class="announcement">
+  🎄 <strong>RENZOTA CHRISTMAS OFFERS</strong> — Discover More. Shop Everything.
 </div>
 
 <header>
-  <nav class="nav">
-    <a href="#home" aria-label="RENZOTA home">
-      <div class="logo">RENZO<span>TA</span></div>
-      <div class="tagline">DISCOVER MORE. SHOP EVERYTHING.</div>
-    </a>
+  <div class="header">
+    <a class="logo" href="#">RENZO<span>TA</span></a>
 
-    <div class="navlinks">
-      <a href="#categories">Categories</a>
-      <a href="#shop">Marketplace</a>
-      <a href="#christmas">Christmas</a>
-      <a href="#celebrity">Celebrity World</a>
-      <a href="#tesla">Cars</a>
-    </div>
+    <form class="search" id="searchForm">
+      <input id="searchInput" placeholder="Search tickets, products, Tesla cars..." aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
 
-    <a class="cart-button" href="#enquire">Enquire</a>
+    <button class="cart-button" id="cartButton" type="button">
+      🛒 Cart <span id="cartCount">0</span>
+    </button>
+  </div>
+
+  <nav class="categories">
+    <a href="#shop">All Products</a>
+    <a href="#tickets">Concert Tickets</a>
+    <a href="#shop">Fan Merchandise</a>
+    <a href="#tesla">Tesla Preorders</a>
+    <a href="#christmas">Christmas Gifts</a>
+    <a href="#upload">Upload Photos</a>
   </nav>
 </header>
 
 <main>
-
-<section class="hero" id="home">
-  <div class="hero-inner">
-    <div class="eyebrow">One Destination · Endless Possibilities</div>
-
-    <h1>Discover More.<br><span>Shop Everything.</span></h1>
-
-    <p>
-      Welcome to RENZOTA — your destination for shopping, special experiences,
-      entertainment, events, fashion and more.
-    </p>
-
-    <div class="hero-actions">
-      <a class="gold-button" href="#shop">Explore Marketplace</a>
-      <a class="button" href="#christmas">Explore Christmas Collection</a>
+  <div class="hero">
+    <div>
+      <strong>DISCOVER MORE. SHOP EVERYTHING.</strong>
+      <h1>Big finds.<br>Brilliant moments.</h1>
+      <p>Explore shopping, concert tickets, fan merchandise, Christmas gifts and vehicle preorders in one marketplace.</p>
+      <a class="white-button" href="#shop">Explore the marketplace →</a>
     </div>
-  </div>
-</section>
-
-<section class="section" id="categories">
-  <div class="section-heading">
-    <div class="eyebrow">Explore RENZOTA</div>
-    <h2>One Marketplace. Many Possibilities.</h2>
-    <p>
-      Explore different categories and discover products, services and experiences.
-      Listings may be supplied by RENZOTA or independent sellers.
-    </p>
+    <div class="hero-icon">🛍️</div>
   </div>
 
-  <div class="category-grid">
-    <a class="category-card" href="#shop" data-category-link="Fashion">
-      <div class="icon">👗</div>
-      <h3>Fashion</h3>
-    </a>
+  <section id="christmas">
+    <div class="section-heading">
+      <h2>🎄 Christmas Specials</h2>
+      <p>Explore special seasonal offers.</p>
+    </div>
 
-    <a class="category-card" href="#christmas">
-      <div class="icon">🎄</div>
-      <h3>Christmas Collection</h3>
-    </a>
+    <div class="promos">
+      <div class="promo">
+        <div class="emoji">🎁</div>
+        <h3>Christmas Ghost Box</h3>
+        <p>A surprise selection of gifts. Exact items remain a mystery until opening.</p>
+      </div>
+      <div class="promo">
+        <div class="emoji">🚘</div>
+        <h3>Tesla Christmas Offer</h3>
+        <p>$5,000 preorder payment. Remaining balance due when the vehicle is available.</p>
+      </div>
+      <div class="promo">
+        <div class="emoji">🎤</div>
+        <h3>Fan Merchandise</h3>
+        <p>Customised fan T-shirts and selected fan experiences.</p>
+      </div>
+      <div class="promo">
+        <div class="emoji">🎟️</div>
+        <h3>Live Events</h3>
+        <p>Choose a ticket tier and request availability.</p>
+      </div>
+    </div>
+  </section>
 
-    <a class="category-card" href="#celebrity">
-      <div class="icon">🌟</div>
-      <h3>Celebrity World</h3>
-    </a>
-
-    <a class="category-card" href="#christmas">
-      <div class="icon">🎟️</div>
-      <h3>Tickets & Events</h3>
-    </a>
-
-    <a class="category-card" href="#shop" data-category-link="Electronics">
-      <div class="icon">📱</div>
-      <h3>Electronics</h3>
-    </a>
-
-    <a class="category-card" href="#tesla">
-      <div class="icon">🚘</div>
-      <h3>Cars & Vehicles</h3>
-    </a>
-
-    <a class="category-card" href="#shop" data-category-link="Home">
-      <div class="icon">🏠</div>
-      <h3>Home & Living</h3>
-    </a>
-
-    <a class="category-card" href="#enquire">
-      <div class="icon">🤝</div>
-      <h3>Become a Seller</h3>
-    </a>
-  </div>
-</section>
-
-<section class="section" id="shop">
-  <div class="section-heading">
-    <div class="eyebrow">The Marketplace</div>
-    <h2>Explore What's Available</h2>
-    <p>
-      Search listings and discover products. Demo listings are examples and must
-      be confirmed with the seller before making a payment.
-    </p>
-  </div>
-
-  <div class="search-row">
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="Search products, tickets, fashion..."
-      aria-label="Search listings"
-    >
-
-    <select id="categoryFilter" aria-label="Filter by category">
-      <option value="All">All categories</option>
-      <option value="Fashion">Fashion</option>
-      <option value="Electronics">Electronics</option>
-      <option value="Home">Home & Living</option>
-      <option value="Events">Tickets & Events</option>
-      <option value="Celebrity">Celebrity World</option>
-      <option value="Cars">Cars & Vehicles</option>
-    </select>
-  </div>
-
-  <div class="product-grid" id="productGrid"></div>
-  <div class="empty-state" id="emptyState">
-    No listings matched your search. Try another keyword or category.
-  </div>
-</section>
-
-<div class="christmas" id="christmas">
-  <section class="section">
-    <div class="christmas-banner">
-      <div class="eyebrow">The Holiday Collection</div>
-      <h2>🎄 A Luxury Christmas Experience 🎄</h2>
-      <p>
-        Celebrate the season with entertainment, memorable experiences and
-        selected holiday listings on RENZOTA.
-      </p>
+  <section id="tickets">
+    <div class="event-banner">
+      <strong>LIVE EVENTS · FAN EXPERIENCES</strong>
+      <h2>Alexander Klaws<br>Tickets & Fan Merchandise</h2>
+      <p>Choose your ticket option or explore fan merchandise. Event dates, availability and fulfilment must be confirmed before payment.</p>
     </div>
 
     <div class="section-heading">
-      <div class="eyebrow">Christmas Tour Collection</div>
-      <h2>Alexander Klaws — Ticket Information</h2>
-      <p>
-        The following are the requested listing prices. Confirm the event,
-        seller's authority to sell, ticket availability, delivery method and
-        payment arrangements before paying.
-      </p>
+      <h2>🎟️ Choose Your Ticket</h2>
+      <p>Submit an order request for confirmation.</p>
     </div>
 
-    <div class="price-list">
-
-      <article class="price-card">
-        <h3>🎟️ Normal Ticket</h3>
-        <div class="price">£150</div>
-        <p>Requested listing price for a normal ticket.</p>
-        <button class="gold-button" type="button"
-          onclick="openEnquiry('Alexander Klaws — Normal Ticket (£150)')">
-          Enquire
-        </button>
+    <div class="products">
+      <article class="product" data-search="Alexander Klaws normal ticket concert">
+        <div class="product-photo"><span class="placeholder">🎟️</span></div>
+        <div class="product-info">
+          <h3>Alexander Klaws — Normal Ticket</h3>
+          <p>Standard ticket request, subject to availability.</p>
+          <div class="price">£150</div>
+          <button class="order-button" data-name="Alexander Klaws — Normal Ticket" data-price="£150">Request Ticket</button>
+        </div>
       </article>
 
-      <article class="price-card">
-        <h3>🎫 Regular Ticket</h3>
-        <div class="price">£230</div>
-        <p>Requested listing price for a regular ticket.</p>
-        <button class="gold-button" type="button"
-          onclick="openEnquiry('Alexander Klaws — Regular Ticket (£230)')">
-          Enquire
-        </button>
+      <article class="product" data-search="Alexander Klaws regular ticket concert">
+        <div class="product-photo"><span class="placeholder">🎫</span></div>
+        <div class="product-info">
+          <h3>Alexander Klaws — Regular Ticket</h3>
+          <p>Regular ticket option, subject to confirmation.</p>
+          <div class="price">£230</div>
+          <button class="order-button" data-name="Alexander Klaws — Regular Ticket" data-price="£230">Request Ticket</button>
+        </div>
       </article>
 
-      <article class="price-card">
-        <h3>👑 VIP Ticket</h3>
-        <div class="price">£500</div>
-        <p>Requested listing price for a VIP ticket. Confirm included benefits.</p>
-        <button class="gold-button" type="button"
-          onclick="openEnquiry('Alexander Klaws — VIP Ticket (£500)')">
-          Enquire
-        </button>
+      <article class="product" data-search="Alexander Klaws VIP ticket concert">
+        <div class="product-photo"><span class="placeholder">⭐</span></div>
+        <div class="product-info">
+          <h3>Alexander Klaws — VIP Ticket</h3>
+          <p>VIP ticket request. Benefits must be confirmed.</p>
+          <div class="price">£500</div>
+          <button class="order-button" data-name="Alexander Klaws — VIP Ticket" data-price="£500">Request VIP</button>
+        </div>
       </article>
 
-      <article class="price-card">
-        <h3>⭐ Special Host / Tag</h3>
-        <div class="price">€1,000</div>
-        <p>Requested price. Confirm exactly what the service includes before purchase.</p>
-        <button class="gold-button" type="button"
-          onclick="openEnquiry('Alexander Klaws — Special Host / Tag (€1,000)')">
-          Enquire
-        </button>
+      <article class="product" data-search="Special Host Tag fan experience">
+        <div class="product-photo"><span class="placeholder">🤝</span></div>
+        <div class="product-info">
+          <h3>Special Host / Tag</h3>
+          <p>Request details and confirm the experience included.</p>
+          <div class="price">€1,000</div>
+          <button class="order-button" data-name="Special Host / Tag" data-price="€1,000">Request Details</button>
+        </div>
       </article>
-
-      <article class="price-card">
-        <h3>👕 Customised T-Shirt</h3>
-        <div class="price">€450</div>
-        <p>Requested listing price for a customised Alexander Klaws T-shirt. Confirm design, rights and availability.</p>
-        <button class="gold-button" type="button"
-          onclick="openEnquiry('Alexander Klaws — Customised T-Shirt (€450)')">
-          Enquire
-        </button>
-      </article>
-
-    </div>
-
-    <div class="notice">
-      <strong>Important:</strong> These prices are entered as requested and are
-      not proof of an official event, official merchandise, ticket availability
-      or permission to sell. Before accepting money, confirm the relevant
-      organiser's details, event information, merchandise rights and any required
-      authorisation. An enquiry does not reserve a ticket or complete an order.
     </div>
   </section>
-</div>
 
-<section class="section" id="celebrity">
-  <div class="section-heading">
-    <div class="eyebrow">RENZOTA Celebrity World</div>
-    <h2>Music, Entertainment & Fan Experiences</h2>
-    <p>
-      Discover entertainment-related listings and enquire about availability.
-      RENZOTA is not claiming to represent any celebrity or event organiser.
-    </p>
-  </div>
-
-  <div class="celebrity-panel">
-    <div class="celebrity-art">
-      <div>
-        <div>🌟 🎤 🌟</div>
-        <p>RENZOTA CELEBRITY WORLD</p>
-      </div>
+  <section id="shop">
+    <div class="section-heading">
+      <h2>🛍️ Shop the Marketplace</h2>
+      <p>Featured products and Christmas picks.</p>
     </div>
 
-    <div class="celebrity-copy">
-      <div class="eyebrow">Featured Celebrity Listing</div>
-      <h3>Alexander Klaws</h3>
+    <div class="products" id="productGrid">
+      <article class="product" data-search="customised T shirt Alexander Klaws fan merchandise">
+        <div class="product-photo"><span class="placeholder">👕</span></div>
+        <div class="product-info">
+          <h3>Customised Fan T-shirt</h3>
+          <p>Confirm the design, size and production details.</p>
+          <div class="price">€450</div>
+          <button class="order-button" data-name="Customised Fan T-shirt" data-price="€450">Request T-shirt</button>
+        </div>
+      </article>
 
-      <p>
-        Explore the requested ticket and customised merchandise listings
-        associated with Alexander Klaws. Confirm the relevant event, seller,
-        product details and availability independently before making a purchase.
+      <article class="product" data-search="Christmas Ghost Box surprise mystery gift">
+        <div class="product-photo"><span class="placeholder">🎁</span></div>
+        <div class="product-info">
+          <h3>Christmas Ghost Box</h3>
+          <p>A mystery gift selection. General contents and conditions should be disclosed before payment.</p>
+          <div class="price">€200</div>
+          <button class="order-button" data-name="Christmas Ghost Box" data-price="€200">Request Ghost Box</button>
+        </div>
+      </article>
+
+      <article class="product" data-search="Tesla electric car vehicle preorder">
+        <div class="product-photo"><span class="placeholder">🚘</span></div>
+        <div class="product-info">
+          <h3>Tesla Christmas Preorder</h3>
+          <p>$5,000 preorder payment. Final price and remaining balance to be confirmed.</p>
+          <div class="price">$5,000</div>
+          <button class="order-button" data-name="Tesla Christmas Preorder" data-price="$5,000 preorder payment">Request Preorder</button>
+        </div>
+      </article>
+
+      <article class="product" data-search="other products marketplace shopping">
+        <div class="product-photo"><span class="placeholder">🛍️</span></div>
+        <div class="product-info">
+          <h3>More Marketplace Products</h3>
+          <p>New products can be added as the marketplace expands.</p>
+          <div class="price">Explore</div>
+          <button type="button" onclick="document.getElementById('upload').scrollIntoView({behavior:'smooth'})">Manage Photos</button>
+        </div>
+      </article>
+    </div>
+    <p class="notice">Prices use the currencies provided for each listing. An order request is not a confirmed purchase. Confirm availability, event dates, vehicle specifications, delivery, and payment terms before paying.</p>
+  </section>
+
+  <section id="tesla">
+    <div class="tesla">
+      <div class="tesla-copy">
+        <strong>🎄 CHRISTMAS PREORDER OFFER</strong>
+        <h2>Tesla Preorder</h2>
+        <p>Submit an enquiry with a <strong>$5,000 preorder payment</strong>. The remaining balance is due when the vehicle becomes available for release, according to the final confirmed price and written preorder terms.</p>
+        <div class="tesla-price">$5,000</div>
+        <p>Preorder payment — not the full vehicle price.</p>
+        <button class="primary order-button" data-name="Tesla Christmas Preorder" data-price="$5,000 preorder payment">Request Tesla Preorder</button>
+        <p class="notice">Confirm the model, vehicle availability, final price, delivery arrangements, remaining balance and cancellation/refund terms before accepting payment.</p>
+      </div>
+      <div class="tesla-photo" id="teslaDisplay">
+        <span class="placeholder">🚘</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="upload">
+    <div class="section-heading">
+      <h2>📸 Add Product & Tesla Photos</h2>
+      <p>Choose an item and select photos from your phone.</p>
+    </div>
+
+    <div class="upload-box">
+      <label for="photoType">Which listing are you adding photos for?</label>
+      <select id="photoType">
+        <option value="tesla">Tesla vehicle</option>
+        <option value="normal">Alexander Klaws — Normal Ticket</option>
+        <option value="regular">Alexander Klaws — Regular Ticket</option>
+        <option value="vip">Alexander Klaws — VIP Ticket</option>
+        <option value="host">Special Host / Tag</option>
+        <option value="shirt">Customised Fan T-shirt</option>
+        <option value="ghost">Christmas Ghost Box</option>
+      </select>
+
+      <label for="photoFiles">Choose one or more photos</label>
+      <input id="photoFiles" type="file" accept="image/*" multiple>
+
+      <div class="preview" id="photoPreview"></div>
+
+      <button class="primary" id="applyPhotos" type="button" style="margin-top:15px">
+        Preview Photos on Website
+      </button>
+
+      <p class="notice">
+        Important: this photo tool previews images in your current browser session. It does not upload them to a permanent online database. To make photos available to every visitor and keep them after refreshing or on another phone, we must connect online image storage such as Supabase Storage. Do not upload photos you don't have permission to use.
       </p>
-
-      <ul>
-        <li>Normal ticket — £150</li>
-        <li>Regular ticket — £230</li>
-        <li>VIP ticket — £500</li>
-        <li>Special Host / Tag — €1,000</li>
-        <li>Customised T-shirt — €450</li>
-      </ul>
-
-      <a class="gold-button" href="#christmas">View Prices</a>
-      <a class="button" href="#enquire">Make an Enquiry</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="tesla">
-  <div class="section-heading">
-    <div class="eyebrow">Cars & Vehicles</div>
-    <h2>Tesla & Premium Vehicles</h2>
-    <p>
-      Tesla listings can be added to RENZOTA. Prices are deliberately left
-      unconfirmed so you can update them when you have verified details.
-    </p>
-  </div>
-
-  <div class="product-grid">
-
-    <article class="product">
-      <div class="product-art">🚘</div>
-      <div class="product-body">
-        <div class="product-category">Cars & Vehicles</div>
-        <h3>Tesla Model 3</h3>
-        <p class="product-description">
-          Vehicle listing template. Confirm model year, condition, mileage,
-          location and seller details.
-        </p>
-        <div class="product-price">Price to be confirmed</div>
-        <div class="product-note">Editable listing — not a confirmed offer.</div>
-        <button class="button" type="button"
-          onclick="openEnquiry('Tesla Model 3 — Price to be confirmed')">
-          Request Information
-        </button>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product-art">🚙</div>
-      <div class="product-body">
-        <div class="product-category">Cars & Vehicles</div>
-        <h3>Tesla Model Y</h3>
-        <p class="product-description">
-          Vehicle listing template. Add verified specifications and seller
-          information when available.
-        </p>
-        <div class="product-price">Price to be confirmed</div>
-        <div class="product-note">Editable listing — not a confirmed offer.</div>
-        <button class="button" type="button"
-          onclick="openEnquiry('Tesla Model Y — Price to be confirmed')">
-          Request Information
-        </button>
-      </div>
-    </article>
-
-    <article class="product">
-      <div class="product-art">⚡ 🚗</div>
-      <div class="product-body">
-        <div class="product-category">Cars & Vehicles</div>
-        <h3>Tesla Model S</h3>
-        <p class="product-description">
-          Premium vehicle listing template. Add the confirmed asking price
-          and complete vehicle information before publishing an offer.
-        </p>
-        <div class="product-price">Price to be confirmed</div>
-        <div class="product-note">Editable listing — not a confirmed offer.</div>
-        <button class="button" type="button"
-          onclick="openEnquiry('Tesla Model S — Price to be confirmed')">
-          Request Information
-        </button>
-      </div>
-    </article>
-
-  </div>
-
-  <p class="tesla-note">
-    Tesla is a third-party vehicle brand. RENZOTA is not claiming to be
-    affiliated with or authorised by Tesla.
-  </p>
-</section>
-
-<section class="section" id="enquire">
-  <div class="section-heading">
-    <div class="eyebrow">Connect With RENZOTA</div>
-    <h2>Make an Enquiry</h2>
-    <p>
-      Tell us what you are interested in. This demo form opens an email draft
-      on your device; it does not automatically send a message or process payment.
-    </p>
-  </div>
-
-  <div class="form-wrap">
-    <form id="enquiryForm">
-      <label for="customerName">Your name</label>
-      <input class="form-control" id="customerName" name="customerName"
-        autocomplete="name" maxlength="100" required>
-
-      <label for="customerEmail">Your email</label>
-      <input class="form-control" id="customerEmail" name="customerEmail"
-        type="email" autocomplete="email" maxlength="254" required>
-
-      <label for="interest">What are you enquiring about?</label>
-      <input class="form-control" id="interest" name="interest"
-        maxlength="180" placeholder="e.g. VIP ticket or Tesla Model 3" required>
-
-      <label for="customerMessage">Message</label>
-      <textarea class="form-control" id="customerMessage" name="customerMessage"
-        maxlength="2000" rows="5"
-        placeholder="Tell us what you need..."></textarea>
-
-      <button class="gold-button" type="submit">Prepare Enquiry Email</button>
-
-      <p id="formMessage" role="status" aria-live="polite"></p>
-
-      <small>
-        Before publishing, replace the demo contact email in the code with
-        an email address you control. Never collect payment-card details in this form.
-      </small>
-    </form>
-  </div>
-</section>
-
+  <section class="seller">
+    <h2>Want to Sell on RENZOTA?</h2>
+    <p>RENZOTA is designed to grow into a marketplace for products, vehicles, events and seller listings.</p>
+    <p class="notice">Seller accounts, permanent photo uploads, order management and payments still need a live backend connection.</p>
+  </section>
 </main>
 
 <footer>
-  <div class="logo">RENZO<span>TA</span></div>
+  <div class="logo">RENZO<span style="color:white">TA</span></div>
   <p>Discover More. Shop Everything.</p>
-
-  <div class="footer-links">
-    <a href="#home">Home</a>
-    <a href="#shop">Marketplace</a>
-    <a href="#christmas">Christmas Collection</a>
-    <a href="#celebrity">Celebrity World</a>
-    <a href="#tesla">Cars & Vehicles</a>
-    <a href="#enquire">Contact</a>
-  </div>
-
-  <p>
-    RENZOTA is a marketplace concept. Listings, prices, availability,
-    seller authority and event details must be verified before purchase.
-    Enquiries do not constitute bookings or completed orders.
-  </p>
-
-  <p>© <span id="year"></span> RENZOTA. All rights reserved.</p>
+  <p>Order requests require confirmation. Use verified payment channels only after receiving confirmed details.</p>
+  <p>© <span id="year"></span> RENZOTA</p>
 </footer>
 
-<div class="modal-backdrop" id="enquiryModal" role="dialog"
-  aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <button type="button" class="close" id="closeModal">Close ✕</button>
+    <h2>Submit an Order Request</h2>
+    <p>Fill in your details so the requested item can be confirmed.</p>
 
-  <div class="modal">
-    <h2 id="modalTitle">Make an Enquiry</h2>
-    <p id="modalDescription">Tell us which listing you are interested in.</p>
+    <form id="orderForm">
+      <label for="orderItem">Item</label>
+      <input id="orderItem" readonly>
 
-    <label for="modalName">Your name</label>
-    <input id="modalName" maxlength="100" autocomplete="name">
+      <label for="orderPrice">Listed price / preorder amount</label>
+      <input id="orderPrice" readonly>
 
-    <label for="modalEmail">Your email</label>
-    <input id="modalEmail" type="email" maxlength="254" autocomplete="email">
+      <label for="customerName">Full name</label>
+      <input id="customerName" required maxlength="120" autocomplete="name">
 
-    <label for="modalMessage">Message</label>
-    <textarea id="modalMessage" maxlength="2000"
-      placeholder="Please confirm availability and details."></textarea>
+      <label for="customerEmail">Email address</label>
+      <input id="customerEmail" type="email" required maxlength="254" autocomplete="email">
 
-    <div class="modal-actions">
-      <button class="gold-button" type="button" onclick="prepareModalEmail()">
-        Prepare Email
-      </button>
+      <label for="customerPhone">Phone number</label>
+      <input id="customerPhone" type="tel" required maxlength="30" autocomplete="tel">
 
-      <button class="close-button" type="button" onclick="closeEnquiry()">
-        Close
-      </button>
-    </div>
+      <label for="orderQuantity">Quantity</label>
+      <input id="orderQuantity" type="number" min="1" max="10" value="1" required>
 
-    <p id="modalStatus" role="status" aria-live="polite"></p>
+      <label for="orderNotes">Additional details</label>
+      <textarea id="orderNotes" placeholder="Event date, T-shirt size, Tesla model, etc."></textarea>
+
+      <button class="primary" type="submit">Prepare Order Request</button>
+      <p class="notice">This starter form does not send your details to RENZOTA. It creates a request summary for you to save. Live order submission must be connected before accepting customers' orders.</p>
+    </form>
   </div>
 </div>
 
 <script>
-/*
-  RENZOTA WEBSITE SETTINGS
+const $ = id => document.getElementById(id);
+$('year').textContent = new Date().getFullYear();
 
-  IMPORTANT:
-  1. Replace RENZOTA_CONTACT_EMAIL with an email address you control.
-  2. Ticket and merchandise prices below are fixed in the currencies shown.
-  3. Tesla prices remain editable and are not invented.
-  4. This version does not process payments or create confirmed bookings.
-*/
+let currentObjectUrls = [];
+let selectedPhotos = [];
 
-const RENZOTA_CONTACT_EMAIL = "YOUR_EMAIL_HERE@example.com";
-
-const initialProducts = [
-  {
-    id: "fashion-001",
-    name: "Luxury Winter Coat",
-    category: "Fashion",
-    icon: "🧥",
-    price: 120,
-    currency: "USD",
-    description: "A sample fashion listing for the winter season.",
-    note: "Demo listing",
-    enquiryOnly: true
-  },
-  {
-    id: "electronics-001",
-    name: "Premium Wireless Headphones",
-    category: "Electronics",
-    icon: "🎧",
-    price: 85,
-    currency: "USD",
-    description: "A sample electronics listing for the marketplace.",
-    note: "Demo listing",
-    enquiryOnly: true
-  },
-  {
-    id: "home-001",
-    name: "Luxury Home Decor",
-    category: "Home",
-    icon: "🏡",
-    price: 65,
-    currency: "USD",
-    description: "A sample home and living listing.",
-    note: "Demo listing",
-    enquiryOnly: true
-  },
-  {
-    id: "ak-normal",
-    name: "Alexander Klaws — Normal Ticket",
-    category: "Events",
-    icon: "🎟️",
-    displayPrice: "£150",
-    description: "Requested normal ticket listing price. Confirm the event and availability before paying.",
-    note: "Availability and selling authority require confirmation.",
-    enquiryOnly: true
-  },
-  {
-    id: "ak-regular",
-    name: "Alexander Klaws — Regular Ticket",
-    category: "Events",
-    icon: "🎫",
-    displayPrice: "£230",
-    description: "Requested regular ticket listing price. Confirm ticket details before paying.",
-    note: "Availability and selling authority require confirmation.",
-    enquiryOnly: true
-  },
-  {
-    id: "ak-vip",
-    name: "Alexander Klaws — VIP Ticket",
-    category: "Events",
-    icon: "👑",
-    displayPrice: "£500",
-    description: "Requested VIP ticket listing price. Confirm the included benefits and availability.",
-    note: "Availability and selling authority require confirmation.",
-    enquiryOnly: true
-  },
-  {
-    id: "ak-host-tag",
-    name: "Alexander Klaws — Special Host / Tag",
-    category: "Celebrity",
-    icon: "⭐",
-    displayPrice: "€1,000",
-    description: "Requested price for the special host or tag service. Confirm exactly what is included.",
-    note: "Service details and availability require confirmation.",
-    enquiryOnly: true
-  },
-  {
-    id: "ak-shirt",
-    name: "Alexander Klaws — Customised T-Shirt",
-    category: "Celebrity",
-    icon: "👕",
-    displayPrice: "€450",
-    description: "Requested customised T-shirt listing price. Confirm design, stock and applicable merchandise rights.",
-    note: "Product availability and rights require confirmation.",
-    enquiryOnly: true
-  },
-  {
-    id: "tesla-model-3",
-    name: "Tesla Model 3",
-    category: "Cars",
-    icon: "🚘",
-    displayPrice: "Price to be confirmed",
-    description: "Vehicle listing template. Confirm seller, model year, condition and location.",
-    note: "Edit this listing after confirming the vehicle details.",
-    enquiryOnly: true
-  },
-  {
-    id: "tesla-model-y",
-    name: "Tesla Model Y",
-    category: "Cars",
-    icon: "🚙",
-    displayPrice: "Price to be confirmed",
-    description: "Vehicle listing template. Add verified specifications and seller information.",
-    note: "Edit this listing after confirming the vehicle details.",
-    enquiryOnly: true
-  }
-];
-
-let products = [...initialProducts];
-
-const productGrid = document.getElementById("productGrid");
-const searchInput = document.getElementById("searchInput");
-const categoryFilter = document.getElementById("categoryFilter");
-const emptyState = document.getElementById("emptyState");
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, function(character) {
-    const entities = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    };
-    return entities[character];
-  });
+function showMessage(message) {
+  alert(message);
 }
 
-function renderProducts() {
-  const query = searchInput.value.trim().toLowerCase();
-  const category = categoryFilter.value;
+/* Search */
+$('searchForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const query = $('searchInput').value.trim().toLowerCase();
+  let found = 0;
 
-  const filtered = products.filter(function(product) {
-    const matchesQuery = [
-      product.name,
-      product.category,
-      product.description
-    ].join(" ").toLowerCase().includes(query);
-
-    const matchesCategory =
-      category === "All" || product.category === category;
-
-    return matchesQuery && matchesCategory;
+  document.querySelectorAll('#productGrid .product').forEach(card => {
+    const text = (card.innerText + ' ' + (card.dataset.search || '')).toLowerCase();
+    const match = !query || text.includes(query);
+    card.style.display = match ? 'flex' : 'none';
+    if (match) found++;
   });
 
-  productGrid.innerHTML = "";
+  $('shop').scrollIntoView({behavior:'smooth'});
+  if (!found) showMessage('No matching products found in the current marketplace listings.');
+});
 
-  filtered.forEach(function(product) {
-    const price = product.displayPrice ||
-      new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: product.currency || "USD",
-        maximumFractionDigits: 2
-      }).format(product.price || 0);
-
-    const card = document.createElement("article");
-    card.className = "product";
-
-    card.innerHTML = `
-      <div class="product-art">${escapeHTML(product.icon || "🛍️")}</div>
-      <div class="product-body">
-        <div class="product-category">${escapeHTML(product.category)}</div>
-        <h3>${escapeHTML(product.name)}</h3>
-        <p class="product-description">${escapeHTML(product.description)}</p>
-        <div class="product-price">${escapeHTML(price)}</div>
-        <div class="product-note">${escapeHTML(product.note || "Confirm details with the seller.")}</div>
-        <button class="button" type="button"
-          data-product-id="${escapeHTML(product.id)}">
-          Enquire
-        </button>
-      </div>
-    `;
-
-    card.querySelector("button").addEventListener("click", function() {
-      openEnquiry(product.name + " — " + price);
-    });
-
-    productGrid.appendChild(card);
-  });
-
-  emptyState.style.display = filtered.length ? "none" : "block";
-}
-
-searchInput.addEventListener("input", renderProducts);
-categoryFilter.addEventListener("change", renderProducts);
-
-document.querySelectorAll("[data-category-link]").forEach(function(link) {
-  link.addEventListener("click", function() {
-    categoryFilter.value = link.dataset.categoryLink;
-    renderProducts();
+/* Order request form */
+document.querySelectorAll('.order-button').forEach(button => {
+  button.addEventListener('click', function() {
+    $('orderItem').value = button.dataset.name;
+    $('orderPrice').value = button.dataset.price;
+    $('orderModal').style.display = 'block';
   });
 });
 
-function openEnquiry(itemName) {
-  document.getElementById("modalTitle").textContent = "Make an Enquiry";
-  document.getElementById("modalDescription").textContent =
-    "You are enquiring about: " + itemName;
+$('closeModal').addEventListener('click', () => {
+  $('orderModal').style.display = 'none';
+});
 
-  document.getElementById("modalMessage").value =
-    "Hello RENZOTA, I would like to enquire about " + itemName +
-    ". Please confirm availability, full details, seller information and payment arrangements.";
-
-  document.getElementById("modalStatus").textContent = "";
-  document.getElementById("enquiryModal").classList.add("open");
-  document.getElementById("modalName").focus();
-}
-
-function closeEnquiry() {
-  document.getElementById("enquiryModal").classList.remove("open");
-}
-
-document.getElementById("enquiryModal").addEventListener("click", function(event) {
-  if (event.target === this) {
-    closeEnquiry();
+$('orderModal').addEventListener('click', event => {
+  if (event.target === $('orderModal')) {
+    $('orderModal').style.display = 'none';
   }
 });
 
-function prepareEmail(name, email, subject, message, statusElement) {
-  if (!name.trim() || !email.trim() || !email.includes("@")) {
-    statusElement.textContent = "Please enter your name and a valid email address.";
-    return;
-  }
-
-  if (
-    !RENZOTA_CONTACT_EMAIL ||
-    RENZOTA_CONTACT_EMAIL.includes("alexanderklaws118@gmail.com")
-  ) {
-    statusElement.textContent =
-      "Before sending enquiries, edit the code and replace YOUR_EMAIL_HERE@example.com with your real contact email.";
-    return;
-  }
-
-  const body =
-    "Name: " + name + "\n" +
-    "Reply email: " + email + "\n\n" +
-    message;
-
-  const mailto =
-    "mailto:" + encodeURIComponent(RENZOTA_CONTACT_EMAIL) +
-    "?subject=" + encodeURIComponent(subject) +
-    "&body=" + encodeURIComponent(body);
-
-  statusElement.textContent =
-    "Your email app should open with the enquiry prepared. Review it and press Send in your email app.";
-
-  window.location.href = mailto;
-}
-
-function prepareModalEmail() {
-  const name = document.getElementById("modalName").value;
-  const email = document.getElementById("modalEmail").value;
-  const subject = document.getElementById("modalDescription").textContent;
-  const message = document.getElementById("modalMessage").value;
-  const status = document.getElementById("modalStatus");
-
-  prepareEmail(name, email, subject, message, status);
-}
-
-document.getElementById("enquiryForm").addEventListener("submit", function(event) {
+$('orderForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  const name = document.getElementById("customerName").value;
-  const email = document.getElementById("customerEmail").value;
-  const interest = document.getElementById("interest").value;
-  const message = document.getElementById("customerMessage").value;
-  const status = document.getElementById("formMessage");
+  const request = [
+    'RENZOTA ORDER REQUEST',
+    'Item: ' + $('orderItem').value,
+    'Listed price/preorder: ' + $('orderPrice').value,
+    'Name: ' + $('customerName').value.trim(),
+    'Email: ' + $('customerEmail').value.trim(),
+    'Phone: ' + $('customerPhone').value.trim(),
+    'Quantity: ' + $('orderQuantity').value,
+    'Additional details: ' + $('orderNotes').value.trim(),
+    '',
+    'This request has not been sent to RENZOTA. It must be sent to the seller through a confirmed contact channel.'
+  ].join('\n');
 
-  prepareEmail(
-    name,
-    email,
-    "RENZOTA enquiry: " + interest,
-    "Enquiry about: " + interest + "\n\n" + message,
-    status
-  );
+  const blob = new Blob([request], {type:'text/plain'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'renzota-order-request.txt';
+  link.click();
+  URL.revokeObjectURL(url);
+
+  $('orderModal').style.display = 'none';
+  showMessage('Your order summary was downloaded. It has NOT been sent to RENZOTA yet.');
 });
 
-renderProducts();
-</script>
+/* Cart demo */
+$('cartButton').addEventListener('click', function() {
+  showMessage('The live shopping cart and checkout are not connected yet. Customers can prepare order requests from the product cards.');
+});
 
+/* Photo selection and temporary preview */
+$('photoFiles').addEventListener('change', function() {
+  currentObjectUrls.forEach(url => URL.revokeObjectURL(url));
+  currentObjectUrls = [];
+  selectedPhotos = Array.from(this.files || []);
+  const preview = $('photoPreview');
+  preview.replaceChildren();
+
+  selectedPhotos.forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+
+    const url = URL.createObjectURL(file);
+    currentObjectUrls.push(url);
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = file.name;
+    img.title = file.name;
+    preview.appendChild(img);
+  });
+
+  if (!selectedPhotos.length) {
+    preview.textContent = 'No photos selected yet.';
+  }
+});
+
+function replacePhoto(container, file) {
+  const url = URL.createObjectURL(file);
+  const old = container.querySelector('img');
+  if (old) old.remove();
+
+  const placeholder = container.querySelector('.placeholder');
+  if (placeholder) placeholder.remove();
+
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = file.name;
+  container.prepend(img);
+}
+
+$('applyPhotos').addEventListener('click', function() {
+  if (!selectedPhotos.length) {
+    showMessage('Please select at least one photo first.');
+    return;
+  }
+
+  const type = $('photoType').value;
+  const firstPhoto = selectedPhotos[0];
+
+  if (type === 'tesla') {
+    replacePhoto($('teslaDisplay'), firstPhoto);
+  } else {
+    const matching = {
+      normal: 'Alexander Klaws — Normal Ticket',
+      regular: 'Alexander Klaws — Regular Ticket',
+      vip: 'Alexander Klaws — VIP Ticket',
+      host: 'Special Host / Tag',
+      shirt: 'Customised Fan T-shirt',
+      ghost: 'Christmas Ghost Box'
+    };
+
+    const card = Array.from(document.querySelectorAll('.product'))
+      .find(item => item.querySelector('h3')?.textContent.trim() === matching[type]);
+
+    if (card) {
+      replacePhoto(card.querySelector('.product-photo'), firstPhoto);
+    }
+  }
+
+  showMessage('Photo preview updated. This is temporary and visible only in this browser session. Permanent public photo storage is not connected yet.');
+});
+</script>
 </body>
 </html>
