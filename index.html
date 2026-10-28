@@ -1,934 +1,1370 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080d1c">
-<meta name="description" content="STARVOLT — Discover celebrity experiences, Christmas tour tickets, premium events and Tesla vehicles.">
-<title>STARVOLT | Discover Extraordinary</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
-:root{
-  --bg:#080d1c;
-  --panel:#111a2e;
-  --panel2:#17233b;
-  --gold:#f5c96a;
-  --red:#a51f36;
-  --green:#39d9a4;
-  --text:#f5f7ff;
-  --muted:#aeb9ce;
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="STARVOLT — discover extraordinary experiences, events, merchandise and electric vehicles.">
+<title>STARVOLT | Discover Extraordinary</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+  --bg:#080d18;
+  --panel:#111a2a;
+  --panel2:#19263a;
+  --gold:#eac778;
+  --red:#b51e3c;
+  --cyan:#5de1ed;
+  --text:#f5f7fc;
+  --muted:#aab6ca;
   --border:rgba(255,255,255,.12);
+  --success:#6de0b4;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
+
+* { box-sizing:border-box; }
+
+html {
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+}
+
+body {
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:Arial,Helvetica,sans-serif;
   line-height:1.6;
 }
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-img{max-width:100%;display:block}
-.container{width:min(1160px,92%);margin:auto}
-header{
-  position:sticky;top:0;z-index:50;
-  background:rgba(8,13,28,.96);
+
+img {
+  display:block;
+  width:100%;
+  max-width:100%;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+button,input,select,textarea {
+  font:inherit;
+}
+
+button { cursor:pointer; }
+
+.container {
+  width:min(1180px,92%);
+  margin:auto;
+}
+
+header {
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(8,13,24,.96);
   border-bottom:1px solid var(--border);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(15px);
 }
-.nav{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:16px;padding:15px 0;flex-wrap:wrap;
+
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 0;
+  flex-wrap:wrap;
 }
-.logo{font-size:1.65rem;font-weight:900;letter-spacing:2px}
-.logo span{color:var(--gold)}
-nav{display:flex;gap:17px;align-items:center;flex-wrap:wrap}
-nav a{font-size:.9rem;color:var(--muted)}
-nav a:hover{color:var(--gold)}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;
-  gap:8px;border:0;border-radius:10px;padding:12px 18px;
-  font-weight:800;background:var(--gold);color:#17101a;
-  transition:transform .2s,opacity .2s;
+
+.logo {
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:3px;
 }
-.btn:hover{transform:translateY(-2px)}
-.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
-.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-red{background:var(--red);color:white}
-.btn-small{padding:8px 12px;font-size:.85rem}
-.hero{
-  padding:86px 0 72px;
+
+.logo span { color:var(--gold); }
+
+nav {
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+nav a {
+  color:var(--muted);
+  font-size:14px;
+}
+
+nav a:hover { color:var(--gold); }
+
+.button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 17px;
+  border:1px solid transparent;
+  border-radius:10px;
+  background:linear-gradient(110deg,var(--gold),#f5dfa3);
+  color:#15131a;
+  font-weight:800;
+  text-align:center;
+}
+
+.button:hover { opacity:.88; }
+
+.button.outline {
+  background:transparent;
+  border-color:var(--border);
+  color:var(--text);
+}
+
+.button.red {
+  background:var(--red);
+  color:white;
+}
+
+.button.small {
+  padding:8px 12px;
+  font-size:13px;
+}
+
+.hero {
+  min-height:570px;
+  display:flex;
+  align-items:center;
+  position:relative;
   background:
-  radial-gradient(ellipse at 80% 15%,rgba(165,31,54,.28),transparent 40%),
-  radial-gradient(ellipse at 10% 20%,rgba(245,201,106,.13),transparent 40%);
+    linear-gradient(90deg,rgba(5,9,18,.96),rgba(5,9,18,.76),rgba(5,9,18,.2)),
+    url("assets/tesla-neon.jpg") center/cover no-repeat;
+  border-bottom:4px solid var(--gold);
 }
-.eyebrow{
-  color:var(--gold);font-size:.78rem;letter-spacing:3px;
-  text-transform:uppercase;font-weight:900;
+
+.hero-content {
+  max-width:760px;
+  padding:75px 0;
 }
-h1{font-size:clamp(2.5rem,7vw,5.4rem);line-height:1.03;margin:15px 0}
-h1 span,.gold{color:var(--gold)}
-.hero p{max-width:650px;color:var(--muted);font-size:1.08rem}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.hero-note{color:var(--muted);font-size:.85rem;margin-top:18px}
-section{padding:65px 0}
-.section-head{margin-bottom:27px}
-.section-head h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:5px 0}
-.section-head p{color:var(--muted);max-width:720px;margin:0}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:17px;overflow:hidden;min-width:0;
+
+.eyebrow {
+  color:var(--gold);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:3px;
+  text-transform:uppercase;
 }
-.card-body{padding:19px}
-.card h3{margin:0 0 8px;font-size:1.17rem}
-.card p{color:var(--muted);font-size:.93rem}
-.card-image{
-  height:190px;background:linear-gradient(135deg,#19243a,#3c2030);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;color:var(--gold);font-size:2rem;
+
+h1 {
+  font-size:clamp(42px,7vw,82px);
+  line-height:1.02;
+  letter-spacing:-2px;
+  margin:18px 0;
 }
-.card-image img{width:100%;height:100%;object-fit:cover}
-.meta{color:var(--muted);font-size:.85rem}
-.price{font-size:1.35rem;font-weight:900;color:var(--gold)}
-.chip{
-  display:inline-block;padding:5px 9px;border-radius:99px;
-  border:1px solid rgba(245,201,106,.3);color:var(--gold);
-  font-size:.75rem;margin-bottom:9px;
+
+h1 span,.gold { color:var(--gold); }
+
+.hero p {
+  color:#d0d8e7;
+  font-size:18px;
+  max-width:620px;
 }
-.divider{height:1px;background:var(--border);margin:15px 0}
-.ticket-options{display:grid;gap:9px;margin:16px 0}
-.ticket-option{
-  border:1px solid var(--border);border-radius:10px;
-  padding:11px;display:flex;justify-content:space-between;
-  align-items:center;gap:8px;flex-wrap:wrap;
+
+.actions {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
 }
-.ticket-option strong{color:var(--gold)}
-.ticket-option small{color:var(--muted)}
-.christmas{
-  background:
-    radial-gradient(ellipse at 0 0,rgba(165,31,54,.2),transparent 42%),
-    radial-gradient(ellipse at 100% 100%,rgba(245,201,106,.1),transparent 40%);
+
+.small-note {
+  font-size:12px;
+  color:var(--muted);
+  margin-top:18px;
 }
-.notice{
-  padding:15px;border:1px solid rgba(245,201,106,.28);
-  border-radius:12px;background:rgba(245,201,106,.06);
-  color:#f6e7c3;font-size:.9rem;
+
+section { padding:72px 0; }
+
+.section-heading {
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:25px;
+  flex-wrap:wrap;
+  margin-bottom:28px;
 }
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:25px}
-.panel{
-  padding:23px;background:var(--panel);border:1px solid var(--border);
-  border-radius:16px;
+
+.section-heading h2 {
+  font-size:clamp(29px,4vw,45px);
+  line-height:1.1;
+  margin:8px 0;
 }
-form{display:grid;gap:13px}
-label{font-size:.88rem;color:var(--muted);display:grid;gap:6px}
-input,select,textarea{
-  width:100%;padding:12px 13px;border-radius:9px;
-  border:1px solid var(--border);background:#080f20;color:var(--text);
+
+.section-heading p {
+  max-width:600px;
+  color:var(--muted);
+  margin:0;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+}
+
+.card {
   min-width:0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  border:1px solid var(--border);
+  border-radius:17px;
+  background:var(--panel);
 }
-textarea{min-height:110px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
-.status{font-size:.9rem;margin-top:10px;overflow-wrap:anywhere}
-.success{color:var(--green)}
-.error{color:#ff8f9d}
-.muted{color:var(--muted)}
-.hidden{display:none!important}
-.admin-tabs{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
-.admin-tabs button.active{background:var(--gold);color:#17101a}
-.table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:.88rem}
-th,td{text-align:left;padding:12px;border-bottom:1px solid var(--border);vertical-align:top}
-th{color:var(--gold)}
-footer{padding:35px 0;border-top:1px solid var(--border);color:var(--muted)}
-.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.small{font-size:.8rem}
-.loading{color:var(--muted);padding:18px 0}
-.badge{color:var(--green);font-size:.78rem}
-.empty{padding:20px;border:1px dashed var(--border);border-radius:12px;color:var(--muted)}
-@media(max-width:850px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .two-col{grid-template-columns:1fr}
+
+.card-image {
+  height:245px;
+  overflow:hidden;
+  background:var(--panel2);
 }
-@media(max-width:560px){
-  .grid{grid-template-columns:1fr}
-  nav{gap:11px}
-  nav a{font-size:.82rem}
-  .hero{padding:60px 0}
-  section{padding:48px 0}
-  .logo{font-size:1.4rem}
-  .card-image{height:210px}
+
+.card-image img {
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s;
 }
-</style></head><body>
+
+.card:hover .card-image img {
+  transform:scale(1.04);
+}
+
+.card-body {
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.badge {
+  align-self:flex-start;
+  color:var(--gold);
+  border:1px solid rgba(234,199,120,.35);
+  border-radius:30px;
+  padding:4px 10px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1px;
+}
+
+.card h3 {
+  font-size:20px;
+  line-height:1.3;
+  margin:12px 0 7px;
+}
+
+.card p {
+  color:var(--muted);
+  font-size:14px;
+}
+
+.card-actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:auto;
+  padding-top:12px;
+}
+
+.notice {
+  padding:16px;
+  border:1px solid rgba(234,199,120,.3);
+  background:rgba(234,199,120,.07);
+  border-radius:12px;
+  margin:20px 0 25px;
+  color:#f4e6c7;
+  font-size:14px;
+}
+
+.tour-section {
+  background:
+    radial-gradient(ellipse at top left,rgba(181,30,60,.2),transparent 45%),
+    #0b101e;
+}
+
+.tour-section .card-image { height:220px; }
+
+.tour-date {
+  color:var(--gold);
+  font-weight:800;
+}
+
+.two-columns {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+}
+
+.panel {
+  min-width:0;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px;
+}
+
+.panel h3 { margin-top:0; }
+
+.muted { color:var(--muted); }
+
+.filters {
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-bottom:23px;
+}
+
+.filter {
+  padding:9px 14px;
+  border:1px solid var(--border);
+  border-radius:30px;
+  background:transparent;
+  color:var(--muted);
+}
+
+.filter.active {
+  background:var(--gold);
+  color:#15131a;
+  font-weight:800;
+}
+
+.form {
+  display:grid;
+  gap:14px;
+}
+
+label {
+  display:grid;
+  gap:6px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+input,select,textarea {
+  width:100%;
+  min-width:0;
+  padding:12px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:#090f1d;
+  color:var(--text);
+}
+
+textarea {
+  min-height:110px;
+  resize:vertical;
+}
+
+input:focus,select:focus,textarea:focus {
+  outline:2px solid var(--gold);
+}
+
+.status {
+  overflow-wrap:anywhere;
+  font-size:14px;
+}
+
+.success { color:var(--success); }
+.error { color:#ff9aaa; }
+
+.cart-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.cart-row button {
+  color:#ff9aaa;
+  background:transparent;
+  border:0;
+}
+
+.empty {
+  padding:18px;
+  border:1px dashed var(--border);
+  border-radius:12px;
+  color:var(--muted);
+}
+
+.hidden { display:none !important; }
+
+footer {
+  padding:35px 0;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+}
+
+.footer-row {
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+@media(max-width:850px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .two-columns { grid-template-columns:1fr; }
+}
+
+@media(max-width:600px) {
+  .grid { grid-template-columns:1fr; }
+  .nav { align-items:flex-start; }
+  nav { width:100%; gap:12px; }
+  .hero { min-height:490px; background-position:60% center; }
+  .hero-content { padding:55px 0; }
+  section { padding:52px 0; }
+  .card-image { height:250px; }
+}
+</style>
+</head>
+
+<body>
+
 <header>
   <div class="container nav">
     <a class="logo" href="#home">STAR<span>VOLT</span></a>
+
     <nav aria-label="Main navigation">
-      <a href="#celebrities">Celebrities</a>
-      <a href="#events">Events & Tickets</a>
-      <a href="#tesla">Tesla</a>
-      <a href="#investment">Investment Info</a>
+      <a href="#shop">Shop</a>
+      <a href="#events">Events</a>
+      <a href="#celebrities">Celebrity World</a>
+      <a href="#vehicles">Tesla</a>
       <a href="#account">Account</a>
     </nav>
+
+    <a class="button small" href="#cart">
+      Basket (<span id="cartCount">0</span>)
+    </a>
   </div>
-</header><main>
+</header>
+
+<main>
+
 <section class="hero" id="home">
-  <div class="container">
-    <div class="eyebrow">A world of extraordinary experiences</div>
-    <h1>Discover more.<br><span>Experience extraordinary.</span></h1>
+  <div class="container hero-content">
+    <div class="eyebrow">Premium experiences · Global discovery</div>
+
+    <h1>
+      Discover more.<br>
+      <span>Experience extraordinary.</span>
+    </h1>
+
     <p>
-      Explore celebrity experiences, live events, Christmas tour ticket enquiries,
-      premium merchandise and Tesla vehicle opportunities in one place.
+      Explore events, celebrity-inspired experiences, merchandise concepts
+      and electric vehicle opportunities in one destination.
     </p>
-    <div class="hero-actions">
-      <a class="btn" href="#events">Explore Christmas Tour</a>
-      <a class="btn btn-outline" href="#celebrities">Discover Celebrities</a>
-    </div>
-    <div class="hero-note">STARVOLT is an enquiry and discovery platform. Availability and booking details must be confirmed before payment.</div>
-  </div>
-</section><section class="christmas" id="events">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Holiday season · 2026</div>
-      <h2>Alexander Klaws <span class="gold">Christmas Tour</span></h2>
-      <p>Explore the tour dates and choose the ticket category you wish to enquire about.</p>
-    </div><div class="notice" style="margin-bottom:24px">
-  <strong>Ticket information:</strong> Regular £100 · Premium £450 · VIP £500.
-  Meet & Greet applications are subject to management approval. Prices, ticket availability,
-  venue arrangements and any additional benefits must be confirmed before a booking is finalised.
-  Do not send payment based on this page alone.
-</div>
 
-<div id="eventsGrid" class="grid">
-  <div class="loading">Loading tour dates…</div>
-</div>
-<p id="eventsStatus" class="status muted" aria-live="polite"></p>
+    <div class="actions">
+      <a class="button" href="#shop">Explore the collection ↗</a>
+      <a class="button outline" href="#events">Christmas Tour 2026</a>
+    </div>
 
+    <p class="small-note">
+      STARVOLT is preparing its secure online checkout.
+      Payments are not currently accepted on this website.
+    </p>
   </div>
-</section><section id="celebrities">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Discover your favourites</div>
-      <h2>Celebrity World</h2>
-      <p>Explore available celebrity profiles, experiences and merchandise listings.</p>
-    </div>
-    <div id="celebritiesGrid" class="grid">
-      <div class="loading">Loading celebrity listings…</div>
-    </div>
-    <p id="celebritiesStatus" class="status muted"></p>
-  </div>
-</section><section id="tesla">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Electric mobility</div>
-      <h2>Tesla Vehicles</h2>
-      <p>Browse vehicle listings and submit an enquiry to confirm availability, specifications, delivery and final pricing.</p>
-    </div>
-    <div class="notice" style="margin-bottom:20px">
-      Vehicle listings are subject to confirmation. Any preorder or purchase should proceed only after the vehicle,
-      seller, final price, delivery terms and payment arrangements have been independently verified.
-    </div>
-    <div id="vehiclesGrid" class="grid">
-      <div class="loading">Loading vehicle listings…</div>
-    </div>
-    <p id="vehiclesStatus" class="status muted"></p>
-  </div>
-</section><section id="investment">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Learn before you decide</div>
-      <h2>Tesla & Investment Information</h2>
-      <p>Learn the difference between buying a vehicle and investing in a company.</p>
-    </div>
-    <div class="two-col">
-      <div class="panel">
-        <h3 class="gold">Buying a Tesla vehicle</h3>
-        <p class="muted">A vehicle purchase involves the vehicle price, taxes, registration, transport, insurance, import costs where applicable, and after-sales support.</p>
-      </div>
-      <div class="panel">
-        <h3 class="gold">Investing in shares</h3>
-        <p class="muted">Buying shares is different from buying a car. Share prices can rise or fall, and you may lose money. Research the investment, platform fees, regulations and risks before investing.</p>
-      </div>
-    </div>
-    <p class="small muted">STARVOLT does not promise investment returns or guarantee vehicle availability.</p>
-  </div>
-</section><section id="meetgreet" class="christmas">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Special experience request</div>
-      <h2>VIP Meet & Greet <span class="gold">Application</span></h2>
-      <p>Submit your details for consideration. An application is not a confirmed booking.</p>
-    </div>
-    <div class="two-col">
-      <div class="panel">
-        <h3>Apply for consideration</h3>
-        <form id="meetGreetForm">
-          <label>Full name
-            <input name="customer_name" required minlength="2" maxlength="120" autocomplete="name">
-          </label>
-          <label>Email address
-            <input type="email" name="customer_email" required maxlength="254" autocomplete="email">
-          </label>
-          <label>Preferred tour city
-            <select name="preferred_city" required>
-              <option value="">Choose a city</option>
-              <option>Köln</option>
-              <option>Bremen</option>
-              <option>Berlin</option>
-              <option>Stuttgart</option>
-              <option>Frankfurt</option>
-              <option>Düsseldorf</option>
-              <option>München</option>
-              <option>Hamburg</option>
-              <option>Oberhausen</option>
-            </select>
-          </label>
-          <label>Message (optional)
-            <textarea name="message" maxlength="1500" placeholder="Tell us which date you are interested in. Please do not include payment details."></textarea>
-          </label>
-          <button class="btn" type="submit" id="meetGreetSubmit">Submit application</button>
-          <div id="meetGreetStatus" class="status" aria-live="polite"></div>
-        </form>
-      </div>
-      <div class="panel">
-        <h3 class="gold">Please read before applying</h3>
-        <p class="muted">Meet & Greet availability and pricing depend on confirmation from management. Submitting this form does not guarantee approval, access, a ticket or a meeting.</p>
-        <p class="muted">Please use an email address you can access. Do not enter passwords, bank details or card information in the form.</p>
-        <div class="divider"></div>
-        <p class="small muted">Your application is saved for administrator review. This form does not automatically send an email to management.</p>
-      </div>
-    </div>
-  </div>
-</section><section id="account">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Your STARVOLT account</div>
-      <h2>Sign in or create an account</h2>
-      <p>Use an email address you control. Confirm your email if Supabase asks you to.</p>
-    </div>
-    <div class="two-col">
-      <div class="panel">
-        <h3>Welcome back</h3>
-        <form id="loginForm">
-          <label>Email
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <label>Password
-            <input type="password" name="password" required autocomplete="current-password">
-          </label>
-          <button class="btn" type="submit">Sign in</button>
-        </form>
-      </div>
-      <div class="panel">
-        <h3>Create your account</h3>
-        <form id="signupForm">
-          <label>Email
-            <input type="email" name="email" required autocomplete="email">
-          </label>
-          <label>Password (at least 8 characters)
-            <input type="password" name="password" required minlength="8" autocomplete="new-password">
-          </label>
-          <button class="btn btn-outline" type="submit">Create account</button>
-        </form>
-      </div>
-    </div>
-    <p id="authStatus" class="status" aria-live="polite"></p>
-    <div class="panel" style="margin-top:18px">
-      <div id="accountInfo" class="muted">You are not signed in.</div>
-      <button id="logoutBtn" class="btn btn-outline btn-small hidden" type="button">Sign out</button>
-    </div>
-  </div>
-</section><section id="admin" class="hidden">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow">Restricted area</div>
-      <h2>Administrator Dashboard</h2>
-      <p>Only accounts confirmed as administrators by Supabase should access private application records.</p>
-    </div>
-    <div class="notice">Administrator access is checked through the Supabase function <code>is_renzota_admin</code>.</div>
-    <div class="admin-tabs">
-      <button type="button" class="btn btn-outline active" data-admin-tab="applications">Meet & Greet Applications</button>
-      <button type="button" class="btn btn-outline" data-admin-tab="events">Tour Events</button>
-    </div><div id="adminApplications">
-  <h3>Meet & Greet applications</h3>
-  <button id="refreshApplications" type="button" class="btn btn-small">Refresh applications</button>
-  <div id="applicationsResult" class="loading">Loading applications…</div>
-</div>
+</section>
 
-<div id="adminEvents" class="hidden">
-  <h3>Published tour events</h3>
-  <p class="muted">This panel reads your event records. Use the Supabase dashboard to edit event details and availability.</p>
-  <div id="adminEventsResult" class="loading">Loading events…</div>
-</div>
+<section id="shop">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Browse the collection</div>
+        <h2>Explore <span class="gold">STARVOLT</span></h2>
+      </div>
+      <p>
+        Browse our gallery and add items to your basket preview.
+        Prices and availability must be confirmed before purchase.
+      </p>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-filter="all">All</button>
+      <button class="filter" data-filter="vehicle">Electric Vehicles</button>
+      <button class="filter" data-filter="event">Events</button>
+      <button class="filter" data-filter="fan">Fan Experiences</button>
+      <button class="filter" data-filter="merch">Merchandise</button>
+    </div>
+
+    <div class="grid">
+
+      <article class="card product" data-category="vehicle">
+        <div class="card-image">
+          <img src="assets/tesla-neon.jpg"
+               alt="Electric car under blue and red neon lighting"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">ELECTRIC MOBILITY</span>
+          <h3>Tesla Vehicle Enquiries</h3>
+          <p>
+            Explore vehicle models and request verified availability,
+            specifications, pricing and delivery terms.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="tesla1"
+              data-name="Tesla vehicle enquiry">
+              Add to basket
+            </button>
+            <a class="button outline" href="#vehicles">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="vehicle">
+        <div class="card-image">
+          <img src="assets/tesla-showroom.jpg"
+               alt="Electric vehicle in a showroom"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">SHOWROOM</span>
+          <h3>Vehicle Gallery</h3>
+          <p>
+            Browse vehicle inspiration and request details about models
+            available in your country.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="tesla2"
+              data-name="Vehicle gallery enquiry">
+              Add to basket
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="vehicle">
+        <div class="card-image">
+          <img src="assets/tesla-models-collage.jpg"
+               alt="Electric vehicle exterior and interior gallery"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">MODEL GALLERY</span>
+          <h3>Explore Vehicle Models</h3>
+          <p>
+            Request verified model specifications, pricing, import costs
+            and delivery arrangements.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="tesla3"
+              data-name="Vehicle model enquiry">
+              Add to basket
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="fan">
+        <div class="card-image">
+          <img src="assets/alexander-klaws-portrait.jpg"
+               alt="Portrait supplied for the celebrity gallery"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">CELEBRITY WORLD</span>
+          <h3>Alexander Klaws Experiences</h3>
+          <p>
+            Express interest in authorised experiences or merchandise.
+            Bookings must be confirmed before purchase.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="alex1"
+              data-name="Alexander Klaws experience enquiry">
+              Add enquiry
+            </button>
+            <a class="button outline" href="#events">Tour dates</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="event">
+        <div class="card-image">
+          <img src="assets/stage-performance.jpg"
+               alt="Stage performance gallery image"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">LIVE EXPERIENCES</span>
+          <h3>Stage & Performance Gallery</h3>
+          <p>
+            Discover performance inspiration and enquire about
+            event opportunities.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="stage1"
+              data-name="Live event enquiry">
+              Add enquiry
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="merch">
+        <div class="card-image">
+          <img src="assets/vip-tour-badges.jpg"
+               alt="VIP tour badge visual concept"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">MERCH CONCEPT</span>
+          <h3>VIP Tour Badge Concept</h3>
+          <p>
+            Illustrative design only. This image does not provide
+            venue access or confer VIP status.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="vip1"
+              data-name="VIP badge design enquiry">
+              Add enquiry
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="merch">
+        <div class="card-image">
+          <img src="assets/fan-card-concept.jpg"
+               alt="Unofficial black and gold membership card concept"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">UNOFFICIAL CONCEPT</span>
+          <h3>Fan Card Design</h3>
+          <p>
+            Visual concept only. This is not an official Henry Cavill
+            membership card, endorsement or access pass.
+          </p>
+          <div class="card-actions">
+            <button class="button outline" disabled>
+              Concept only
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card product" data-category="fan">
+        <div class="card-image">
+          <img src="assets/stage-duet.jpg"
+               alt="Stage duet gallery image"
+               loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="badge">STAGE GALLERY</span>
+          <h3>Performance Moments</h3>
+          <p>
+            Explore the supplied stage gallery. Artist appearances
+            and meet-and-greet access require confirmation.
+          </p>
+          <div class="card-actions">
+            <button class="button add"
+              data-id="stage2"
+              data-name="Performance experience enquiry">
+              Add enquiry
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="small-note">
+      Images are displayed for gallery and concept purposes.
+      Verify product rights, availability and seller authorisation
+      before listing anything as an official product.
+    </p>
+  </div>
+</section>
+
+<section class="tour-section" id="events">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Holiday season · 2026</div>
+        <h2>Alexander Klaws <span class="gold">Christmas Tour</span></h2>
+      </div>
+      <p>
+        Review the tour dates supplied for display and add a ticket enquiry
+        to your basket.
+      </p>
+    </div>
+
+    <div class="notice">
+      These dates were supplied for the website and have not been
+      independently verified here. Venue details, ticket availability,
+      official prices and VIP benefits must be confirmed with the organiser.
+      This website does not currently sell tickets or accept payment.
+    </div>
+
+    <div class="grid" id="tourGrid"></div>
 
   </div>
 </section>
-</main><footer>
+
+<section id="celebrities">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Fan culture</div>
+        <h2>Celebrity <span class="gold">World</span></h2>
+      </div>
+      <p>
+        Fan-inspired merchandise, event discovery and booking enquiries.
+      </p>
+    </div>
+
+    <div class="two-columns">
+
+      <div class="panel">
+        <h3>Customised Fan T-shirts</h3>
+        <p class="muted">
+          Designs using a celebrity's name, image or branding must be
+          authorised. Size, price, production time and delivery
+          arrangements require confirmation.
+        </p>
+        <button class="button add"
+          data-id="shirt1"
+          data-name="Customised fan T-shirt enquiry">
+          Add T-shirt enquiry
+        </button>
+      </div>
+
+      <div class="panel">
+        <h3>Meet & Greet Interest</h3>
+        <p class="muted">
+          Submit an interest request for consideration. A request is not
+          a confirmed booking and does not guarantee artist access.
+        </p>
+        <a class="button outline" href="#contact">
+          Send interest request
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="vehicles">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Electric mobility</div>
+        <h2>Tesla <span class="gold">Opportunities</span></h2>
+      </div>
+      <p>
+        Request vehicle details before considering any preorder.
+      </p>
+    </div>
+
+    <div class="two-columns">
+
+      <div class="panel">
+        <h3>Request a Vehicle Quote</h3>
+        <p class="muted">
+          Confirm the seller, vehicle identification, exact specification,
+          total price, import costs, delivery and refund terms before
+          making any payment.
+        </p>
+        <button class="button add"
+          data-id="teslaquote"
+          data-name="Tesla quote request">
+          Add quote request
+        </button>
+      </div>
+
+      <div class="panel">
+        <h3>Buying vs Investing</h3>
+        <p class="muted">
+          Purchasing a vehicle is different from purchasing company shares.
+          STARVOLT does not provide investment advice or promise investment
+          returns.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="cart">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Your selection</div>
+        <h2>Shopping <span class="gold">Basket</span></h2>
+      </div>
+      <p>
+        This basket is a local preview. It does not create an order
+        or process payment.
+      </p>
+    </div>
+
+    <div class="two-columns">
+
+      <div class="panel">
+        <div id="cartList">
+          <div class="empty">
+            Your basket is empty. Add a product or enquiry above.
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="button outline" id="clearCart">
+            Clear basket
+          </button>
+          <button class="button" id="checkoutButton">
+            Continue
+          </button>
+        </div>
+
+        <p class="status muted" id="cartStatus" aria-live="polite">
+          Secure checkout is not yet active.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>How purchasing will work</h3>
+        <ol class="muted">
+          <li>Choose your products or experiences.</li>
+          <li>Confirm availability and final prices.</li>
+          <li>Use the approved secure checkout when it is available.</li>
+          <li>Receive digital delivery or confirmed physical shipping.</li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Get in touch</div>
+        <h2>Send an <span class="gold">Interest Request</span></h2>
+      </div>
+      <p>
+        Tell us which product or experience interests you.
+        Never enter card details or banking passwords here.
+      </p>
+    </div>
+
+    <div class="two-columns">
+
+      <div class="panel">
+        <form id="interestForm" class="form">
+
+          <label>
+            Full name
+            <input name="name" required maxlength="120" autocomplete="name">
+          </label>
+
+          <label>
+            Email address
+            <input name="email" type="email" required maxlength="254"
+              autocomplete="email">
+          </label>
+
+          <label>
+            Country
+            <select name="country" required>
+              <option value="">Choose country</option>
+              <option>Nigeria</option>
+              <option>United States</option>
+              <option>Canada</option>
+              <option>United Kingdom</option>
+              <option>Germany</option>
+              <option>Other country</option>
+            </select>
+          </label>
+
+          <label>
+            Interest
+            <select name="interest" required>
+              <option value="">Choose an option</option>
+              <option>Alexander Klaws Christmas Tour</option>
+              <option>Celebrity booking or Meet & Greet</option>
+              <option>Customised fan merchandise</option>
+              <option>Tesla vehicle quote</option>
+              <option>Other product</option>
+            </select>
+          </label>
+
+          <label>
+            Message
+            <textarea name="message" maxlength="1500"
+              placeholder="Tell us which item or event interests you."></textarea>
+          </label>
+
+          <button class="button" type="submit">
+            Prepare email request
+          </button>
+
+          <p id="interestStatus" class="status muted" aria-live="polite"></p>
+
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Shop with clarity</h3>
+        <p class="muted">
+          STARVOLT is currently a discovery and enquiry website.
+          No payment is accepted here yet.
+        </p>
+        <p class="muted">
+          Before checkout launches, we will need confirmed prices,
+          availability, fulfilment arrangements, delivery policies
+          and payment-provider approval.
+        </p>
+        <p class="small-note">
+          The enquiry form opens your email application. You must review
+          and send the email yourself.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="account">
+  <div class="container">
+
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">Customer access</div>
+        <h2>Your STARVOLT <span class="gold">Account</span></h2>
+      </div>
+      <p>
+        Register or sign in using the existing Supabase authentication setup.
+      </p>
+    </div>
+
+    <div class="two-columns">
+
+      <div class="panel">
+        <h3>Sign In</h3>
+        <form id="loginForm" class="form">
+          <label>
+            Email
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" required
+              autocomplete="current-password">
+          </label>
+          <button class="button" type="submit">Sign In</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h3>Create Account</h3>
+        <form id="signupForm" class="form">
+          <label>
+            Email
+            <input name="email" type="email" required autocomplete="email">
+          </label>
+          <label>
+            Password (at least 8 characters)
+            <input name="password" type="password" required minlength="8"
+              autocomplete="new-password">
+          </label>
+          <button class="button outline" type="submit">
+            Create Account
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <p id="authStatus" class="status" aria-live="polite"></p>
+
+    <div class="panel">
+      <p id="accountInfo" class="muted">
+        Connecting to the account service…
+      </p>
+      <button class="button outline hidden" id="logoutButton">
+        Sign Out
+      </button>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
   <div class="container footer-row">
     <div>
       <div class="logo">STAR<span>VOLT</span></div>
-      <div class="small">Discover more. Experience extraordinary.</div>
+      <div class="small-note">Discover more. Experience extraordinary.</div>
     </div>
-    <div class="small">
-      © <span id="year"></span> STARVOLT. All rights reserved.<br>
-      All bookings, availability and prices require confirmation.
+
+    <div class="small-note">
+      © <span id="year"></span> STARVOLT.<br>
+      Checkout is not active. Listings require confirmation.
     </div>
   </div>
-</footer><script>
+</footer>
+
+<script>
 "use strict";
 
 /*
-  STARVOLT configuration.
-  A Supabase publishable/anon key may be used in browser code.
-  NEVER place a service-role key or other secret key in this file.
+  Existing STARVOLT Supabase configuration.
+  Never put a Supabase service-role key or payment secret key here.
 */
-const SUPABASE_URL = "https://sbhgunhmorjqvcprlqow.supabase.co";
-const SUPABASE_KEY = "sb_publishable_SBFPRmpjO9InOHbrjuGrZg_OA0Ppfzu";
+const SUPABASE_URL =
+  "https://sbhgunhmorjqvcprlqow.supabase.co";
 
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_SBFPRmpjO9InOHbrjuGrZg_OA0Ppfzu";
 
-const TOUR_TITLE = "Alexander Klaws Christmas Tour 2026";
-const TICKET_CATEGORIES = [
-  {name:"Regular",price:100},
-  {name:"Premium",price:450},
-  {name:"VIP",price:500}
-];
+const supabaseClient =
+  window.supabase?.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
 
-const TOUR_DATES = [
-  {date:"2026-11-23",city:"Köln",venue:"Musical Dome"},
-  {date:"2026-11-24",city:"Bremen",venue:"Metropol Theater"},
-  {date:"2026-11-25",city:"Berlin",venue:"Tempodrom"},
-  {date:"2026-11-30",city:"Stuttgart",venue:"Stage Palladium Theater"},
-  {date:"2026-12-02",city:"Frankfurt",venue:"Jahrhunderthalle"},
-  {date:"2026-12-03",city:"Düsseldorf",venue:"Tonhalle"},
-  {date:"2026-12-07",city:"München",venue:"Deutsches Theater"},
-  {date:"2026-12-14",city:"Hamburg",venue:"Stage Theater an der Elbe"},
-  {date:"2026-12-21",city:"Oberhausen",venue:"Metronom Theater"}
+const tourDates = [
+  ["2026-11-23", "Köln", "Musical Dome"],
+  ["2026-11-24", "Bremen", "Metropol Theater"],
+  ["2026-11-25", "Berlin", "Tempodrom"],
+  ["2026-11-30", "Stuttgart", "Stage Palladium Theater"],
+  ["2026-12-02", "Frankfurt", "Jahrhunderthalle"],
+  ["2026-12-03", "Düsseldorf", "Tonhalle"],
+  ["2026-12-07", "München", "Deutsches Theater"],
+  ["2026-12-14", "Hamburg", "Stage Theater an der Elbe"],
+  ["2026-12-21", "Oberhausen", "Metronom Theater"]
 ];
 
 const $ = id => document.getElementById(id);
 
+let basket = [];
+
 function escapeHTML(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[char]);
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
 }
 
-function setStatus(id, message, type="") {
-  const el = $(id);
-  if (!el) return;
-  el.textContent = message;
-  el.className = "status " + type;
-}
-
-function showDate(dateValue) {
-  if (!dateValue) return "Date to be confirmed";
-  const date = new Date(dateValue);
-  if (Number.isNaN(date.getTime())) return escapeHTML(dateValue);
-
+function formatDate(dateString) {
   return new Intl.DateTimeFormat("en-GB", {
-    timeZone:"Europe/Berlin",
-    weekday:"short",
-    day:"2-digit",
-    month:"short",
-    year:"numeric"
-  }).format(date);
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(new Date(dateString + "T12:00:00Z"));
 }
 
-function showVenueTime(dateValue) {
-  if (!dateValue) return "";
-  const date = new Date(dateValue);
-  if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("en-GB", {
-    timeZone:"Europe/Berlin",
-    hour:"2-digit",
-    minute:"2-digit",
-    timeZoneName:"short"
-  }).format(date);
-}
+/* Build the Christmas Tour gallery. */
 
-function safeImage(url) {
-  if (!url) return "";
-  try {
-    const parsed = new URL(url, window.location.href);
-    if (!["https:","http:"].includes(parsed.protocol)) return "";
-    return parsed.href;
-  } catch {
-    return "";
-  }
-}
-
-function imageMarkup(url, alt) {
-  const safe = safeImage(url);
-  return safe
-    ? `<div class="card-image"><img loading="lazy" src="${escapeHTML(safe)}" alt="${escapeHTML(alt)}"></div>`
-    : `<div class="card-image" aria-label="${escapeHTML(alt)}">✦</div>`;
-}
-
-function isAlexanderEvent(event) {
-  return String(event.title || "").toLowerCase().includes("alexander klaws") ||
-         String(event.title || "").toLowerCase().includes("christmas tour");
-}
-
-function renderTicketOptions(city, venue) {
-  return `
-    <div class="ticket-options">
-      ${TICKET_CATEGORIES.map(ticket => `
-        <div class="ticket-option">
-          <div><strong>${ticket.name}</strong><br><small>Price shown for enquiry</small></div>
-          <div class="price">£${ticket.price}</div>
-        </div>`).join("")}
+$("tourGrid").innerHTML = tourDates.map((tour, index) => `
+  <article class="card">
+    <div class="card-image">
+      <img
+        src="${index % 2 === 0
+          ? "assets/alexander-klaws-portrait.jpg"
+          : "assets/stage-performance.jpg"}"
+        alt="Christmas tour gallery image"
+        loading="lazy">
     </div>
-    <button class="btn btn-small ticket-enquiry" type="button"
-      data-city="${escapeHTML(city)}" data-venue="${escapeHTML(venue)}">
-      Enquire about tickets
-    </button>
-    <button class="btn btn-outline btn-small meet-enquiry" type="button">
-      Apply for Meet & Greet
-    </button>
-    <p class="small muted">Subject to confirmation. Ticket checkout is not available on this page.</p>`;
-}
 
-function renderTourCard(event, fallback) {
-  const title = event.title || TOUR_TITLE;
-  const city = event.city || fallback.city;
-  const venue = event.venue || fallback.venue;
-  const dateValue = event.event_date || fallback.date;
-  const description = event.description || "Christmas tour date. Availability and booking details must be confirmed.";
+    <div class="card-body">
+      <span class="badge">CHRISTMAS TOUR · 2026</span>
+      <h3>${escapeHTML(tour[1])}</h3>
+      <p>${escapeHTML(tour[2])}</p>
+      <p class="tour-date">${formatDate(tour[0])}</p>
+      <p>
+        Date supplied for display. Official times and ticket availability
+        must be confirmed.
+      </p>
 
-  return `
-    <article class="card">
-      ${imageMarkup(event.image_url, title)}
-      <div class="card-body">
-        <span class="chip">CHRISTMAS TOUR 2026</span>
-        <h3>${escapeHTML(city)}</h3>
-        <p>${escapeHTML(venue)}</p>
-        <p><strong>${escapeHTML(showDate(dateValue))}</strong></p>
-        <p class="meta">${escapeHTML(showVenueTime(dateValue))} · Local venue time</p>
-        <div class="divider"></div>
-        <p>${escapeHTML(description)}</p>
-        ${renderTicketOptions(city, venue)}
-      </div>
-    </article>`;
-}
-
-function renderFallbackTour() {
-  $("eventsGrid").innerHTML = TOUR_DATES.map(date => renderTourCard({
-    title:TOUR_TITLE,
-    city:date.city,
-    venue:date.venue,
-    event_date:date.date + "T18:00:00+01:00",
-    description:"Tour listing. Please confirm the official event start time, ticket availability and booking terms before making arrangements."
-  }, date)).join("");
-}
-
-async function loadEvents() {
-  const grid = $("eventsGrid");
-  grid.innerHTML = '<div class="loading">Loading tour dates…</div>';
-
-  const {data, error} = await client
-    .from("starvolt_events")
-    .select("*")
-    .eq("status","published")
-    .order("event_date",{ascending:true});
-
-  if (error) {
-    renderFallbackTour();
-    setStatus("eventsStatus",
-      "Showing the nine configured tour dates. Live event data could not be loaded; please check the starvolt_events table and its access policies.",
-      "error");
-    return;
-  }
-
-  const tourEvents = (data || []).filter(isAlexanderEvent);
-  if (!tourEvents.length) {
-    renderFallbackTour();
-    setStatus("eventsStatus",
-      "Showing the configured tour dates. No matching published tour rows were returned from Supabase.",
-      "muted");
-    return;
-  }
-
-  const used = new Set();
-  const cards = [];
-
-  tourEvents.forEach(event => {
-    const key = `${event.city || ""}|${event.venue || ""}|${String(event.event_date || "").slice(0,10)}`;
-    used.add(key);
-    const fallback = TOUR_DATES.find(d =>
-      (event.city || "").toLowerCase() === d.city.toLowerCase() ||
-      (event.venue || "").toLowerCase() === d.venue.toLowerCase()
-    ) || {city:event.city || "City to be confirmed",venue:event.venue || "Venue to be confirmed",date:event.event_date};
-    cards.push(renderTourCard(event,fallback));
-  });
-
-  TOUR_DATES.forEach(date => {
-    const key = `${date.city}|${date.venue}|${date.date}`;
-    if (!used.has(key)) {
-      cards.push(renderTourCard({
-        title:TOUR_TITLE,
-        city:date.city,
-        venue:date.venue,
-        event_date:date.date + "T18:00:00+01:00",
-        description:"Tour listing. Confirm the official event time and availability before making arrangements."
-      },date));
-    }
-  });
-
-  grid.innerHTML = cards.join("");
-  setStatus("eventsStatus","Tour dates are displayed in the Europe/Berlin time zone. Please confirm the official start times and ticket availability.","muted");
-}
-
-async function loadListings(tableName, gridId, statusId, kind) {
-  const grid = $(gridId);
-  grid.innerHTML = '<div class="loading">Loading listings…</div>';
-
-  const {data,error} = await client.from(tableName).select("*").limit(60);
-
-  if (error) {
-    grid.innerHTML = '<div class="empty">No listings could be loaded right now.</div>';
-    setStatus(statusId,
-      `Check that the ${tableName} table exists, its columns are correct, and its read policies allow public listings.`,
-      "error");
-    return;
-  }
-
-  const items = data || [];
-  if (!items.length) {
-    grid.innerHTML = '<div class="empty">No listings have been added yet. An administrator can add listings in Supabase.</div>';
-    setStatus(statusId,"");
-    return;
-  }
-
-  grid.innerHTML = items.map(item => {
-    const title = item.name || item.title || item.model || item.vehicle_name || "Listing";
-    const description = item.description || item.bio || item.details || "Contact us to confirm details and availability.";
-    const price = item.price != null ? `<div class="price">${escapeHTML(item.currency || "£")}${escapeHTML(item.price)}</div>` : "";
-    const category = kind === "celebrity" ? "CELEBRITY" : "VEHICLE";
-    const picture = item.image_url || item.image || item.photo_url || "";
-
-    return `<article class="card">
-      ${imageMarkup(picture,title)}
-      <div class="card-body">
-        <span class="chip">${category}</span>
-        <h3>${escapeHTML(title)}</h3>
-        <p>${escapeHTML(description)}</p>
-        ${price}
-        <button type="button" class="btn btn-outline listing-enquiry"
-          data-title="${escapeHTML(title)}" data-kind="${kind}">
-          Send an enquiry
+      <div class="card-actions">
+        <button
+          class="button add"
+          data-id="tour-${index}"
+          data-name="Christmas Tour ticket enquiry — ${escapeHTML(tour[1])}">
+          Add ticket enquiry
         </button>
       </div>
-    </article>`;
-  }).join("");
+    </div>
+  </article>
+`).join("");
 
-  setStatus(statusId,"");
-}
+/* Gallery filters. */
 
-function goToMeetGreet(city) {
-  const section = $("meetgreet");
-  section.scrollIntoView({behavior:"smooth"});
-  const select = document.querySelector('#meetGreetForm select[name="preferred_city"]');
-  if (select && city) {
-    const option = Array.from(select.options).find(o => o.value.toLowerCase() === city.toLowerCase());
-    if (option) select.value = option.value;
-  }
-}
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach(item => {
+      item.classList.remove("active");
+    });
 
-document.addEventListener("click", event => {
-  const ticketButton = event.target.closest(".ticket-enquiry");
-  if (ticketButton) {
-    const city = ticketButton.dataset.city || "";
-    const venue = ticketButton.dataset.venue || "";
-    const message = `I would like to enquire about Christmas tour tickets for ${city}, ${venue}. Please confirm the available ticket categories, final price and booking process.`;
-    const textarea = document.querySelector('#meetGreetForm textarea[name="message"]');
-    if (textarea) textarea.value = message;
-    goToMeetGreet(city);
-    setStatus("meetGreetStatus","Please complete the form to submit your enquiry.","");
-  }
-
-  if (event.target.closest(".meet-enquiry")) {
-    const card = event.target.closest(".card");
-    const city = card?.querySelector("h3")?.textContent || "";
-    goToMeetGreet(city);
-  }
-
-  const listingButton = event.target.closest(".listing-enquiry");
-  if (listingButton) {
-    const title = listingButton.dataset.title || "listing";
-    const kind = listingButton.dataset.kind || "listing";
-    const textarea = document.querySelector('#meetGreetForm textarea[name="message"]');
-    if (textarea) textarea.value = `I would like more information about this ${kind}: ${title}. Please confirm details, availability and the enquiry process.`;
-    $("meetgreet").scrollIntoView({behavior:"smooth"});
-    setStatus("meetGreetStatus","Please complete the form. This form is intended for Meet & Greet applications; other enquiries may need to be handled separately.","");
-  }
-});
-
-/* Meet & Greet application submission */
-$("meetGreetForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const button = $("meetGreetSubmit");
-  const values = Object.fromEntries(new FormData(form).entries());
-
-  values.customer_name = String(values.customer_name || "").trim();
-  values.customer_email = String(values.customer_email || "").trim();
-  values.preferred_city = String(values.preferred_city || "").trim();
-  values.message = String(values.message || "").trim();
-
-  if (values.customer_name.length < 2 || values.customer_email.length < 5 || values.preferred_city.length < 2) {
-    setStatus("meetGreetStatus","Please check your name, email address and preferred city.","error");
-    return;
-  }
-
-  button.disabled = true;
-  button.textContent = "Submitting…";
-  setStatus("meetGreetStatus","Submitting your application…");
-
-  const {error} = await client
-    .from("starvolt_meet_greet_applications")
-    .insert([{
-      customer_name:values.customer_name,
-      customer_email:values.customer_email,
-      preferred_city:values.preferred_city,
-      message:values.message || null
-    }]);
-
-  button.disabled = false;
-  button.textContent = "Submit application";
-
-  if (error) {
-    console.error("Application submission error:",error);
-    setStatus("meetGreetStatus","We could not submit your application. Please check your internet connection and the Supabase table permissions, then try again.","error");
-    return;
-  }
-
-  form.reset();
-  setStatus("meetGreetStatus","Your application was submitted successfully. It is not a confirmed booking; availability and approval still need to be confirmed.","success");
-});
-
-/* Supabase authentication */
-async function updateAccountUI(session) {
-  const accountInfo = $("accountInfo");
-  const logout = $("logoutBtn");
-  const adminSection = $("admin");
-
-  if (!session?.user) {
-    accountInfo.textContent = "You are not signed in.";
-    logout.classList.add("hidden");
-    adminSection.classList.add("hidden");
-    return;
-  }
-
-  accountInfo.textContent = "Signed in as " + session.user.email + ". Checking account permissions…";
-  logout.classList.remove("hidden");
-
-  const {data,error} = await client.rpc("is_renzota_admin");
-
-  if (!error && data === true) {
-    accountInfo.textContent = "Signed in as " + session.user.email + " · Administrator access confirmed.";
-    adminSection.classList.remove("hidden");
-    await loadAdminApplications();
-    await loadAdminEvents();
-  } else {
-    accountInfo.textContent = "Signed in as " + session.user.email + ". Customer account.";
-    adminSection.classList.add("hidden");
-  }
-}
-
-$("loginForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const values = Object.fromEntries(new FormData(form).entries());
-
-  setStatus("authStatus","Signing in…");
-  const {data,error} = await client.auth.signInWithPassword({
-    email:values.email,
-    password:values.password
-  });
-
-  if (error) {
-    setStatus("authStatus",error.message,"error");
-    return;
-  }
-
-  setStatus("authStatus","Signed in successfully.","success");
-  form.reset();
-  await updateAccountUI(data.session);
-});
-
-$("signupForm").addEventListener("submit", async event => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const values = Object.fromEntries(new FormData(form).entries());
-
-  if (values.password.length < 8) {
-    setStatus("authStatus","Please use a password with at least 8 characters.","error");
-    return;
-  }
-
-  setStatus("authStatus","Creating your account…");
-  const {data,error} = await client.auth.signUp({
-    email:values.email,
-    password:values.password
-  });
-
-  if (error) {
-    setStatus("authStatus",error.message,"error");
-    return;
-  }
-
-  form.reset();
-  if (data.session) {
-    setStatus("authStatus","Your account was created successfully.","success");
-    await updateAccountUI(data.session);
-  } else {
-    setStatus("authStatus","Account created. Check your email for the confirmation link before signing in.","success");
-  }
-});
-
-$("logoutBtn").addEventListener("click", async () => {
-  const {error} = await client.auth.signOut();
-  if (error) {
-    setStatus("authStatus",error.message,"error");
-    return;
-  }
-  setStatus("authStatus","You have signed out.","success");
-  await updateAccountUI(null);
-});
-
-client.auth.onAuthStateChange((_event,session) => {
-  setTimeout(() => updateAccountUI(session),0);
-});
-
-/* Administrator-only application list */
-async function loadAdminApplications() {
-  const output = $("applicationsResult");
-  output.innerHTML = '<div class="loading">Loading applications…</div>';
-
-  const {data,error} = await client
-    .from("starvolt_meet_greet_applications")
-    .select("id,customer_name,customer_email,preferred_city,message,status,created_at")
-    .order("created_at",{ascending:false})
-    .limit(200);
-
-  if (error) {
-    output.innerHTML = '<div class="empty">Applications could not be loaded. Check that you are signed in as an administrator and that the admin SELECT policy is active.</div>';
-    return;
-  }
-
-  if (!data || data.length === 0) {
-    output.innerHTML = '<div class="empty">No applications have been submitted yet.</div>';
-    return;
-  }
-
-  output.innerHTML = `<div class="table-wrap"><table>
-    <thead><tr><th>Date</th><th>Customer</th><th>City</th><th>Message</th><th>Status</th><th>Update</th></tr></thead>
-    <tbody>${data.map(app => `
-      <tr>
-        <td>${escapeHTML(new Date(app.created_at).toLocaleString())}</td>
-        <td>${escapeHTML(app.customer_name)}<br><span class="small muted">${escapeHTML(app.customer_email)}</span></td>
-        <td>${escapeHTML(app.preferred_city)}</td>
-        <td>${escapeHTML(app.message || "—")}</td>
-        <td>${escapeHTML(app.status)}</td>
-        <td>
-          <select class="application-status" data-id="${escapeHTML(app.id)}" aria-label="Application status">
-            ${["pending","reviewing","approved","declined"].map(status =>
-              `<option value="${status}" ${app.status === status ? "selected" : ""}>${status}</option>`
-            ).join("")}
-          </select>
-          <button class="btn btn-small save-application-status" type="button" data-id="${escapeHTML(app.id)}">Save</button>
-        </td>
-      </tr>`).join("")}</tbody>
-  </table></div>`;
-}
-
-async function loadAdminEvents() {
-  const output = $("adminEventsResult");
-  output.innerHTML = '<div class="loading">Loading events…</div>';
-
-  const {data,error} = await client
-    .from("starvolt_events")
-    .select("id,title,city,venue,event_date,status,ticket_price,currency")
-    .order("event_date",{ascending:true})
-    .limit(100);
-
-  if (error) {
-    output.innerHTML = '<div class="empty">Event records could not be loaded. Check the starvolt_events table and access policies.</div>';
-    return;
-  }
-
-  if (!data || !data.length) {
-    output.innerHTML = '<div class="empty">No event records found.</div>';
-    return;
-  }
-
-  output.innerHTML = `<div class="table-wrap"><table>
-    <thead><tr><th>Event</th><th>City</th><th>Venue</th><th>Date</th><th>Base price</th><th>Status</th></tr></thead>
-    <tbody>${data.map(event => `
-      <tr>
-        <td>${escapeHTML(event.title)}</td>
-        <td>${escapeHTML(event.city)}</td>
-        <td>${escapeHTML(event.venue)}</td>
-        <td>${escapeHTML(showDate(event.event_date))}</td>
-        <td>${escapeHTML(event.currency || "")}${escapeHTML(event.ticket_price ?? "To confirm")}</td>
-        <td>${escapeHTML(event.status)}</td>
-      </tr>`).join("")}</tbody>
-  </table></div>`;
-}
-
-$("refreshApplications").addEventListener("click",loadAdminApplications);
-
-document.querySelectorAll("[data-admin-tab]").forEach(button => {
-  button.addEventListener("click",() => {
-    document.querySelectorAll("[data-admin-tab]").forEach(item => item.classList.remove("active"));
     button.classList.add("active");
 
-    const applications = button.dataset.adminTab === "applications";
-    $("adminApplications").classList.toggle("hidden",!applications);
-    $("adminEvents").classList.toggle("hidden",applications);
+    document.querySelectorAll(".product").forEach(card => {
+      const show =
+        button.dataset.filter === "all" ||
+        card.dataset.category === button.dataset.filter;
+
+      card.classList.toggle("hidden", !show);
+    });
   });
 });
 
-$("applicationsResult").addEventListener("click",async event => {
-  const button = event.target.closest(".save-application-status");
-  if (!button) return;
+/* Local basket preview. It does not create an order or take payment. */
+
+document.addEventListener("click", event => {
+  const button = event.target.closest(".add");
+
+  if (!button || button.disabled) return;
 
   const id = button.dataset.id;
-  const select = document.querySelector(`.application-status[data-id="${CSS.escape(id)}"]`);
-  if (!select) return;
 
-  button.disabled = true;
-  const {error} = await client
-    .from("starvolt_meet_greet_applications")
-    .update({status:select.value})
-    .eq("id",id);
+  if (!basket.some(item => item.id === id)) {
+    basket.push({
+      id,
+      name: button.dataset.name
+    });
+  }
 
-  button.disabled = false;
+  renderBasket();
 
-  if (error) {
-    alert("Status could not be updated. Check administrator permissions.");
+  $("cartStatus").textContent =
+    "Added to your basket preview. No order or payment was created.";
+});
+
+function renderBasket() {
+  $("cartCount").textContent = basket.length;
+
+  if (basket.length === 0) {
+    $("cartList").innerHTML = `
+      <div class="empty">
+        Your basket is empty. Add a product or enquiry above.
+      </div>
+    `;
     return;
   }
 
-  alert("Application status updated.");
-  await loadAdminApplications();
-});
-
-/* Initial page setup */
-$("year").textContent = new Date().getFullYear();
-
-async function init() {
-  await Promise.all([
-    loadEvents(),
-    loadListings("starvolt_celebrities","celebritiesGrid","celebritiesStatus","celebrity"),
-    loadListings("starvolt_vehicles","vehiclesGrid","vehiclesStatus","vehicle")
-  ]);
-
-  const {data} = await client.auth.getSession();
-  await updateAccountUI(data.session);
+  $("cartList").innerHTML = basket.map((item, index) => `
+    <div class="cart-row">
+      <span>${escapeHTML(item.name)}</span>
+      <button type="button" data-remove="${index}">
+        Remove
+      </button>
+    </div>
+  `).join("");
 }
 
-init();
-</script></body>
+$("cartList").addEventListener("click", event => {
+  const button = event.target.closest("[data-remove]");
+
+  if (!button) return;
+
+  basket.splice(Number(button.dataset.remove), 1);
+  renderBasket();
+});
+
+$("clearCart").addEventListener("click", () => {
+  basket = [];
+  renderBasket();
+
+  $("cartStatus").textContent = "Basket cleared.";
+});
+
+$("checkoutButton").addEventListener("click", () => {
+  $("cartStatus").textContent =
+    "Secure checkout is not active yet. No payment was taken. " +
+    "Please submit an interest request to confirm availability and terms.";
+
+  $("contact").scrollIntoView({ behavior: "smooth" });
+});
+
+/* Interest form: opens the visitor's email application. */
+
+$("interestForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const form = Object.fromEntries(
+    new FormData(event.currentTarget).entries()
+  );
+
+  const subject = encodeURIComponent(
+    "STARVOLT interest request — " + form.interest
+  );
+
+  const message = `
+STARVOLT INTEREST REQUEST
+
+Name: ${form.name}
+Email: ${form.email}
+Country: ${form.country}
+Interest: ${form.interest}
+
+Basket:
+${basket.map(item => item.name).join("\n") || "No items selected"}
+
+Message:
+${form.message || "No additional message"}
+
+Please confirm availability, final pricing, authorisation,
+delivery arrangements and payment terms.
+  `.trim();
+
+  $("interestStatus").textContent =
+    "Your email application will open. Review the message and send it there.";
+
+  const mailto =
+    "mailto:klawsalexander033@gmail.com" +
+    "?subject=" + subject +
+    "&body=" + encodeURIComponent(message);
+
+  window.location.href = mailto;
+});
+
+/* Supabase account registration and sign-in. */
+
+function setAuthStatus(message, type = "") {
+  $("authStatus").className = "status " + type;
+  $("authStatus").textContent = message;
+}
+
+function updateAccount(session) {
+  if (!session?.user) {
+    $("accountInfo").textContent = "You are not signed in.";
+    $("logoutButton").classList.add("hidden");
+    return;
+  }
+
+  $("accountInfo").textContent =
+    "Signed in as " + session.user.email;
+
+  $("logoutButton").classList.remove("hidden");
+}
+
+if (supabaseClient) {
+
+  $("signupForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const form = Object.fromEntries(
+      new FormData(event.currentTarget).entries()
+    );
+
+    setAuthStatus("Creating your account…");
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: form.email,
+      password: form.password
+    });
+
+    if (error) {
+      setAuthStatus(error.message, "error");
+      return;
+    }
+
+    event.currentTarget.reset();
+
+    if (data.session) {
+      setAuthStatus("Account created successfully.", "success");
+    } else {
+      setAuthStatus(
+        "Account created. Check your email for a confirmation link.",
+        "success"
+      );
+    }
+
+    updateAccount(data.session);
+  });
+
+  $("loginForm").addEventListener("submit", async event => {
+    event.preventDefault();
+
+    const form = Object.fromEntries(
+      new FormData(event.currentTarget).entries()
+    );
+
+    setAuthStatus("Signing in…");
+
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: form.email,
+        password: form.password
+      });
+
+    if (error) {
+      setAuthStatus(error.message, "error");
+      return;
+    }
+
+    event.currentTarget.reset();
+
+    setAuthStatus("Signed in successfully.", "success");
+    updateAccount(data.session);
+  });
+
+  $("logoutButton").addEventListener("click", async () => {
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+      setAuthStatus(error.message, "error");
+      return;
+    }
+
+    updateAccount(null);
+    setAuthStatus("You have signed out.", "success");
+  });
+
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
+    setTimeout(() => updateAccount(session), 0);
+  });
+
+  supabaseClient.auth.getSession().then(({ data, error }) => {
+    if (error) {
+      setAuthStatus("Could not load the account session.", "error");
+      return;
+    }
+
+    updateAccount(data.session);
+  });
+
+} else {
+  $("accountInfo").textContent =
+    "The account service could not load. Check your internet connection.";
+}
+
+/* Footer year. */
+
+$("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
 </html>
