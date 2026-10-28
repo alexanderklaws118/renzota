@@ -1,684 +1,934 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#070b14">
-<meta name="description" content="STARVOLT — Celebrity experiences, Tesla vehicles and investment information.">
-<title>STARVOLT | Entertainment Meets Innovation</title>
-
-<style>
-:root {
-  --bg:#070b14;
-  --panel:#101827;
-  --panel2:#151f30;
-  --blue:#3b82f6;
-  --cyan:#67e8f9;
-  --text:#f7f9ff;
-  --muted:#a7b3c7;
-  --border:#26344b;
+<meta name="theme-color" content="#080d1c">
+<meta name="description" content="STARVOLT — Discover celebrity experiences, Christmas tour tickets, premium events and Tesla vehicles.">
+<title>STARVOLT | Discover Extraordinary</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+:root{
+  --bg:#080d1c;
+  --panel:#111a2e;
+  --panel2:#17233b;
+  --gold:#f5c96a;
+  --red:#a51f36;
+  --green:#39d9a4;
+  --text:#f5f7ff;
+  --muted:#aeb9ce;
+  --border:rgba(255,255,255,.12);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;line-height:1.6
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
 }
 a{color:inherit;text-decoration:none}
-button,input,textarea,select{font:inherit}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 img{max-width:100%;display:block}
+.container{width:min(1160px,92%);margin:auto}
 header{
-  position:sticky;top:0;z-index:10;
-  background:rgba(7,11,20,.96);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border)
+  position:sticky;top:0;z-index:50;
+  background:rgba(8,13,28,.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(14px);
 }
 .nav{
-  max-width:1200px;margin:auto;padding:14px 20px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:15px 0;flex-wrap:wrap;
 }
-.logo{font-size:25px;font-weight:900;letter-spacing:3px}
-.logo span{color:var(--cyan)}
-nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-nav a{font-size:13px;color:var(--muted)}
-nav a:hover{color:var(--cyan)}
-.wrap{max-width:1200px;margin:auto;padding:35px 20px}
-.hero{
-  min-height:470px;display:flex;align-items:center;
-  background:
-  linear-gradient(90deg,rgba(7,11,20,.96),rgba(7,11,20,.65)),
-  url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1800&q=85')
-  center/cover;
-  border-bottom:1px solid var(--border)
-}
-.hero-content{max-width:1200px;width:100%;margin:auto;padding:65px 24px}
-.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:3px;font-size:12px;font-weight:bold}
-h1{font-size:clamp(38px,7vw,76px);line-height:1.06;margin:18px 0}
-h2{font-size:clamp(26px,4vw,40px);line-height:1.2}
-h3{margin:10px 0}
-p{color:var(--muted)}
-.hero p{max-width:600px;font-size:17px}
+.logo{font-size:1.65rem;font-weight:900;letter-spacing:2px}
+.logo span{color:var(--gold)}
+nav{display:flex;gap:17px;align-items:center;flex-wrap:wrap}
+nav a{font-size:.9rem;color:var(--muted)}
+nav a:hover{color:var(--gold)}
 .btn{
-  display:inline-block;padding:12px 18px;border-radius:10px;
-  background:var(--blue);color:white;border:1px solid var(--blue);
-  font-weight:bold
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:8px;border:0;border-radius:10px;padding:12px 18px;
+  font-weight:800;background:var(--gold);color:#17101a;
+  transition:transform .2s,opacity .2s;
 }
-.btn.secondary{background:transparent;border-color:var(--border)}
-.btn:hover{filter:brightness(1.12)}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.section-head{margin-bottom:22px}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-red{background:var(--red);color:white}
+.btn-small{padding:8px 12px;font-size:.85rem}
+.hero{
+  padding:86px 0 72px;
+  background:
+  radial-gradient(ellipse at 80% 15%,rgba(165,31,54,.28),transparent 40%),
+  radial-gradient(ellipse at 10% 20%,rgba(245,201,106,.13),transparent 40%);
+}
+.eyebrow{
+  color:var(--gold);font-size:.78rem;letter-spacing:3px;
+  text-transform:uppercase;font-weight:900;
+}
+h1{font-size:clamp(2.5rem,7vw,5.4rem);line-height:1.03;margin:15px 0}
+h1 span,.gold{color:var(--gold)}
+.hero p{max-width:650px;color:var(--muted);font-size:1.08rem}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.hero-note{color:var(--muted);font-size:.85rem;margin-top:18px}
+section{padding:65px 0}
+.section-head{margin-bottom:27px}
+.section-head h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:5px 0}
+.section-head p{color:var(--muted);max-width:720px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .card{
-  min-width:0;background:var(--panel);border:1px solid var(--border);
-  border-radius:16px;overflow:hidden
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:17px;overflow:hidden;min-width:0;
 }
-.card img{width:100%;height:205px;object-fit:cover;background:var(--panel2)}
-.card-body{padding:18px}
-.card p{font-size:14px}
-.tag{
-  display:inline-block;font-size:11px;text-transform:uppercase;
-  letter-spacing:1px;color:var(--cyan);margin-bottom:5px
+.card-body{padding:19px}
+.card h3{margin:0 0 8px;font-size:1.17rem}
+.card p{color:var(--muted);font-size:.93rem}
+.card-image{
+  height:190px;background:linear-gradient(135deg,#19243a,#3c2030);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;color:var(--gold);font-size:2rem;
 }
-.price{font-size:21px;font-weight:bold;margin:10px 0}
-.empty{padding:22px;background:var(--panel);border-radius:12px;color:var(--muted)}
-.band{
-  background:linear-gradient(120deg,#10254b,#101827 65%,#163344);
-  border:1px solid var(--border);border-radius:20px;padding:28px
+.card-image img{width:100%;height:100%;object-fit:cover}
+.meta{color:var(--muted);font-size:.85rem}
+.price{font-size:1.35rem;font-weight:900;color:var(--gold)}
+.chip{
+  display:inline-block;padding:5px 9px;border-radius:99px;
+  border:1px solid rgba(245,201,106,.3);color:var(--gold);
+  font-size:.75rem;margin-bottom:9px;
 }
-form{display:grid;gap:12px}
-label{font-size:13px;color:var(--muted)}
-input,textarea,select{
-  width:100%;padding:12px;border-radius:9px;
-  border:1px solid var(--border);background:#080e19;color:white
+.divider{height:1px;background:var(--border);margin:15px 0}
+.ticket-options{display:grid;gap:9px;margin:16px 0}
+.ticket-option{
+  border:1px solid var(--border);border-radius:10px;
+  padding:11px;display:flex;justify-content:space-between;
+  align-items:center;gap:8px;flex-wrap:wrap;
 }
-textarea{min-height:95px;resize:vertical}
-input[type=file]{padding:8px}
-.notice{font-size:12px;color:var(--muted)}
-.status{padding:12px;border-radius:8px;background:var(--panel2);margin:12px 0}
+.ticket-option strong{color:var(--gold)}
+.ticket-option small{color:var(--muted)}
+.christmas{
+  background:
+    radial-gradient(ellipse at 0 0,rgba(165,31,54,.2),transparent 42%),
+    radial-gradient(ellipse at 100% 100%,rgba(245,201,106,.1),transparent 40%);
+}
+.notice{
+  padding:15px;border:1px solid rgba(245,201,106,.28);
+  border-radius:12px;background:rgba(245,201,106,.06);
+  color:#f6e7c3;font-size:.9rem;
+}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.panel{
+  padding:23px;background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;
+}
+form{display:grid;gap:13px}
+label{font-size:.88rem;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{
+  width:100%;padding:12px 13px;border-radius:9px;
+  border:1px solid var(--border);background:#080f20;color:var(--text);
+  min-width:0;
+}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.status{font-size:.9rem;margin-top:10px;overflow-wrap:anywhere}
+.success{color:var(--green)}
+.error{color:#ff8f9d}
+.muted{color:var(--muted)}
 .hidden{display:none!important}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
-.tabs button{padding:10px 14px;background:var(--panel2);color:white;border:1px solid var(--border);border-radius:8px}
-.tabs button.active{border-color:var(--cyan);color:var(--cyan)}
-.admin-layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-footer{border-top:1px solid var(--border);padding:30px 20px;color:var(--muted);font-size:13px}
-footer .foot{max-width:1200px;margin:auto}
-@media(max-width:800px){
- .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
- .admin-layout{grid-template-columns:1fr}
- nav{gap:10px}
- .nav{align-items:flex-start}
+.admin-tabs{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+.admin-tabs button.active{background:var(--gold);color:#17101a}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{color:var(--gold)}
+footer{padding:35px 0;border-top:1px solid var(--border);color:var(--muted)}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.small{font-size:.8rem}
+.loading{color:var(--muted);padding:18px 0}
+.badge{color:var(--green);font-size:.78rem}
+.empty{padding:20px;border:1px dashed var(--border);border-radius:12px;color:var(--muted)}
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .two-col{grid-template-columns:1fr}
 }
-@media(max-width:540px){
- .grid{grid-template-columns:1fr}
- .nav{flex-direction:column}
- nav{justify-content:flex-start}
- .hero{min-height:400px}
- .wrap{padding:28px 15px}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  nav{gap:11px}
+  nav a{font-size:.82rem}
+  .hero{padding:60px 0}
+  section{padding:48px 0}
+  .logo{font-size:1.4rem}
+  .card-image{height:210px}
 }
-</style>
-</head>
-
-<body>
+</style></head><body>
 <header>
-  <div class="nav">
+  <div class="container nav">
     <a class="logo" href="#home">STAR<span>VOLT</span></a>
     <nav aria-label="Main navigation">
       <a href="#celebrities">Celebrities</a>
       <a href="#events">Events & Tickets</a>
-      <a href="#vehicles">Tesla Vehicles</a>
-      <a href="#investment">Investment</a>
+      <a href="#tesla">Tesla</a>
+      <a href="#investment">Investment Info</a>
       <a href="#account">Account</a>
     </nav>
   </div>
-</header>
-
-<main>
+</header><main>
 <section class="hero" id="home">
-  <div class="hero-content">
-    <div class="eyebrow">Entertainment · Automotive · Innovation</div>
-    <h1>Discover the<br><span style="color:var(--cyan)">STARVOLT</span> experience.</h1>
-    <p>Explore celebrity experiences, upcoming events, ticket enquiries and Tesla vehicle listings in one modern destination.</p>
-    <div class="actions">
-      <a class="btn" href="#events">Explore Events →</a>
-      <a class="btn secondary" href="#vehicles">Discover Tesla</a>
+  <div class="container">
+    <div class="eyebrow">A world of extraordinary experiences</div>
+    <h1>Discover more.<br><span>Experience extraordinary.</span></h1>
+    <p>
+      Explore celebrity experiences, live events, Christmas tour ticket enquiries,
+      premium merchandise and Tesla vehicle opportunities in one place.
+    </p>
+    <div class="hero-actions">
+      <a class="btn" href="#events">Explore Christmas Tour</a>
+      <a class="btn btn-outline" href="#celebrities">Discover Celebrities</a>
+    </div>
+    <div class="hero-note">STARVOLT is an enquiry and discovery platform. Availability and booking details must be confirmed before payment.</div>
+  </div>
+</section><section class="christmas" id="events">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Holiday season · 2026</div>
+      <h2>Alexander Klaws <span class="gold">Christmas Tour</span></h2>
+      <p>Explore the tour dates and choose the ticket category you wish to enquire about.</p>
+    </div><div class="notice" style="margin-bottom:24px">
+  <strong>Ticket information:</strong> Regular £100 · Premium £450 · VIP £500.
+  Meet & Greet applications are subject to management approval. Prices, ticket availability,
+  venue arrangements and any additional benefits must be confirmed before a booking is finalised.
+  Do not send payment based on this page alone.
+</div>
+
+<div id="eventsGrid" class="grid">
+  <div class="loading">Loading tour dates…</div>
+</div>
+<p id="eventsStatus" class="status muted" aria-live="polite"></p>
+
+  </div>
+</section><section id="celebrities">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Discover your favourites</div>
+      <h2>Celebrity World</h2>
+      <p>Explore available celebrity profiles, experiences and merchandise listings.</p>
+    </div>
+    <div id="celebritiesGrid" class="grid">
+      <div class="loading">Loading celebrity listings…</div>
+    </div>
+    <p id="celebritiesStatus" class="status muted"></p>
+  </div>
+</section><section id="tesla">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Electric mobility</div>
+      <h2>Tesla Vehicles</h2>
+      <p>Browse vehicle listings and submit an enquiry to confirm availability, specifications, delivery and final pricing.</p>
+    </div>
+    <div class="notice" style="margin-bottom:20px">
+      Vehicle listings are subject to confirmation. Any preorder or purchase should proceed only after the vehicle,
+      seller, final price, delivery terms and payment arrangements have been independently verified.
+    </div>
+    <div id="vehiclesGrid" class="grid">
+      <div class="loading">Loading vehicle listings…</div>
+    </div>
+    <p id="vehiclesStatus" class="status muted"></p>
+  </div>
+</section><section id="investment">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Learn before you decide</div>
+      <h2>Tesla & Investment Information</h2>
+      <p>Learn the difference between buying a vehicle and investing in a company.</p>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <h3 class="gold">Buying a Tesla vehicle</h3>
+        <p class="muted">A vehicle purchase involves the vehicle price, taxes, registration, transport, insurance, import costs where applicable, and after-sales support.</p>
+      </div>
+      <div class="panel">
+        <h3 class="gold">Investing in shares</h3>
+        <p class="muted">Buying shares is different from buying a car. Share prices can rise or fall, and you may lose money. Research the investment, platform fees, regulations and risks before investing.</p>
+      </div>
+    </div>
+    <p class="small muted">STARVOLT does not promise investment returns or guarantee vehicle availability.</p>
+  </div>
+</section><section id="meetgreet" class="christmas">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Special experience request</div>
+      <h2>VIP Meet & Greet <span class="gold">Application</span></h2>
+      <p>Submit your details for consideration. An application is not a confirmed booking.</p>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <h3>Apply for consideration</h3>
+        <form id="meetGreetForm">
+          <label>Full name
+            <input name="customer_name" required minlength="2" maxlength="120" autocomplete="name">
+          </label>
+          <label>Email address
+            <input type="email" name="customer_email" required maxlength="254" autocomplete="email">
+          </label>
+          <label>Preferred tour city
+            <select name="preferred_city" required>
+              <option value="">Choose a city</option>
+              <option>Köln</option>
+              <option>Bremen</option>
+              <option>Berlin</option>
+              <option>Stuttgart</option>
+              <option>Frankfurt</option>
+              <option>Düsseldorf</option>
+              <option>München</option>
+              <option>Hamburg</option>
+              <option>Oberhausen</option>
+            </select>
+          </label>
+          <label>Message (optional)
+            <textarea name="message" maxlength="1500" placeholder="Tell us which date you are interested in. Please do not include payment details."></textarea>
+          </label>
+          <button class="btn" type="submit" id="meetGreetSubmit">Submit application</button>
+          <div id="meetGreetStatus" class="status" aria-live="polite"></div>
+        </form>
+      </div>
+      <div class="panel">
+        <h3 class="gold">Please read before applying</h3>
+        <p class="muted">Meet & Greet availability and pricing depend on confirmation from management. Submitting this form does not guarantee approval, access, a ticket or a meeting.</p>
+        <p class="muted">Please use an email address you can access. Do not enter passwords, bank details or card information in the form.</p>
+        <div class="divider"></div>
+        <p class="small muted">Your application is saved for administrator review. This form does not automatically send an email to management.</p>
+      </div>
     </div>
   </div>
-</section>
-
-<section class="wrap">
-  <div class="grid">
-    <a class="card" href="#celebrities"><div class="card-body"><span class="tag">01 · Entertainment</span><h3>Celebrity Space</h3><p>Celebrity profiles, fan merchandise and booking enquiries.</p></div></a>
-    <a class="card" href="#events"><div class="card-body"><span class="tag">02 · Live experiences</span><h3>Events & Tickets</h3><p>Discover event listings, dates, venues and ticket information.</p></div></a>
-    <a class="card" href="#vehicles"><div class="card-body"><span class="tag">03 · Automotive</span><h3>Tesla Vehicles</h3><p>Explore vehicles available for purchase enquiries or preorder.</p></div></a>
-  </div>
-</section>
-
-<section class="wrap" id="celebrities">
-  <div class="section-head">
-    <div class="eyebrow">The people · The experiences</div>
-    <h2>Celebrity Space ⭐</h2>
-    <p>Discover featured celebrities, fan merchandise and booking information.</p>
-  </div>
-  <div id="celebrityGrid" class="grid"><div class="empty">Loading celebrity profiles…</div></div>
-</section>
-
-<section class="wrap" id="events">
-  <div class="section-head">
-    <div class="eyebrow">Live · Upcoming · Unforgettable</div>
-    <h2>Events & Tickets 🎟️</h2>
-    <p>Review published event information and ask about availability.</p>
-  </div>
-  <div id="eventGrid" class="grid"><div class="empty">Loading events…</div></div>
-</section>
-
-<section class="wrap" id="vehicles">
-  <div class="section-head">
-    <div class="eyebrow">Electric mobility</div>
-    <h2>Tesla Vehicle Collection 🚘</h2>
-    <p>Browse vehicle listings, specifications, prices and preorder information.</p>
-  </div>
-  <div id="vehicleGrid" class="grid"><div class="empty">Loading vehicle listings…</div></div>
-</section>
-
-<section class="wrap" id="investment">
-  <div class="band">
-    <div class="eyebrow">Market information</div>
-    <h2>Tesla Investment Information 📈</h2>
-    <p>Learn about Tesla, Inc. shares, market risk and the basics of investing.</p>
-    <p>Shares can rise or fall in value. STARVOLT does not guarantee returns or execute share purchases through this information page.</p>
-    <a class="btn" href="#contact">Ask a Question</a>
-  </div>
-</section>
-
-<section class="wrap" id="account">
-  <div class="section-head">
-    <div class="eyebrow">Your STARVOLT account</div>
-    <h2>Sign in or create an account</h2>
-    <p>Sign in to access your account. Authorised administrators can open the management dashboard.</p>
-  </div>
-  <div class="admin-layout">
-    <div class="card"><div class="card-body">
-      <h3>Sign in</h3>
-      <form id="loginForm">
-        <label>Email<input id="loginEmail" type="email" autocomplete="email" required></label>
-        <label>Password<input id="loginPassword" type="password" autocomplete="current-password" required></label>
-        <button class="btn" type="submit">Sign In</button>
-      </form>
-      <button id="logoutBtn" class="btn secondary hidden" type="button" style="margin-top:12px">Sign Out</button>
-      <div id="authStatus" class="status" aria-live="polite">You are not signed in.</div>
-    </div></div>
-    <div class="card"><div class="card-body">
-      <h3>Create customer account</h3>
-      <form id="signupForm">
-        <label>Email<input id="signupEmail" type="email" autocomplete="email" required></label>
-        <label>Password (at least 8 characters)<input id="signupPassword" type="password" minlength="8" autocomplete="new-password" required></label>
-        <button class="btn secondary" type="submit">Create Account</button>
-      </form>
-      <p class="notice">If email confirmation is enabled in Supabase, you must confirm your email before signing in.</p>
-    </div></div>
-  </div>
-</section>
-
-<section class="wrap hidden" id="admin">
-  <div class="section-head">
-    <div class="eyebrow">Restricted access</div>
-    <h2>STARVOLT Management Board 🛠️</h2>
-    <p>Add and update published content. Only accounts recognised as administrators can manage listings.</p>
-  </div>
-
-  <div class="tabs">
-    <button class="active" data-kind="celebrity" type="button">Celebrities</button>
-    <button data-kind="event" type="button">Events</button>
-    <button data-kind="vehicle" type="button">Tesla Vehicles</button>
-  </div>
-
-  <div class="admin-layout">
-    <div class="card"><div class="card-body">
-      <h3 id="editorTitle">Add Celebrity</h3>
-      <form id="listingForm">
-        <input type="hidden" id="listingId">
-        <label>Title / Name<input id="listingTitle" required maxlength="180"></label>
-        <label>Description<textarea id="listingDescription"></textarea></label>
-        <div id="eventFields" class="hidden">
-          <label>Celebrity UUID (optional)<input id="eventCelebrityId"></label>
-          <label>Venue<input id="eventVenue"></label>
-          <label>City<input id="eventCity"></label>
-          <label>Date and time<input id="eventDate" type="datetime-local"></label>
-          <label>Ticket price<input id="eventPrice" type="number" min="0" step="0.01"></label>
-          <label>Ticket currency
-            <select id="eventCurrency"><option>USD</option><option>EUR</option><option>GBP</option></select>
+</section><section id="account">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Your STARVOLT account</div>
+      <h2>Sign in or create an account</h2>
+      <p>Use an email address you control. Confirm your email if Supabase asks you to.</p>
+    </div>
+    <div class="two-col">
+      <div class="panel">
+        <h3>Welcome back</h3>
+        <form id="loginForm">
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
           </label>
-          <label>Tickets available<input id="eventTickets" type="number" min="0" value="0"></label>
-          <label>Event status<select id="eventStatus"><option value="draft">Draft</option><option value="published">Published</option><option value="sold_out">Sold out</option><option value="cancelled">Cancelled</option></select></label>
-        </div>
-        <div id="vehicleFields" class="hidden">
-          <label>Vehicle model<input id="vehicleModel" placeholder="e.g. Model Y"></label>
-          <label>Model year<input id="vehicleYear" type="number" min="1900" max="2100"></label>
-          <label>Price<input id="vehiclePrice" type="number" min="0" step="0.01"></label>
-          <label>Currency<select id="vehicleCurrency"><option>USD</option><option>EUR</option><option>GBP</option></select></label>
-          <label>Listing type<select id="vehicleSale"><option value="buy">Buy</option><option value="preorder">Preorder</option><option value="enquiry">Enquiry</option></select></label>
-          <label>Availability<select id="vehicleAvailability"><option value="available">Available</option><option value="preorder">Preorder</option><option value="sold_out">Sold out</option></select></label>
-        </div>
-        <label>Image / Poster
-          <input id="listingImage" type="file" accept="image/*">
-        </label>
-        <label><input id="listingPublished" type="checkbox" style="width:auto"> Publish this listing</label>
-        <button class="btn" type="submit">Save Listing</button>
-        <button class="btn secondary" id="cancelEdit" type="button">Clear Form</button>
-      </form>
-      <div id="adminStatus" class="status" aria-live="polite"></div>
-    </div></div>
-    <div class="card"><div class="card-body">
-      <h3>Existing listings</h3>
-      <p class="notice">Select a listing to edit it. You can remove listings you manage.</p>
-      <div id="adminListings"></div>
-    </div></div>
+          <label>Password
+            <input type="password" name="password" required autocomplete="current-password">
+          </label>
+          <button class="btn" type="submit">Sign in</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h3>Create your account</h3>
+        <form id="signupForm">
+          <label>Email
+            <input type="email" name="email" required autocomplete="email">
+          </label>
+          <label>Password (at least 8 characters)
+            <input type="password" name="password" required minlength="8" autocomplete="new-password">
+          </label>
+          <button class="btn btn-outline" type="submit">Create account</button>
+        </form>
+      </div>
+    </div>
+    <p id="authStatus" class="status" aria-live="polite"></p>
+    <div class="panel" style="margin-top:18px">
+      <div id="accountInfo" class="muted">You are not signed in.</div>
+      <button id="logoutBtn" class="btn btn-outline btn-small hidden" type="button">Sign out</button>
+    </div>
+  </div>
+</section><section id="admin" class="hidden">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Restricted area</div>
+      <h2>Administrator Dashboard</h2>
+      <p>Only accounts confirmed as administrators by Supabase should access private application records.</p>
+    </div>
+    <div class="notice">Administrator access is checked through the Supabase function <code>is_renzota_admin</code>.</div>
+    <div class="admin-tabs">
+      <button type="button" class="btn btn-outline active" data-admin-tab="applications">Meet & Greet Applications</button>
+      <button type="button" class="btn btn-outline" data-admin-tab="events">Tour Events</button>
+    </div><div id="adminApplications">
+  <h3>Meet & Greet applications</h3>
+  <button id="refreshApplications" type="button" class="btn btn-small">Refresh applications</button>
+  <div id="applicationsResult" class="loading">Loading applications…</div>
+</div>
+
+<div id="adminEvents" class="hidden">
+  <h3>Published tour events</h3>
+  <p class="muted">This panel reads your event records. Use the Supabase dashboard to edit event details and availability.</p>
+  <div id="adminEventsResult" class="loading">Loading events…</div>
+</div>
+
   </div>
 </section>
-
-<section class="wrap" id="contact">
-  <div class="band">
-    <div class="eyebrow">Questions & enquiries</div>
-    <h2>Talk to STARVOLT</h2>
-    <p>For questions about tickets, celebrity bookings or vehicle availability, use your business contact channel.</p>
-    <p class="notice">A live enquiry form and on-site checkout will be connected after the secure submission and payment backend is configured.</p>
+</main><footer>
+  <div class="container footer-row">
+    <div>
+      <div class="logo">STAR<span>VOLT</span></div>
+      <div class="small">Discover more. Experience extraordinary.</div>
+    </div>
+    <div class="small">
+      © <span id="year"></span> STARVOLT. All rights reserved.<br>
+      All bookings, availability and prices require confirmation.
+    </div>
   </div>
-</section>
-</main>
+</footer><script>
+"use strict";
 
-<footer>
-  <div class="foot">
-    <strong>STARVOLT</strong>
-    <p>Entertainment · Automotive · Innovation</p>
-    <p>STARVOLT is an independent platform. Listings do not by themselves establish celebrity, event organiser or Tesla affiliation. Confirm availability, authorisation and purchase terms before paying.</p>
-    <p>Investment involves risk. No investment return is guaranteed.</p>
-    <p>© 2026 STARVOLT</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
 /*
-  STARVOLT public frontend configuration.
-  The publishable key is intended for browser use.
-  Never place a Supabase secret/service-role key here.
+  STARVOLT configuration.
+  A Supabase publishable/anon key may be used in browser code.
+  NEVER place a service-role key or other secret key in this file.
 */
 const SUPABASE_URL = "https://sbhgunhmorjqvcprlqow.supabase.co";
 const SUPABASE_KEY = "sb_publishable_SBFPRmpjO9InOHbrjuGrZg_OA0Ppfzu";
-const BUCKET = "starvolt-media";
 
-const $ = id => document.getElementById(id);
 const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-let currentKind = "celebrity";
-let currentUser = null;
-let isAdmin = false;
-let currentListings = [];
+const TOUR_TITLE = "Alexander Klaws Christmas Tour 2026";
+const TICKET_CATEGORIES = [
+  {name:"Regular",price:100},
+  {name:"Premium",price:450},
+  {name:"VIP",price:500}
+];
 
-function esc(value="") {
-  return String(value).replace(/[&<>"']/g, ch => ({
+const TOUR_DATES = [
+  {date:"2026-11-23",city:"Köln",venue:"Musical Dome"},
+  {date:"2026-11-24",city:"Bremen",venue:"Metropol Theater"},
+  {date:"2026-11-25",city:"Berlin",venue:"Tempodrom"},
+  {date:"2026-11-30",city:"Stuttgart",venue:"Stage Palladium Theater"},
+  {date:"2026-12-02",city:"Frankfurt",venue:"Jahrhunderthalle"},
+  {date:"2026-12-03",city:"Düsseldorf",venue:"Tonhalle"},
+  {date:"2026-12-07",city:"München",venue:"Deutsches Theater"},
+  {date:"2026-12-14",city:"Hamburg",venue:"Stage Theater an der Elbe"},
+  {date:"2026-12-21",city:"Oberhausen",venue:"Metronom Theater"}
+];
+
+const $ = id => document.getElementById(id);
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[ch]);
+  })[char]);
 }
 
-function money(value, currency="USD") {
-  if (value === null || value === undefined || value === "") return "Price on request";
-  const n = Number(value);
-  if (!Number.isFinite(n)) return "Price on request";
+function setStatus(id, message, type="") {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = message;
+  el.className = "status " + type;
+}
+
+function showDate(dateValue) {
+  if (!dateValue) return "Date to be confirmed";
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return escapeHTML(dateValue);
+
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone:"Europe/Berlin",
+    weekday:"short",
+    day:"2-digit",
+    month:"short",
+    year:"numeric"
+  }).format(date);
+}
+
+function showVenueTime(dateValue) {
+  if (!dateValue) return "";
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone:"Europe/Berlin",
+    hour:"2-digit",
+    minute:"2-digit",
+    timeZoneName:"short"
+  }).format(date);
+}
+
+function safeImage(url) {
+  if (!url) return "";
   try {
-    return new Intl.NumberFormat("en-US", {
-      style:"currency",currency,maximumFractionDigits:2
-    }).format(n);
+    const parsed = new URL(url, window.location.href);
+    if (!["https:","http:"].includes(parsed.protocol)) return "";
+    return parsed.href;
   } catch {
-    return currency + " " + n.toFixed(2);
+    return "";
   }
 }
 
-function imageHTML(url, alt) {
-  if (!url) {
-    return '<div style="height:205px;display:grid;place-items:center;background:linear-gradient(135deg,#10254b,#163344);color:#67e8f9;font-size:42px">✦</div>';
-  }
-  return '<img loading="lazy" src="' + esc(url) + '" alt="' + esc(alt) + '" onerror="this.style.display=\'none\'">';
+function imageMarkup(url, alt) {
+  const safe = safeImage(url);
+  return safe
+    ? `<div class="card-image"><img loading="lazy" src="${escapeHTML(safe)}" alt="${escapeHTML(alt)}"></div>`
+    : `<div class="card-image" aria-label="${escapeHTML(alt)}">✦</div>`;
 }
 
-function card(title, description, image, tag, price, button, alt) {
-  return '<article class="card">' +
-    imageHTML(image, alt || title) +
-    '<div class="card-body"><span class="tag">' + esc(tag || "") + '</span>' +
-    '<h3>' + esc(title) + '</h3><p>' + esc(description || "") + '</p>' +
-    (price ? '<div class="price">' + esc(price) + '</div>' : '') +
-    (button || '') + '</div></article>';
+function isAlexanderEvent(event) {
+  return String(event.title || "").toLowerCase().includes("alexander klaws") ||
+         String(event.title || "").toLowerCase().includes("christmas tour");
 }
 
-function askButton(label, title) {
-  return '<a class="btn secondary" href="#contact" data-question="' +
-    esc(title) + '">' + esc(label) + '</a>';
+function renderTicketOptions(city, venue) {
+  return `
+    <div class="ticket-options">
+      ${TICKET_CATEGORIES.map(ticket => `
+        <div class="ticket-option">
+          <div><strong>${ticket.name}</strong><br><small>Price shown for enquiry</small></div>
+          <div class="price">£${ticket.price}</div>
+        </div>`).join("")}
+    </div>
+    <button class="btn btn-small ticket-enquiry" type="button"
+      data-city="${escapeHTML(city)}" data-venue="${escapeHTML(venue)}">
+      Enquire about tickets
+    </button>
+    <button class="btn btn-outline btn-small meet-enquiry" type="button">
+      Apply for Meet & Greet
+    </button>
+    <p class="small muted">Subject to confirmation. Ticket checkout is not available on this page.</p>`;
 }
 
-async function loadCelebrities() {
-  const box = $("celebrityGrid");
-  const {data,error} = await client.from("starvolt_celebrities")
-    .select("*").eq("is_published",true).order("created_at",{ascending:false});
-  if (error) {
-    box.innerHTML = '<div class="empty">Celebrity listings are temporarily unavailable. Check database access policies.</div>';
-    return;
-  }
-  box.innerHTML = data.length ? data.map(x => card(
-    x.name,x.description,x.photo_url,"Celebrity",
-    "",askButton("Ask about booking",x.name),x.name
-  )).join("") : '<div class="empty">Celebrity listings are being prepared. Check back soon.</div>';
+function renderTourCard(event, fallback) {
+  const title = event.title || TOUR_TITLE;
+  const city = event.city || fallback.city;
+  const venue = event.venue || fallback.venue;
+  const dateValue = event.event_date || fallback.date;
+  const description = event.description || "Christmas tour date. Availability and booking details must be confirmed.";
+
+  return `
+    <article class="card">
+      ${imageMarkup(event.image_url, title)}
+      <div class="card-body">
+        <span class="chip">CHRISTMAS TOUR 2026</span>
+        <h3>${escapeHTML(city)}</h3>
+        <p>${escapeHTML(venue)}</p>
+        <p><strong>${escapeHTML(showDate(dateValue))}</strong></p>
+        <p class="meta">${escapeHTML(showVenueTime(dateValue))} · Local venue time</p>
+        <div class="divider"></div>
+        <p>${escapeHTML(description)}</p>
+        ${renderTicketOptions(city, venue)}
+      </div>
+    </article>`;
+}
+
+function renderFallbackTour() {
+  $("eventsGrid").innerHTML = TOUR_DATES.map(date => renderTourCard({
+    title:TOUR_TITLE,
+    city:date.city,
+    venue:date.venue,
+    event_date:date.date + "T18:00:00+01:00",
+    description:"Tour listing. Please confirm the official event start time, ticket availability and booking terms before making arrangements."
+  }, date)).join("");
 }
 
 async function loadEvents() {
-  const box = $("eventGrid");
-  const {data,error} = await client.from("starvolt_events")
-    .select("*").eq("status","published").order("event_date",{ascending:true});
+  const grid = $("eventsGrid");
+  grid.innerHTML = '<div class="loading">Loading tour dates…</div>';
+
+  const {data, error} = await client
+    .from("starvolt_events")
+    .select("*")
+    .eq("status","published")
+    .order("event_date",{ascending:true});
+
   if (error) {
-    box.innerHTML = '<div class="empty">Events are temporarily unavailable. Check database access policies.</div>';
+    renderFallbackTour();
+    setStatus("eventsStatus",
+      "Showing the nine configured tour dates. Live event data could not be loaded; please check the starvolt_events table and its access policies.",
+      "error");
     return;
   }
-  box.innerHTML = data.length ? data.map(x => {
-    const date = x.event_date ? new Date(x.event_date).toLocaleString() : "Date to be announced";
-    return card(
-      x.title,date + (x.venue ? " · " + x.venue : "") +
-      (x.city ? " · " + x.city : "") +
-      " · " + (x.tickets_available > 0 ? x.tickets_available + " listed tickets available" : "Availability to be confirmed"),
-      x.image_url,"Event",money(x.ticket_price,x.currency),
-      askButton("Ask about tickets",x.title),x.title
-    );
-  }).join("") : '<div class="empty">No published events yet. Add an event through the management board.</div>';
-}
 
-async function loadVehicles() {
-  const box = $("vehicleGrid");
-  const {data,error} = await client.from("starvolt_products")
-    .select("*").eq("product_type","tesla_vehicle")
-    .eq("is_published",true).order("created_at",{ascending:false});
-  if (error) {
-    box.innerHTML = '<div class="empty">Vehicle listings are temporarily unavailable. Check database access policies.</div>';
+  const tourEvents = (data || []).filter(isAlexanderEvent);
+  if (!tourEvents.length) {
+    renderFallbackTour();
+    setStatus("eventsStatus",
+      "Showing the configured tour dates. No matching published tour rows were returned from Supabase.",
+      "muted");
     return;
   }
-  box.innerHTML = data.length ? data.map(x => card(
-    x.title,(x.model || "") + (x.model_year ? " · " + x.model_year : "") +
-    " · " + (x.availability || "Availability to be confirmed") +
-    (x.description ? " · " + x.description : ""),
-    x.image_url,"Tesla vehicle",money(x.price,x.currency),
-    askButton(x.sale_type === "preorder" ? "Ask about preorder" : "Ask about vehicle",x.title),x.title
-  )).join("") : '<div class="empty">Tesla listings are being prepared. Add verified vehicle listings through the management board.</div>';
-}
 
-async function loadAll() {
-  await Promise.all([loadCelebrities(),loadEvents(),loadVehicles()]);
-}
+  const used = new Set();
+  const cards = [];
 
-function setStatus(id,message) {
-  $(id).textContent = message;
-}
-
-async function refreshAuth() {
-  const {data} = await client.auth.getSession();
-  currentUser = data.session?.user || null;
-  isAdmin = false;
-
-  if (currentUser) {
-    const {data:role,error} = await client.rpc("is_renzota_admin");
-    isAdmin = !error && role === true;
-    setStatus("authStatus", "Signed in as " + currentUser.email +
-      (isAdmin ? " · Administrator access confirmed." : " · Customer account."));
-    $("logoutBtn").classList.remove("hidden");
-  } else {
-    setStatus("authStatus","You are not signed in.");
-    $("logoutBtn").classList.add("hidden");
-  }
-
-  $("admin").classList.toggle("hidden",!isAdmin);
-  if (isAdmin) await loadAdminListings();
-}
-
-$("loginForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  setStatus("authStatus","Signing in…");
-  const {error} = await client.auth.signInWithPassword({
-    email:$("loginEmail").value.trim(),
-    password:$("loginPassword").value
+  tourEvents.forEach(event => {
+    const key = `${event.city || ""}|${event.venue || ""}|${String(event.event_date || "").slice(0,10)}`;
+    used.add(key);
+    const fallback = TOUR_DATES.find(d =>
+      (event.city || "").toLowerCase() === d.city.toLowerCase() ||
+      (event.venue || "").toLowerCase() === d.venue.toLowerCase()
+    ) || {city:event.city || "City to be confirmed",venue:event.venue || "Venue to be confirmed",date:event.event_date};
+    cards.push(renderTourCard(event,fallback));
   });
-  if (error) {
-    setStatus("authStatus","Sign-in failed: " + error.message);
-    return;
-  }
-  await refreshAuth();
-});
 
-$("signupForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  setStatus("authStatus","Creating account…");
-  const {data,error} = await client.auth.signUp({
-    email:$("signupEmail").value.trim(),
-    password:$("signupPassword").value
-  });
-  if (error) {
-    setStatus("authStatus","Account creation failed: " + error.message);
-    return;
-  }
-  setStatus("authStatus",data.session
-    ? "Account created. You can now use your account."
-    : "Account created. Check your email for a confirmation link if required.");
-});
-
-$("logoutBtn").addEventListener("click",async()=>{
-  await client.auth.signOut();
-  await refreshAuth();
-});
-
-document.querySelectorAll("[data-kind]").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    currentKind = btn.dataset.kind;
-    document.querySelectorAll("[data-kind]").forEach(b=>b.classList.toggle("active",b===btn));
-    resetEditor();
-    updateEditor();
-    loadAdminListings();
-  });
-});
-
-function updateEditor() {
-  const event = currentKind === "event";
-  const vehicle = currentKind === "vehicle";
-  $("eventFields").classList.toggle("hidden",!event);
-  $("vehicleFields").classList.toggle("hidden",!vehicle);
-  $("editorTitle").textContent = "Add " +
-    (event ? "Event" : vehicle ? "Tesla Vehicle" : "Celebrity");
-}
-
-function resetEditor() {
-  $("listingForm").reset();
-  $("listingId").value = "";
-  $("eventCelebrityId").value = "";
-  $("listingImage").value = "";
-  updateEditor();
-}
-
-$("cancelEdit").addEventListener("click",resetEditor);
-
-function tableInfo() {
-  if (currentKind === "celebrity") return {
-    table:"starvolt_celebrities",id:"id",title:"name",description:"description",
-    image:"photo_url",published:"is_published"
-  };
-  if (currentKind === "event") return {
-    table:"starvolt_events",id:"id",title:"title",description:"description",
-    image:"image_url",published:"status"
-  };
-  return {
-    table:"starvolt_products",id:"id",title:"title",description:"description",
-    image:"image_url",published:"is_published"
-  };
-}
-
-async function loadAdminListings() {
-  if (!isAdmin) return;
-  const info = tableInfo();
-  let query = client.from(info.table).select("*").order("created_at",{ascending:false});
-  if (currentKind === "vehicle") query = query.eq("product_type","tesla_vehicle");
-
-  const {data,error} = await query;
-  const box = $("adminListings");
-  if (error) {
-    box.textContent = "Could not load listings: " + error.message;
-    return;
-  }
-  currentListings = data || [];
-  box.innerHTML = currentListings.length ? currentListings.map(x =>
-    '<div class="status"><strong>' + esc(x[info.title]) + '</strong><br>' +
-    '<span class="notice">' + esc(currentKind === "event" ? x.status : (x.is_published ? "Published" : "Draft")) + '</span><br>' +
-    '<div class="actions"><button type="button" class="btn secondary" data-edit="' + esc(x.id) + '">Edit</button>' +
-    '<button type="button" class="btn secondary" data-delete="' + esc(x.id) + '">Delete</button></div></div>'
-  ).join("") : "No listings yet.";
-
-  box.querySelectorAll("[data-edit]").forEach(b => b.addEventListener("click",()=>{
-    const item = currentListings.find(x=>x.id===b.dataset.edit);
-    if (item) editListing(item);
-  }));
-  box.querySelectorAll("[data-delete]").forEach(b => b.addEventListener("click",async()=>{
-    const item = currentListings.find(x=>x.id===b.dataset.delete);
-    if (!item || !confirm("Delete this listing?")) return;
-    const {error} = await client.from(info.table).delete().eq("id",item.id);
-    if (error) setStatus("adminStatus","Delete failed: " + error.message);
-    else {
-      setStatus("adminStatus","Listing deleted.");
-      await loadAdminListings();
-      await loadAll();
+  TOUR_DATES.forEach(date => {
+    const key = `${date.city}|${date.venue}|${date.date}`;
+    if (!used.has(key)) {
+      cards.push(renderTourCard({
+        title:TOUR_TITLE,
+        city:date.city,
+        venue:date.venue,
+        event_date:date.date + "T18:00:00+01:00",
+        description:"Tour listing. Confirm the official event time and availability before making arrangements."
+      },date));
     }
-  }));
-}
-
-function editListing(x) {
-  $("listingId").value = x.id;
-  $("listingTitle").value = x.name || x.title || "";
-  $("listingDescription").value = x.description || "";
-  $("listingPublished").checked = x.is_published === true || x.status === "published";
-
-  if (currentKind === "event") {
-    $("eventCelebrityId").value = x.celebrity_id || "";
-    $("eventVenue").value = x.venue || "";
-    $("eventCity").value = x.city || "";
-    $("eventDate").value = x.event_date ? new Date(x.event_date).toISOString().slice(0,16) : "";
-    $("eventPrice").value = x.ticket_price ?? "";
-    $("eventCurrency").value = x.currency || "USD";
-    $("eventTickets").value = x.tickets_available ?? 0;
-    $("eventStatus").value = x.status || "draft";
-  }
-  if (currentKind === "vehicle") {
-    $("vehicleModel").value = x.model || "";
-    $("vehicleYear").value = x.model_year || "";
-    $("vehiclePrice").value = x.price ?? "";
-    $("vehicleCurrency").value = x.currency || "USD";
-    $("vehicleSale").value = x.sale_type || "preorder";
-    $("vehicleAvailability").value = x.availability || "available";
-  }
-  updateEditor();
-  $("editorTitle").textContent = "Edit Listing";
-  $("listingForm").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-async function uploadImage(file) {
-  if (!file) return null;
-  if (!file.type.startsWith("image/")) throw new Error("Choose an image file.");
-  if (file.size > 8 * 1024 * 1024) throw new Error("Image must be smaller than 8 MB.");
-
-  const ext = (file.name.split(".").pop() || "jpg").replace(/[^a-zA-Z0-9]/g,"").toLowerCase();
-  const path = currentKind + "/" + crypto.randomUUID() + "." + ext;
-  const {error} = await client.storage.from(BUCKET).upload(path,file,{
-    cacheControl:"3600",upsert:false,contentType:file.type
   });
-  if (error) throw error;
-  const {data} = client.storage.from(BUCKET).getPublicUrl(path);
-  return data.publicUrl;
+
+  grid.innerHTML = cards.join("");
+  setStatus("eventsStatus","Tour dates are displayed in the Europe/Berlin time zone. Please confirm the official start times and ticket availability.","muted");
 }
 
-$("listingForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  if (!isAdmin) {
-    setStatus("adminStatus","Administrator access is required.");
+async function loadListings(tableName, gridId, statusId, kind) {
+  const grid = $(gridId);
+  grid.innerHTML = '<div class="loading">Loading listings…</div>';
+
+  const {data,error} = await client.from(tableName).select("*").limit(60);
+
+  if (error) {
+    grid.innerHTML = '<div class="empty">No listings could be loaded right now.</div>';
+    setStatus(statusId,
+      `Check that the ${tableName} table exists, its columns are correct, and its read policies allow public listings.`,
+      "error");
     return;
   }
 
-  const info = tableInfo();
-  const id = $("listingId").value;
-  const file = $("listingImage").files[0];
-  const button = e.submitter;
+  const items = data || [];
+  if (!items.length) {
+    grid.innerHTML = '<div class="empty">No listings have been added yet. An administrator can add listings in Supabase.</div>';
+    setStatus(statusId,"");
+    return;
+  }
+
+  grid.innerHTML = items.map(item => {
+    const title = item.name || item.title || item.model || item.vehicle_name || "Listing";
+    const description = item.description || item.bio || item.details || "Contact us to confirm details and availability.";
+    const price = item.price != null ? `<div class="price">${escapeHTML(item.currency || "£")}${escapeHTML(item.price)}</div>` : "";
+    const category = kind === "celebrity" ? "CELEBRITY" : "VEHICLE";
+    const picture = item.image_url || item.image || item.photo_url || "";
+
+    return `<article class="card">
+      ${imageMarkup(picture,title)}
+      <div class="card-body">
+        <span class="chip">${category}</span>
+        <h3>${escapeHTML(title)}</h3>
+        <p>${escapeHTML(description)}</p>
+        ${price}
+        <button type="button" class="btn btn-outline listing-enquiry"
+          data-title="${escapeHTML(title)}" data-kind="${kind}">
+          Send an enquiry
+        </button>
+      </div>
+    </article>`;
+  }).join("");
+
+  setStatus(statusId,"");
+}
+
+function goToMeetGreet(city) {
+  const section = $("meetgreet");
+  section.scrollIntoView({behavior:"smooth"});
+  const select = document.querySelector('#meetGreetForm select[name="preferred_city"]');
+  if (select && city) {
+    const option = Array.from(select.options).find(o => o.value.toLowerCase() === city.toLowerCase());
+    if (option) select.value = option.value;
+  }
+}
+
+document.addEventListener("click", event => {
+  const ticketButton = event.target.closest(".ticket-enquiry");
+  if (ticketButton) {
+    const city = ticketButton.dataset.city || "";
+    const venue = ticketButton.dataset.venue || "";
+    const message = `I would like to enquire about Christmas tour tickets for ${city}, ${venue}. Please confirm the available ticket categories, final price and booking process.`;
+    const textarea = document.querySelector('#meetGreetForm textarea[name="message"]');
+    if (textarea) textarea.value = message;
+    goToMeetGreet(city);
+    setStatus("meetGreetStatus","Please complete the form to submit your enquiry.","");
+  }
+
+  if (event.target.closest(".meet-enquiry")) {
+    const card = event.target.closest(".card");
+    const city = card?.querySelector("h3")?.textContent || "";
+    goToMeetGreet(city);
+  }
+
+  const listingButton = event.target.closest(".listing-enquiry");
+  if (listingButton) {
+    const title = listingButton.dataset.title || "listing";
+    const kind = listingButton.dataset.kind || "listing";
+    const textarea = document.querySelector('#meetGreetForm textarea[name="message"]');
+    if (textarea) textarea.value = `I would like more information about this ${kind}: ${title}. Please confirm details, availability and the enquiry process.`;
+    $("meetgreet").scrollIntoView({behavior:"smooth"});
+    setStatus("meetGreetStatus","Please complete the form. This form is intended for Meet & Greet applications; other enquiries may need to be handled separately.","");
+  }
+});
+
+/* Meet & Greet application submission */
+$("meetGreetForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const button = $("meetGreetSubmit");
+  const values = Object.fromEntries(new FormData(form).entries());
+
+  values.customer_name = String(values.customer_name || "").trim();
+  values.customer_email = String(values.customer_email || "").trim();
+  values.preferred_city = String(values.preferred_city || "").trim();
+  values.message = String(values.message || "").trim();
+
+  if (values.customer_name.length < 2 || values.customer_email.length < 5 || values.preferred_city.length < 2) {
+    setStatus("meetGreetStatus","Please check your name, email address and preferred city.","error");
+    return;
+  }
+
   button.disabled = true;
-  setStatus("adminStatus","Saving listing…");
+  button.textContent = "Submitting…";
+  setStatus("meetGreetStatus","Submitting your application…");
 
-  try {
-    let imageUrl = null;
-    if (file) imageUrl = await uploadImage(file);
+  const {error} = await client
+    .from("starvolt_meet_greet_applications")
+    .insert([{
+      customer_name:values.customer_name,
+      customer_email:values.customer_email,
+      preferred_city:values.preferred_city,
+      message:values.message || null
+    }]);
 
-    const payload = {
-      [info.title]:$("listingTitle").value.trim(),
-      description:$("listingDescription").value.trim(),
-      updated_at:new Date().toISOString()
-    };
+  button.disabled = false;
+  button.textContent = "Submit application";
 
-    if (imageUrl) payload[info.image] = imageUrl;
+  if (error) {
+    console.error("Application submission error:",error);
+    setStatus("meetGreetStatus","We could not submit your application. Please check your internet connection and the Supabase table permissions, then try again.","error");
+    return;
+  }
 
-    if (currentKind === "celebrity") {
-      payload.is_published = $("listingPublished").checked;
-    } else if (currentKind === "event") {
-      payload.celebrity_id = $("eventCelebrityId").value.trim() || null;
-      payload.venue = $("eventVenue").value.trim() || null;
-      payload.city = $("eventCity").value.trim() || null;
-      payload.event_date = $("eventDate").value
-        ? new Date($("eventDate").value).toISOString() : null;
-      payload.ticket_price = $("eventPrice").value === "" ? null : Number($("eventPrice").value);
-      payload.currency = $("eventCurrency").value;
-      payload.tickets_available = Math.max(0,Number($("eventTickets").value || 0));
-      payload.status = $("eventStatus").value;
-    } else {
-      payload.product_type = "tesla_vehicle";
-      payload.model = $("vehicleModel").value.trim() || null;
-      payload.model_year = $("vehicleYear").value ? Number($("vehicleYear").value) : null;
-      payload.price = $("vehiclePrice").value === "" ? null : Number($("vehiclePrice").value);
-      payload.currency = $("vehicleCurrency").value;
-      payload.sale_type = $("vehicleSale").value;
-      payload.availability = $("vehicleAvailability").value;
-      payload.is_published = $("listingPublished").checked;
-    }
+  form.reset();
+  setStatus("meetGreetStatus","Your application was submitted successfully. It is not a confirmed booking; availability and approval still need to be confirmed.","success");
+});
 
-    let result;
-    if (id) {
-      result = await client.from(info.table).update(payload).eq("id",id);
-    } else {
-      result = await client.from(info.table).insert(payload);
-    }
+/* Supabase authentication */
+async function updateAccountUI(session) {
+  const accountInfo = $("accountInfo");
+  const logout = $("logoutBtn");
+  const adminSection = $("admin");
 
-    if (result.error) throw result.error;
+  if (!session?.user) {
+    accountInfo.textContent = "You are not signed in.";
+    logout.classList.add("hidden");
+    adminSection.classList.add("hidden");
+    return;
+  }
 
-    setStatus("adminStatus","Listing saved successfully.");
-    resetEditor();
-    await loadAdminListings();
-    await loadAll();
-  } catch (err) {
-    setStatus("adminStatus","Save failed: " + (err.message || "Unknown error"));
-  } finally {
-    button.disabled = false;
+  accountInfo.textContent = "Signed in as " + session.user.email + ". Checking account permissions…";
+  logout.classList.remove("hidden");
+
+  const {data,error} = await client.rpc("is_renzota_admin");
+
+  if (!error && data === true) {
+    accountInfo.textContent = "Signed in as " + session.user.email + " · Administrator access confirmed.";
+    adminSection.classList.remove("hidden");
+    await loadAdminApplications();
+    await loadAdminEvents();
+  } else {
+    accountInfo.textContent = "Signed in as " + session.user.email + ". Customer account.";
+    adminSection.classList.add("hidden");
+  }
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const values = Object.fromEntries(new FormData(form).entries());
+
+  setStatus("authStatus","Signing in…");
+  const {data,error} = await client.auth.signInWithPassword({
+    email:values.email,
+    password:values.password
+  });
+
+  if (error) {
+    setStatus("authStatus",error.message,"error");
+    return;
+  }
+
+  setStatus("authStatus","Signed in successfully.","success");
+  form.reset();
+  await updateAccountUI(data.session);
+});
+
+$("signupForm").addEventListener("submit", async event => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const values = Object.fromEntries(new FormData(form).entries());
+
+  if (values.password.length < 8) {
+    setStatus("authStatus","Please use a password with at least 8 characters.","error");
+    return;
+  }
+
+  setStatus("authStatus","Creating your account…");
+  const {data,error} = await client.auth.signUp({
+    email:values.email,
+    password:values.password
+  });
+
+  if (error) {
+    setStatus("authStatus",error.message,"error");
+    return;
+  }
+
+  form.reset();
+  if (data.session) {
+    setStatus("authStatus","Your account was created successfully.","success");
+    await updateAccountUI(data.session);
+  } else {
+    setStatus("authStatus","Account created. Check your email for the confirmation link before signing in.","success");
   }
 });
 
-document.addEventListener("click",e=>{
-  const btn = e.target.closest("[data-question]");
-  if (btn) {
-    e.preventDefault();
-    $("contact").scrollIntoView({behavior:"smooth"});
+$("logoutBtn").addEventListener("click", async () => {
+  const {error} = await client.auth.signOut();
+  if (error) {
+    setStatus("authStatus",error.message,"error");
+    return;
   }
+  setStatus("authStatus","You have signed out.","success");
+  await updateAccountUI(null);
 });
 
-client.auth.onAuthStateChange(()=> {
-  setTimeout(refreshAuth,0);
+client.auth.onAuthStateChange((_event,session) => {
+  setTimeout(() => updateAccountUI(session),0);
 });
 
-updateEditor();
-loadAll();
-refreshAuth();
-</script>
-</body>
+/* Administrator-only application list */
+async function loadAdminApplications() {
+  const output = $("applicationsResult");
+  output.innerHTML = '<div class="loading">Loading applications…</div>';
+
+  const {data,error} = await client
+    .from("starvolt_meet_greet_applications")
+    .select("id,customer_name,customer_email,preferred_city,message,status,created_at")
+    .order("created_at",{ascending:false})
+    .limit(200);
+
+  if (error) {
+    output.innerHTML = '<div class="empty">Applications could not be loaded. Check that you are signed in as an administrator and that the admin SELECT policy is active.</div>';
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    output.innerHTML = '<div class="empty">No applications have been submitted yet.</div>';
+    return;
+  }
+
+  output.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>Date</th><th>Customer</th><th>City</th><th>Message</th><th>Status</th><th>Update</th></tr></thead>
+    <tbody>${data.map(app => `
+      <tr>
+        <td>${escapeHTML(new Date(app.created_at).toLocaleString())}</td>
+        <td>${escapeHTML(app.customer_name)}<br><span class="small muted">${escapeHTML(app.customer_email)}</span></td>
+        <td>${escapeHTML(app.preferred_city)}</td>
+        <td>${escapeHTML(app.message || "—")}</td>
+        <td>${escapeHTML(app.status)}</td>
+        <td>
+          <select class="application-status" data-id="${escapeHTML(app.id)}" aria-label="Application status">
+            ${["pending","reviewing","approved","declined"].map(status =>
+              `<option value="${status}" ${app.status === status ? "selected" : ""}>${status}</option>`
+            ).join("")}
+          </select>
+          <button class="btn btn-small save-application-status" type="button" data-id="${escapeHTML(app.id)}">Save</button>
+        </td>
+      </tr>`).join("")}</tbody>
+  </table></div>`;
+}
+
+async function loadAdminEvents() {
+  const output = $("adminEventsResult");
+  output.innerHTML = '<div class="loading">Loading events…</div>';
+
+  const {data,error} = await client
+    .from("starvolt_events")
+    .select("id,title,city,venue,event_date,status,ticket_price,currency")
+    .order("event_date",{ascending:true})
+    .limit(100);
+
+  if (error) {
+    output.innerHTML = '<div class="empty">Event records could not be loaded. Check the starvolt_events table and access policies.</div>';
+    return;
+  }
+
+  if (!data || !data.length) {
+    output.innerHTML = '<div class="empty">No event records found.</div>';
+    return;
+  }
+
+  output.innerHTML = `<div class="table-wrap"><table>
+    <thead><tr><th>Event</th><th>City</th><th>Venue</th><th>Date</th><th>Base price</th><th>Status</th></tr></thead>
+    <tbody>${data.map(event => `
+      <tr>
+        <td>${escapeHTML(event.title)}</td>
+        <td>${escapeHTML(event.city)}</td>
+        <td>${escapeHTML(event.venue)}</td>
+        <td>${escapeHTML(showDate(event.event_date))}</td>
+        <td>${escapeHTML(event.currency || "")}${escapeHTML(event.ticket_price ?? "To confirm")}</td>
+        <td>${escapeHTML(event.status)}</td>
+      </tr>`).join("")}</tbody>
+  </table></div>`;
+}
+
+$("refreshApplications").addEventListener("click",loadAdminApplications);
+
+document.querySelectorAll("[data-admin-tab]").forEach(button => {
+  button.addEventListener("click",() => {
+    document.querySelectorAll("[data-admin-tab]").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+
+    const applications = button.dataset.adminTab === "applications";
+    $("adminApplications").classList.toggle("hidden",!applications);
+    $("adminEvents").classList.toggle("hidden",applications);
+  });
+});
+
+$("applicationsResult").addEventListener("click",async event => {
+  const button = event.target.closest(".save-application-status");
+  if (!button) return;
+
+  const id = button.dataset.id;
+  const select = document.querySelector(`.application-status[data-id="${CSS.escape(id)}"]`);
+  if (!select) return;
+
+  button.disabled = true;
+  const {error} = await client
+    .from("starvolt_meet_greet_applications")
+    .update({status:select.value})
+    .eq("id",id);
+
+  button.disabled = false;
+
+  if (error) {
+    alert("Status could not be updated. Check administrator permissions.");
+    return;
+  }
+
+  alert("Application status updated.");
+  await loadAdminApplications();
+});
+
+/* Initial page setup */
+$("year").textContent = new Date().getFullYear();
+
+async function init() {
+  await Promise.all([
+    loadEvents(),
+    loadListings("starvolt_celebrities","celebritiesGrid","celebritiesStatus","celebrity"),
+    loadListings("starvolt_vehicles","vehiclesGrid","vehiclesStatus","vehicle")
+  ]);
+
+  const {data} = await client.auth.getSession();
+  await updateAccountUI(data.session);
+}
+
+init();
+</script></body>
 </html>
