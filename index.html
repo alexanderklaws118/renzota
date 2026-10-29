@@ -1697,6 +1697,837 @@ $("searchForm").addEventListener("submit", event => {
 $("year").textContent = new Date().getFullYear();
 
 renderBasket();
+<script>
+"use strict";
+
+/* =========================================
+   STARVOLT DATABASE CONNECTION
+========================================= */
+
+const SUPABASE_URL = "https://sbhgunhmorjqvcprlqow.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_SBFPRmpjO9InOHbrjuGrZg_OA0Ppfzu";
+
+const ORDER_TABLE = "starvolt_orders";
+
+/* =========================================
+   STARVOLT SETTINGS
+========================================= */
+
+const ticketPrices = {
+  Standard: 110,
+  Premium: 250,
+  VIP: 500
+};
+
+const tourDates = [
+  ["2026-11-23", "Köln", "Musical Dome"],
+  ["2026-11-24", "Bremen", "Metropol Theater"],
+  ["2026-11-25", "Berlin", "Tempodrom"],
+  ["2026-11-30", "Stuttgart", "Stage Palladium Theater"],
+  ["2026-12-02", "Frankfurt", "Jahrhunderthalle"],
+  ["2026-12-03", "Düsseldorf", "Tonhalle"],
+  ["2026-12-07", "München", "Deutsches Theater"],
+  ["2026-12-14", "Hamburg", "Stage Theater an der Elbe"],
+  ["2026-12-21", "Oberhausen", "Metronom Theater"]
+];
+
+const fanDesigns = [
+  ["Electric Blue", "blue"],
+  ["Golden Edition", "gold-card"],
+  ["Midnight Black", "black-card"],
+  ["Platinum Silver", "silver-card"],
+  ["Christmas Edition", "christmas-card"],
+  ["Royal Blue", "blue"],
+  ["Luxury Gold", "gold-card"],
+  ["Black Diamond", "black-card"],
+  ["Silver Collector", "silver-card"],
+  ["Holiday Special", "christmas-card"],
+  ["Rose Edition", "rose-card"],
+  ["Premium Blue", "blue"]
+];
+
+const $ = id => document.getElementById(id);
+
+let basket = [];
+
+/* =========================================
+   GENERAL FUNCTIONS
+========================================= */
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+}
+
+function formatMoney(value) {
+  if (value == null) return "Price to be confirmed";
+
+  return "£" + Number(value).toLocaleString("en-GB");
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString + "T12:00:00Z");
+
+  return new Intl.DateTimeFormat("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC"
+  }).format(date);
+}
+
+function generateOrderNumber() {
+  const date = new Date();
+
+  const datePart =
+    date.getFullYear().toString() +
+    String(date.getMonth() + 1).padStart(2, "0") +
+    String(date.getDate()).padStart(2, "0");
+
+  const randomPart = Math.random()
+    .toString(36)
+    .substring(2, 8)
+    .toUpperCase();
+
+  return "SV-" + datePart + "-" + randomPart;
+}
+
+/* =========================================
+   CHRISTMAS TOUR CARDS
+========================================= */
+
+const tourImageURLs = [
+  "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=80"
+];
+
+$("tourGrid").innerHTML = tourDates.map((item, index) => `
+  <article class="card ticket-card">
+    <div class="photo">
+      <img src="${tourImageURLs[index % tourImageURLs.length]}"
+        alt="Concert atmosphere in ${escapeHTML(item[1])}"
+        loading="lazy">
+    </div>
+
+    <div class="card-body">
+      <span class="badge">CHRISTMAS TOUR 2026</span>
+
+      <h3>${escapeHTML(item[1])}</h3>
+
+      <p>${escapeHTML(item[2])}</p>
+
+      <p><strong>${formatDate(item[0])}</strong></p>
+
+      <div class="ticket-options">
+        <div class="ticket-option">
+          <span>Standard</span><strong>£110</strong>
+        </div>
+
+        <div class="ticket-option">
+          <span>Premium</span><strong>£250</strong>
+        </div>
+
+        <div class="ticket-option">
+          <span>VIP</span><strong>£500</strong>
+        </div>
+      </div>
+
+      <label>Ticket category
+        <select class="ticket-category">
+          <option value="Standard">Standard — £110</option>
+          <option value="Premium">Premium — £250</option>
+          <option value="VIP">VIP — £500</option>
+        </select>
+      </label>
+
+      <label>Quantity
+        <select class="ticket-quantity">
+          ${Array.from({length:10}, (_,i) =>
+            `<option value="${i+1}">${i+1} ticket${i ? "s" : ""}</option>`
+          ).join("")}
+        </select>
+      </label>
+
+      <div class="card-bottom">
+        <button class="btn add-ticket full"
+          data-city="${escapeHTML(item[1])}"
+          data-venue="${escapeHTML(item[2])}"
+          data-date="${item[0]}">
+          Add Tickets to Basket
+        </button>
+      </div>
+    </div>
+  </article>
+`).join("");
+
+/* =========================================
+   FAN CARD COLLECTION
+========================================= */
+
+$("fanGrid").innerHTML = fanDesigns.map((design, index) => `
+  <article class="card fan-product">
+    <div class="card-body">
+
+      <div class="fan-design ${design[1]}">
+        <small>STARVOLT FAN COLLECTION</small>
+
+        <h3>${escapeHTML(design[0])}</h3>
+
+        <strong>
+          DESIGN ${String(index + 1).padStart(2, "0")} · SAMPLE
+        </strong>
+      </div>
+
+      <h3>${escapeHTML(design[0])} Fan Merchandise</h3>
+
+      <p>
+        Illustrative merchandise design.
+        Ask about authorised production, personalisation and pricing.
+      </p>
+
+      <div class="card-bottom">
+        <button class="btn add full"
+          data-id="fan-design-${index + 1}"
+          data-name="${escapeHTML(design[0])} Fan Merchandise Enquiry"
+          data-category="fan">
+          Enquire About Design
+        </button>
+      </div>
+
+    </div>
+  </article>
+`).join("");
+
+/* =========================================
+   PRODUCT FILTERS
+========================================= */
+
+document.querySelectorAll(".filter").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    document.querySelectorAll(".filter")
+      .forEach(item => item.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document.querySelectorAll(".product").forEach(card => {
+
+      const matches =
+        button.dataset.filter === "all" ||
+        card.dataset.category === button.dataset.filter;
+
+      card.classList.toggle("hidden", !matches);
+
+    });
+
+  });
+
+});
+
+/* =========================================
+   ADD PRODUCTS TO BASKET
+========================================= */
+
+document.addEventListener("click", event => {
+
+  const button = event.target.closest(".add");
+
+  if (!button || button.disabled) return;
+
+  addItem({
+    id: button.dataset.id,
+    name: button.dataset.name,
+    category: button.dataset.category || "other",
+    price: null,
+    quantity: 1
+  });
+
+});
+
+/* =========================================
+   ADD TICKETS TO BASKET
+========================================= */
+
+$("tourGrid").addEventListener("click", event => {
+
+  const button = event.target.closest(".add-ticket");
+
+  if (!button) return;
+
+  const card = button.closest(".ticket-card");
+
+  const category =
+    card.querySelector(".ticket-category").value;
+
+  const quantity =
+    Number(card.querySelector(".ticket-quantity").value) || 1;
+
+  addItem({
+
+    id: "ticket-" + button.dataset.date + "-" + category,
+
+    name:
+      "Alexander Klaws Christmas Tour — " +
+      button.dataset.city + " — " + category,
+
+    category: "event",
+
+    price: ticketPrices[category],
+
+    quantity: Math.max(1, Math.min(10, quantity)),
+
+    date: button.dataset.date,
+
+    venue: button.dataset.venue
+
+  });
+
+});
+
+/* =========================================
+   BASKET MANAGEMENT
+========================================= */
+
+function addItem(newItem) {
+
+  const existing = basket.find(item =>
+    item.id === newItem.id &&
+    item.name === newItem.name
+  );
+
+  if (existing) {
+
+    existing.quantity = Math.min(
+      99,
+      existing.quantity + newItem.quantity
+    );
+
+  } else {
+
+    basket.push({...newItem});
+
+  }
+
+  renderBasket();
+
+  $("cartStatus").textContent =
+    "Item added successfully. Review your basket before checkout.";
+
+}
+
+function changeQuantity(index, difference) {
+
+  if (!basket[index]) return;
+
+  basket[index].quantity += difference;
+
+  if (basket[index].quantity <= 0) {
+
+    basket.splice(index, 1);
+
+  } else {
+
+    basket[index].quantity =
+      Math.min(99, basket[index].quantity);
+
+  }
+
+  renderBasket();
+
+}
+
+function removeItem(index) {
+
+  basket.splice(index, 1);
+
+  renderBasket();
+
+}
+
+function renderBasket() {
+
+  const count = basket.reduce(
+    (sum, item) => sum + item.quantity, 0
+  );
+
+  const knownTotal = basket.reduce(
+    (sum, item) =>
+      sum + (
+        item.price == null
+          ? 0
+          : item.price * item.quantity
+      ),
+    0
+  );
+
+  const hasUnpriced = basket.some(
+    item => item.price == null
+  );
+
+  $("cartCount").textContent = count;
+
+  $("cartTotal").textContent =
+    "Known-price subtotal: " +
+    formatMoney(knownTotal) +
+    (hasUnpriced ? " + unconfirmed prices" : "");
+
+  if (!basket.length) {
+
+    $("cartList").innerHTML =
+      '<div class="empty">Your basket is empty. Add products or tickets to begin.</div>';
+
+    return;
+
+  }
+
+  $("cartList").innerHTML = basket.map((item, index) => `
+
+    <div class="cart-row">
+
+      <div>
+
+        <strong>${escapeHTML(item.name)}</strong>
+
+        <small>
+          ${formatMoney(item.price)} each
+          ${
+            item.price != null
+              ? " · Line total: " +
+                formatMoney(item.price * item.quantity)
+              : " · Final price to be confirmed"
+          }
+        </small>
+
+        <div class="quantity-control">
+
+          <button type="button"
+            data-action="decrease"
+            data-index="${index}"
+            aria-label="Decrease quantity">−</button>
+
+          <strong>${item.quantity}</strong>
+
+          <button type="button"
+            data-action="increase"
+            data-index="${index}"
+            aria-label="Increase quantity">+</button>
+
+        </div>
+
+      </div>
+
+      <button class="remove-btn"
+        type="button"
+        data-action="remove"
+        data-index="${index}">
+        Remove
+      </button>
+
+    </div>
+
+  `).join("");
+
+}
+
+$("cartList").addEventListener("click", event => {
+
+  const button = event.target.closest("[data-action]");
+
+  if (!button) return;
+
+  const index = Number(button.dataset.index);
+
+  if (button.dataset.action === "increase") {
+    changeQuantity(index, 1);
+  }
+
+  if (button.dataset.action === "decrease") {
+    changeQuantity(index, -1);
+  }
+
+  if (button.dataset.action === "remove") {
+    removeItem(index);
+  }
+
+});
+
+$("clearCart").addEventListener("click", () => {
+
+  basket = [];
+
+  renderBasket();
+
+  $("cartStatus").textContent =
+    "Your basket has been cleared.";
+
+});
+
+/* =========================================
+   DELIVERY ADDRESS REQUIREMENT
+========================================= */
+
+function updateDeliveryFields() {
+
+  const physical =
+    $("orderType").value === "Physical product delivery";
+
+  $("deliveryFields").classList.toggle(
+    "hidden",
+    !physical
+  );
+
+  $("deliveryAddress").required = physical;
+
+  if (!physical) {
+    $("deliveryAddress").value = "";
+  }
+
+}
+
+$("orderType").addEventListener(
+  "change",
+  updateDeliveryFields
+);
+
+updateDeliveryFields();
+
+/* =========================================
+   SUPABASE ORDER SUBMISSION
+========================================= */
+
+async function saveOrderToDatabase(customer) {
+
+  const orderNumber = generateOrderNumber();
+
+  const total = basket.reduce(
+    (sum, item) =>
+      sum + (
+        item.price == null
+          ? 0
+          : item.price * item.quantity
+      ),
+    0
+  );
+
+  /*
+   * The existing table has no separate country
+   * or instructions columns. These details are
+   * therefore included in the JSONB items field.
+   */
+
+  const orderItems = [
+    ...basket.map(item => ({
+      id: item.id,
+      name: item.name,
+      category: item.category,
+      quantity: item.quantity,
+      unit_price: item.price,
+      date: item.date || null,
+      venue: item.venue || null
+    })),
+
+    {
+      _type: "customer_information",
+      country: customer.country,
+      instructions: customer.instructions || ""
+    }
+  ];
+
+  const deliveryAddress = [
+    "Country: " + customer.country,
+    customer.address || ""
+  ].filter(Boolean).join("\n");
+
+  const orderData = {
+
+    order_number: orderNumber,
+
+    customer_name: customer.name,
+
+    customer_email: customer.email,
+
+    customer_phone: customer.phone,
+
+    order_type: customer.orderType,
+
+    amount: total,
+
+    total: total,
+
+    currency: "GBP",
+
+    order_status: "pending",
+
+    payment_status: "unpaid",
+
+    payment_reference: null,
+
+    delivery_address: deliveryAddress,
+
+    items: orderItems,
+
+    status: "pending"
+
+  };
+
+  const response = await fetch(
+    SUPABASE_URL +
+    "/rest/v1/" +
+    ORDER_TABLE,
+
+    {
+
+      method: "POST",
+
+      headers: {
+
+        "apikey": SUPABASE_KEY,
+
+        "Authorization": "Bearer " + SUPABASE_KEY,
+
+        "Content-Type": "application/json",
+
+        "Prefer": "return=representation"
+
+      },
+
+      body: JSON.stringify(orderData)
+
+    }
+
+  );
+
+  if (!response.ok) {
+
+    const errorText = await response.text();
+
+    console.error("STARVOLT database error:", errorText);
+
+    throw new Error(
+      "The order could not be saved. Please try again."
+    );
+
+  }
+
+  const savedOrders = await response.json();
+
+  if (!savedOrders || !savedOrders.length) {
+
+    throw new Error(
+      "The database did not confirm the order."
+    );
+
+  }
+
+  return savedOrders[0];
+
+}
+
+/* =========================================
+   CHECKOUT
+========================================= */
+
+$("checkoutBtn").addEventListener("click", async () => {
+
+  if (!basket.length) {
+
+    $("cartStatus").textContent =
+      "Your basket is empty. Add a product or ticket first.";
+
+    return;
+
+  }
+
+  const form = $("checkoutForm");
+
+  if (!form.reportValidity()) {
+
+    $("cartStatus").textContent =
+      "Please complete your customer details before continuing.";
+
+    form.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+    return;
+
+  }
+
+  const formData = new FormData(form);
+
+  const customer = Object.fromEntries(
+    formData.entries()
+  );
+
+  const button = $("checkoutBtn");
+
+  button.disabled = true;
+
+  button.textContent = "Submitting Order...";
+
+  $("cartStatus").textContent =
+    "Please wait. STARVOLT is securely submitting your order enquiry.";
+
+  try {
+
+    const savedOrder =
+      await saveOrderToDatabase(customer);
+
+    $("cartStatus").textContent =
+      "SUCCESS! Your order enquiry has been received. " +
+      "Your order number is " +
+      savedOrder.order_number +
+      ". Please keep this number for reference. " +
+      "Your order is pending confirmation. No payment has been taken.";
+
+    basket = [];
+
+    renderBasket();
+
+    form.reset();
+
+    updateDeliveryFields();
+
+    $("cartStatus").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    $("cartStatus").textContent =
+      "We could not submit your order. " +
+      error.message +
+      " Your basket has been kept. Please try again.";
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent = "Submit Order";
+
+  }
+
+});
+
+/* =========================================
+   CONTACT FORM
+========================================= */
+
+const ORDER_EMAIL = "klawsalexander033@gmail.com";
+
+function prepareEmail(subject, body, statusElement) {
+
+  statusElement.textContent =
+    "Your email app should open. Review the message and press Send.";
+
+  const mailto =
+    "mailto:" + ORDER_EMAIL +
+    "?subject=" + encodeURIComponent(subject) +
+    "&body=" + encodeURIComponent(body);
+
+  window.location.href = mailto;
+
+}
+
+$("contactForm").addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const data = Object.fromEntries(
+    new FormData(event.currentTarget).entries()
+  );
+
+  const body =
+    "Hello STARVOLT,\n\n" +
+
+    "CUSTOMER DETAILS\n" +
+    "Name: " + data.name + "\n" +
+    "Email: " + data.email + "\n" +
+    "Country: " + data.country + "\n" +
+    "Interest: " + data.interest + "\n\n" +
+
+    "Message:\n" +
+    (data.message || "No additional message") +
+    "\n\nPlease reply with availability and the next steps.\n\nThank you.";
+
+  prepareEmail(
+    "STARVOLT Worldwide Customer Enquiry",
+    body,
+    $("contactStatus")
+  );
+
+});
+
+/* =========================================
+   SEARCH
+========================================= */
+
+$("searchForm").addEventListener("submit", event => {
+
+  event.preventDefault();
+
+  const query =
+    $("searchInput").value.trim().toLowerCase();
+
+  document.querySelectorAll(".product").forEach(card => {
+
+    const matches =
+      !query ||
+      card.textContent.toLowerCase().includes(query);
+
+    card.classList.toggle("hidden", !matches);
+
+  });
+
+  document.querySelectorAll(".fan-product").forEach(card => {
+
+    const matches =
+      !query ||
+      card.textContent.toLowerCase().includes(query);
+
+    card.classList.toggle("hidden", !matches);
+
+  });
+
+  document.querySelectorAll(".ticket-card").forEach(card => {
+
+    const matches =
+      !query ||
+      card.textContent.toLowerCase().includes(query);
+
+    card.classList.toggle("hidden", !matches);
+
+  });
+
+  $("shop").scrollIntoView({
+    behavior: "smooth"
+  });
+
+});
+
+/* =========================================
+   INITIALISE WEBSITE
+========================================= */
+
+$("year").textContent =
+  new Date().getFullYear();
+
+renderBasket();
+
 </script>
 
 </body>
