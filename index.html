@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#087bff">
-<meta name="description" content="STARVOLT — discover tickets, fan merchandise, electric vehicles and exciting shopping experiences.">
+<meta name="description" content="STARVOLT — explore Christmas tour ticket enquiries, fan merchandise, electric vehicles and worldwide shopping enquiries.">
 <title>STARVOLT | Discover More. Shop Everything.</title>
 
 <style>
@@ -271,6 +271,21 @@ header {
 }
 
 .btn.full { width: 100%; }
+
+.worldwide-note {
+  margin: 18px 0;
+  padding: 15px 17px;
+  color: #075b45;
+  background: #e8fff5;
+  border: 1px solid #b5ead5;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.worldwide-note strong {
+  color: #056044;
+}
 
 section { padding: 48px 0; }
 
@@ -727,7 +742,7 @@ footer p, footer a {
 
 <header>
   <div class="top-message">
-    ⚡ WELCOME TO STARVOLT · DISCOVER MORE · SHOP EVERYTHING
+    ⚡ STARVOLT · WORLDWIDE ENQUIRIES WELCOME · INCLUDING NIGERIA
   </div>
 
   <div class="wrap main-nav">
@@ -767,7 +782,7 @@ footer p, footer a {
 
     <p>
       Welcome to STARVOLT — explore exciting products, Christmas tour tickets,
-      fan merchandise and electric vehicle enquiries in one place.
+      fan merchandise and electric vehicle enquiries from around the world.
     </p>
 
     <div class="hero-actions">
@@ -776,6 +791,15 @@ footer p, footer a {
     </div>
   </div>
 </section>
+
+<div class="wrap">
+  <div class="worldwide-note">
+    <strong>🌍 STARVOLT welcomes customers worldwide!</strong><br>
+    Customers from Nigeria and other countries can submit product, ticket and booking enquiries.
+    For physical products, delivery availability, shipping costs, customs charges and delivery times
+    will be confirmed for your destination before payment.
+  </div>
+</div>
 
 <section>
   <div class="wrap">
@@ -1048,8 +1072,8 @@ footer p, footer a {
       </div>
 
       <div class="panel">
-        <h3>📦 Delivery Information</h3>
-        <p>Vehicle sellers, exact specifications, taxes, import costs, delivery terms and final prices must be verified before payment.</p>
+        <h3>📦 Worldwide Delivery Information</h3>
+        <p>Customers can enquire from any country. Exact specifications, seller details, taxes, import costs, delivery availability, delivery terms and final prices must be verified before payment.</p>
       </div>
     </div>
   </div>
@@ -1062,7 +1086,7 @@ footer p, footer a {
         <div class="eyebrow blue-text">Your selections</div>
         <h2>🛒 Shopping <span class="blue-text">Basket</span></h2>
       </div>
-      <p>Review your items and email your order to ask for payment instructions.</p>
+      <p>Review your items and provide your details before emailing your order enquiry.</p>
     </div>
 
     <div class="two-columns">
@@ -1077,21 +1101,72 @@ footer p, footer a {
         <button class="btn outline full" id="clearCart" style="margin-top:9px">Clear Basket</button>
 
         <p class="status" id="cartStatus" aria-live="polite">
-          Orders are enquiries until availability and payment arrangements are confirmed.
+          Worldwide enquiries are welcome. Orders and delivery arrangements must be confirmed.
         </p>
       </div>
 
       <div class="panel">
+        <h3>Customer & Delivery Details</h3>
+        <p>Tell us where you are and how you would like to receive your order.</p>
+
+        <form id="checkoutForm" class="form">
+          <label>Full Name
+            <input name="name" autocomplete="name" required maxlength="120">
+          </label>
+
+          <label>Email Address
+            <input name="email" type="email" autocomplete="email" required maxlength="254">
+          </label>
+
+          <label>Country
+            <input name="country" autocomplete="country-name"
+              placeholder="Enter your country" required maxlength="100">
+          </label>
+
+          <label>Phone Number (include country code)
+            <input name="phone" type="tel" autocomplete="tel"
+              placeholder="e.g. +234..." required maxlength="40">
+          </label>
+
+          <label>What are you enquiring about?
+            <select name="orderType" id="orderType" required>
+              <option value="">Choose an option</option>
+              <option value="Physical product delivery">Physical product delivery</option>
+              <option value="Digital product">Digital product</option>
+              <option value="Tickets or booking">Tickets or booking</option>
+              <option value="Vehicle enquiry">Vehicle enquiry</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </label>
+
+          <div id="deliveryFields">
+            <label>Full Delivery Address
+              <textarea name="address" id="deliveryAddress"
+                autocomplete="street-address" maxlength="700"
+                placeholder="Street, city, state/region, postal code and country"></textarea>
+            </label>
+            <p class="small-text">
+              Required for physical-product delivery enquiries. Delivery availability and costs
+              for your destination will be confirmed before payment.
+            </p>
+          </div>
+
+          <label>Additional Instructions (optional)
+            <textarea name="instructions" maxlength="1000"
+              placeholder="Preferred size, colour, delivery notes or other details"></textarea>
+          </label>
+
+          <div class="notice">
+            Your email app must open for you to submit the enquiry. Review the prepared email and
+            press Send. STARVOLT will confirm availability, delivery arrangements and payment instructions.
+          </div>
+        </form>
+
         <h3>How It Works</h3>
-        <p>1. Choose products or tickets.</p>
-        <p>2. Add items to your basket.</p>
-        <p>3. Check quantities and the known-price subtotal.</p>
-        <p>4. Email your order to STARVOLT.</p>
-        <p>5. Receive confirmation and payment instructions before paying.</p>
-        <div class="notice">
-          This website does not currently collect payments directly. Your email application must open,
-          and you must press Send to submit your order.
-        </div>
+        <p>1. Choose products or tickets and add them to your basket.</p>
+        <p>2. Enter your customer and delivery details.</p>
+        <p>3. Email your enquiry to STARVOLT.</p>
+        <p>4. Wait for confirmation before paying.</p>
       </div>
     </div>
   </div>
@@ -1118,15 +1193,8 @@ footer p, footer a {
           </label>
 
           <label>Country
-            <select name="country" required>
-              <option value="">Choose your country</option>
-              <option>Nigeria</option>
-              <option>Germany</option>
-              <option>United Kingdom</option>
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Other</option>
-            </select>
+            <input name="country" autocomplete="country-name"
+              placeholder="Enter your country" required maxlength="100">
           </label>
 
           <label>What are you interested in?
@@ -1151,8 +1219,8 @@ footer p, footer a {
 
       <div class="panel">
         <h3>Customer Support</h3>
-        <p>STARVOLT welcomes enquiries about shopping, ticket availability, fan merchandise and electric vehicles.</p>
-        <p>For physical products, delivery arrangements will be confirmed before fulfilment.</p>
+        <p>STARVOLT welcomes enquiries from customers worldwide, including Nigeria.</p>
+        <p>For physical products, destination-specific delivery arrangements and costs will be confirmed before fulfilment.</p>
         <p>For tickets and bookings, availability and payment arrangements must be confirmed by email.</p>
         <p class="small-text">Never send payment card numbers, passwords or banking login details through email.</p>
       </div>
@@ -1167,6 +1235,7 @@ footer p, footer a {
     <div>
       <div class="logo" style="color:white">STAR<span>VOLT</span></div>
       <p>Discover More. Shop Everything.</p>
+      <p>Worldwide enquiries welcome.</p>
     </div>
     <div>
       <p><a href="#shop">Shop Products</a></p>
@@ -1184,8 +1253,9 @@ footer p, footer a {
 "use strict";
 
 /*
- * STARVOLT order enquiry inbox.
- * Customers must review their email and press Send.
+ * STARVOLT order enquiries.
+ * Customers review the prepared email and press Send.
+ * This website does not yet automatically save orders or process payments.
  */
 const ORDER_EMAIL = "klawsalexander033@gmail.com";
 
@@ -1251,7 +1321,7 @@ function formatDate(dateString) {
   }).format(date);
 }
 
-/* Build all nine tour cards with three ticket prices each. */
+/* Build the Christmas tour cards. */
 const tourImageURLs = [
   "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80",
   "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
@@ -1305,7 +1375,7 @@ $("tourGrid").innerHTML = tourDates.map((item, index) => `
   </article>
 `).join("");
 
-/* Build 12 fan merchandise design concepts without missing image files. */
+/* Build fan merchandise design concepts. */
 $("fanGrid").innerHTML = fanDesigns.map((design, index) => `
   <article class="card fan-product">
     <div class="card-body">
@@ -1330,7 +1400,7 @@ $("fanGrid").innerHTML = fanDesigns.map((design, index) => `
   </article>
 `).join("");
 
-/* Filtering. */
+/* Product category filtering. */
 document.querySelectorAll(".filter").forEach(button => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".filter").forEach(item => item.classList.remove("active"));
@@ -1478,7 +1548,21 @@ $("clearCart").addEventListener("click", () => {
   $("cartStatus").textContent = "Your basket has been cleared.";
 });
 
-/* Prepare an order email; the customer must press Send. */
+/* Require a delivery address for physical-product enquiries. */
+function updateDeliveryFields() {
+  const physical = $("orderType").value === "Physical product delivery";
+  $("deliveryFields").classList.toggle("hidden", !physical);
+  $("deliveryAddress").required = physical;
+
+  if (!physical) {
+    $("deliveryAddress").value = "";
+  }
+}
+
+$("orderType").addEventListener("change", updateDeliveryFields);
+updateDeliveryFields();
+
+/* Prepare an email. The customer must review and press Send. */
 function prepareEmail(subject, body, statusElement) {
   if (statusElement) {
     statusElement.textContent =
@@ -1492,7 +1576,7 @@ function prepareEmail(subject, body, statusElement) {
   window.location.href = mailto;
 }
 
-function orderMessage() {
+function orderMessage(customer) {
   const lines = basket.map(item =>
     "- " + item.name +
     " | Quantity: " + item.quantity +
@@ -1506,14 +1590,35 @@ function orderMessage() {
     sum + (item.price == null ? 0 : item.price * item.quantity), 0
   );
 
-  return "Hello STARVOLT,\n\n" +
-    "I would like to enquire about the following order:\n\n" +
-    lines + "\n\n" +
-    "Known-price subtotal: " + formatMoney(total) + "\n\n" +
-    "Please confirm availability, any unconfirmed prices, delivery arrangements " +
-    "or booking details, and payment instructions.\n\n" +
-    "I understand that the order is not confirmed until STARVOLT replies.\n\n" +
+  let message =
+    "Hello STARVOLT,\n\n" +
+    "I would like to submit a worldwide order enquiry.\n\n" +
+    "CUSTOMER DETAILS\n" +
+    "Full name: " + customer.name + "\n" +
+    "Email: " + customer.email + "\n" +
+    "Country: " + customer.country + "\n" +
+    "Phone: " + customer.phone + "\n" +
+    "Enquiry type: " + customer.orderType + "\n\n" +
+    "SELECTED ITEMS\n" + lines + "\n\n" +
+    "Known-price subtotal: " + formatMoney(total) + "\n";
+
+  if (customer.orderType === "Physical product delivery") {
+    message +=
+      "\nDELIVERY DETAILS\n" +
+      "Delivery address: " + customer.address + "\n";
+  }
+
+  if (customer.instructions) {
+    message += "\nAdditional instructions:\n" + customer.instructions + "\n";
+  }
+
+  message +=
+    "\nPlease confirm availability, final prices, delivery options and costs " +
+    "for my destination, and payment instructions before I pay.\n\n" +
+    "I understand that this enquiry is not a confirmed order until STARVOLT replies.\n\n" +
     "Thank you.";
+
+  return message;
 }
 
 $("checkoutBtn").addEventListener("click", () => {
@@ -1523,9 +1628,21 @@ $("checkoutBtn").addEventListener("click", () => {
     return;
   }
 
+  const form = $("checkoutForm");
+
+  if (!form.reportValidity()) {
+    $("cartStatus").textContent =
+      "Please complete the required customer details before continuing.";
+    form.scrollIntoView({behavior: "smooth", block: "start"});
+    return;
+  }
+
+  const formData = new FormData(form);
+  const customer = Object.fromEntries(formData.entries());
+
   prepareEmail(
-    "STARVOLT Order Enquiry",
-    orderMessage(),
+    "STARVOLT Worldwide Order Enquiry",
+    orderMessage(customer),
     $("cartStatus")
   );
 });
@@ -1538,21 +1655,22 @@ $("contactForm").addEventListener("submit", event => {
 
   const body =
     "Hello STARVOLT,\n\n" +
-    "Customer name: " + data.name + "\n" +
-    "Customer email: " + data.email + "\n" +
+    "CUSTOMER DETAILS\n" +
+    "Name: " + data.name + "\n" +
+    "Email: " + data.email + "\n" +
     "Country: " + data.country + "\n" +
     "Interest: " + data.interest + "\n\n" +
     "Message:\n" + (data.message || "No additional message") + "\n\n" +
-    "Please reply with the next steps.\n\nThank you.";
+    "Please reply with availability and the next steps.\n\nThank you.";
 
   prepareEmail(
-    "STARVOLT Customer Enquiry",
+    "STARVOLT Worldwide Customer Enquiry",
     body,
     $("contactStatus")
   );
 });
 
-/* Search products and fan merchandise. */
+/* Search products, fan merchandise and tickets. */
 $("searchForm").addEventListener("submit", event => {
   event.preventDefault();
 
@@ -1572,17 +1690,6 @@ $("searchForm").addEventListener("submit", event => {
     const matches = !query || card.textContent.toLowerCase().includes(query);
     card.classList.toggle("hidden", !matches);
   });
-
-  if (query) {
-    const results = document.querySelectorAll(
-      ".product:not(.hidden), .fan-product:not(.hidden), .ticket-card:not(.hidden)"
-    ).length;
-
-    $("searchInput").setAttribute(
-      "aria-label",
-      results + " matching shopping results"
-    );
-  }
 
   $("shop").scrollIntoView({behavior: "smooth"});
 });
