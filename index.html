@@ -1,599 +1,660 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101323">
-<title>STARVOLT | Discover More</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="STARVOLT — premium experiences, event enquiries, fan merchandise concepts and electric vehicle opportunities.">
+<title>STARVOLT — Discover Extraordinary</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-:root{
-  --bg:#f5f6fa;
-  --dark:#101323;
-  --purple:#6c3df4;
-  --gold:#ffca55;
-  --white:#fff;
-  --muted:#70758a;
-  --border:#e7e8ef;
-}
+:root{--bg:#080d18;--panel:#111a2a;--panel2:#17243a;--gold:#eac778;--red:#a91e3c;--cyan:#5de1ed;--text:#f5f7fc;--muted:#aab6ca;--line:rgba(255,255,255,.12);--ok:#6de0b4}
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#202236}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-.topbar{background:#0b0d19;color:white;text-align:center;padding:9px;font-size:12px}
-header{background:var(--dark);color:white;padding:16px 4%;position:sticky;top:0;z-index:20}
-.headrow{display:flex;align-items:center;gap:20px;justify-content:space-between;flex-wrap:wrap}
-.logo{font-size:27px;font-weight:900;letter-spacing:2px;color:var(--gold)}
-.logo span{color:white}
-.search{display:flex;flex:1;max-width:650px;min-width:200px}
-.search input{width:100%;padding:13px;border:0;border-radius:8px 0 0 8px;outline:none}
-.search button{border:0;background:var(--gold);padding:0 18px;border-radius:0 8px 8px 0;font-weight:bold}
-.headerbtn{border:1px solid #45485d;color:white;background:transparent;border-radius:8px;padding:11px}
-nav{display:flex;gap:9px;overflow-x:auto;padding-top:16px}
-nav button{white-space:nowrap;border:1px solid #383b50;background:#1b1e31;color:white;padding:9px 14px;border-radius:22px}
-nav button.active,nav button:hover{background:var(--gold);color:#17182a}
-main{max-width:1400px;margin:auto;padding:22px 4%}
-.hero{background:linear-gradient(120deg,#17152e,#4930a0,#7d54f8);border-radius:18px;overflow:hidden;color:white;display:grid;grid-template-columns:1.1fr .9fr;min-height:310px;margin-bottom:25px}
-.heroText{padding:36px;align-self:center}
-.eyebrow{color:var(--gold);font-size:12px;font-weight:bold;letter-spacing:3px}
-.hero h1{font-size:clamp(32px,5vw,56px);margin:12px 0}
-.hero p{line-height:1.7;color:#eeeafc;max-width:520px}
-.primary{background:var(--gold);color:#18182a;border:0;border-radius:8px;padding:13px 18px;font-weight:bold}
-.heroImage{min-height:260px;background:#24203f}
-.heroImage img{width:100%;height:100%;min-height:310px;object-fit:cover;display:block}
-.quickcats{display:grid;grid-template-columns:repeat(5,minmax(110px,1fr));gap:12px;margin:20px 0 30px}
-.quickcat{background:white;border:1px solid var(--border);padding:18px 8px;text-align:center;border-radius:12px;font-weight:bold}
-.quickcat span{display:block;font-size:27px;margin-bottom:8px}
-.sectionHead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 15px;flex-wrap:wrap}
-.sectionHead h2{margin:0;font-size:24px}
-.sectionHead p{color:var(--muted);font-size:13px;margin:5px 0 0}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
-.card{background:white;border:1px solid var(--border);border-radius:13px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;min-width:0}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 25px #17152e12}
-.photo{height:190px;background:#e8e8f0;position:relative;overflow:hidden}
-.photo img{width:100%;height:100%;object-fit:cover;display:block}
-.badge{position:absolute;top:10px;left:10px;background:#fff;color:#4224a6;border-radius:5px;padding:6px 8px;font-size:10px;font-weight:bold}
-.cardBody{padding:14px;display:flex;flex-direction:column;gap:9px;flex:1}
-.category{font-size:11px;color:var(--purple);font-weight:bold;text-transform:uppercase}
-.card h3{margin:0;font-size:16px;line-height:1.4}
-.description{font-size:12px;color:var(--muted);line-height:1.5;flex:1}
-.price{font-size:19px;font-weight:bold}
-.price small{font-size:11px;color:var(--muted);font-weight:normal}
-.cardActions{display:flex;gap:7px}
-.cardActions button{flex:1;padding:10px 5px;border-radius:7px;font-size:11px;font-weight:bold}
-.buy{background:var(--purple);color:white;border:1px solid var(--purple)}
-.add{background:white;color:var(--purple);border:1px solid var(--purple)}
-.events{background:#171426;color:white;border-radius:16px;padding:22px;margin:30px 0}
-.events .sectionHead p{color:#c8c2df}
-.events .card{color:#202236}
-.eventdate{background:#fff0c9;padding:8px;border-radius:7px;font-size:12px;font-weight:bold;color:#4930a0}
-.empty{text-align:center;padding:40px;color:var(--muted);background:white;border-radius:12px}
+.wrap{width:min(1180px,92%);margin:auto}
+
+header{position:sticky;top:0;z-index:20;background:rgba(8,13,24,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0;flex-wrap:wrap}
+.brand{font-weight:950;font-size:1.55rem;letter-spacing:2px}
+.brand b{color:var(--gold)}
+nav{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+nav a{font-size:.9rem;color:var(--muted)}
+nav a:hover{color:var(--gold)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+
+.btn{border:1px solid transparent;background:linear-gradient(110deg,var(--gold),#f5dfa3);color:#15131a;font-weight:800;border-radius:11px;padding:11px 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.18s}
+.btn:hover{transform:translateY(-2px)}
+.btn.outline{background:transparent;border-color:var(--line);color:var(--text)}
+.btn.red{background:var(--red);color:white}
+.btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.btn.small{padding:8px 11px;font-size:.85rem}
+
+.hero{position:relative;overflow:hidden;min-height:520px;display:flex;align-items:center;background:linear-gradient(90deg,rgba(5,9,18,.97) 0%,rgba(5,9,18,.82) 46%,rgba(5,9,18,.24) 100%),url('assets/tesla-neon.jpg') center 48%/cover no-repeat}
+.hero:after{content:"";position:absolute;inset:auto 0 0;height:5px;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--red))}
+.hero-inner{position:relative;z-index:1;padding:78px 0;max-width:730px}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.75rem;font-weight:900;color:var(--gold)}
+h1{font-size:clamp(2.8rem,7vw,5.8rem);line-height:.98;letter-spacing:-2px;margin:16px 0}
+h1 span{color:var(--gold)}
+.hero p{font-size:1.08rem;color:#d0d8e7;max-width:620px}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px}
+.tiny{font-size:.8rem;color:var(--muted);margin-top:16px}
+
+section{padding:68px 0}
+.section-title{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:26px;flex-wrap:wrap}
+.section-title h2{font-size:clamp(1.9rem,4vw,3rem);line-height:1.05;margin:7px 0}
+.section-title p{color:var(--muted);max-width:650px;margin:0}
+.gold{color:var(--gold)}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:19px}
+.card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:var(--panel);display:flex;flex-direction:column}
+.photo{height:230px;background:linear-gradient(135deg,#16233a,#3c1d31);overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.card:hover .photo img{transform:scale(1.04)}
+.body{padding:19px;display:flex;flex-direction:column;flex:1}
+.body h3{font-size:1.18rem;line-height:1.25;margin:4px 0 8px}
+.body p{font-size:.92rem;color:var(--muted);margin:6px 0 13px}
+.chip{align-self:flex-start;border:1px solid rgba(234,199,120,.35);color:var(--gold);border-radius:99px;padding:4px 9px;font-size:.7rem;font-weight:800;letter-spacing:.6px}
+.card-bottom{margin-top:auto;padding-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.price{font-weight:900;color:var(--gold);font-size:1.25rem}
+.notice{padding:15px 17px;background:rgba(234,199,120,.07);border:1px solid rgba(234,199,120,.28);border-radius:13px;color:#f4e6c7;font-size:.9rem;margin:18px 0 25px}
+.tour{background:radial-gradient(ellipse at 0 0,rgba(169,30,60,.24),transparent 42%),radial-gradient(ellipse at 100% 100%,rgba(234,199,120,.12),transparent 42%),#0b101e}
+.tour-card .photo{height:250px}
+.tour-card .photo img{object-position:center 30%}
+.tour-meta{font-size:.85rem;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:22px}
+.panel h3{margin-top:0}
+.form{display:grid;gap:13px}
+label{display:grid;gap:6px;font-size:.88rem;color:var(--muted)}
+input,select,textarea{width:100%;min-width:0;background:#090f1d;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px}
+textarea{min-height:105px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.status{font-size:.9rem;overflow-wrap:anywhere}
+.success{color:var(--ok)}
+.error{color:#ff9aaa}
 .hidden{display:none!important}
-footer{margin-top:35px;background:var(--dark);color:white;padding:35px 5%;text-align:center}
-footer p{color:#c3c4d0;font-size:13px;line-height:1.7}
-.overlay{position:fixed;inset:0;background:#080916a8;z-index:50;display:none;align-items:center;justify-content:center;padding:15px}
-.overlay.open{display:flex}
-.modal{background:white;width:min(600px,100%);max-height:90vh;overflow:auto;border-radius:15px;padding:22px}
-.modalhead{display:flex;justify-content:space-between;align-items:center}
-.modalhead h2{margin:0}
-.close{border:0;background:#eee;border-radius:7px;padding:8px 12px}
-.cartitem{display:flex;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid var(--border)}
-.cartitem small{display:block;color:var(--muted);margin-top:5px}
-.qty{display:flex;align-items:center;gap:8px}
-.qty button{border:1px solid var(--border);background:white;border-radius:5px;padding:5px 9px}
-.total{display:flex;justify-content:space-between;font-weight:bold;font-size:20px;padding:18px 0}
-form{display:grid;gap:12px}
-form label{font-size:13px;font-weight:bold}
-form input,form select,form textarea{width:100%;margin-top:6px;border:1px solid #ddd;border-radius:7px;padding:12px;background:white}
-form textarea{min-height:80px;resize:vertical}
-.notice{font-size:12px;color:var(--muted);line-height:1.6}
-.status{padding:13px;background:#e9f8ee;border-radius:8px;color:#176b35;margin-top:12px;overflow-wrap:anywhere}
-@media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.quickcats{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:650px){
- header{padding:13px 4%}
- .headrow{gap:12px}
- .logo{font-size:23px}
- .search{order:3;flex-basis:100%;max-width:none}
- .hero{grid-template-columns:1fr}
- .heroText{padding:25px}
- .heroImage img{min-height:200px;height:200px}
- .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
- .photo{height:145px}
- .cardBody{padding:10px}
- .card h3{font-size:14px}
- .cardActions{flex-direction:column}
- .quickcats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
- .quickcat{font-size:12px;padding:13px 4px}
- main{padding:15px 3%}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.filter{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:99px;padding:8px 13px}
+.filter.active{background:var(--gold);color:#16131a;border-color:var(--gold);font-weight:800}
+.gallery-note{font-size:.8rem;color:var(--muted);margin-top:18px}
+.cart-panel{position:relative}
+.cart-count{background:var(--red);color:#fff;border-radius:99px;padding:1px 7px;font-size:.75rem}
+.cart-list{display:grid;gap:10px}
+.cart-row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:8px 0}
+.cart-row button{background:none;border:0;color:#ff9aaa}
+.empty{border:1px dashed var(--line);border-radius:13px;padding:18px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.small{font-size:.8rem}
+
+@media(max-width:850px){
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.two{grid-template-columns:1fr}
+.hero{min-height:470px}
+}
+@media(max-width:570px){
+.grid{grid-template-columns:1fr}
+.nav{align-items:flex-start}
+.nav nav{order:3;width:100%;gap:13px}
+.nav-actions{margin-left:auto}
+.hero{min-height:490px;background-position:60% center}
+.hero-inner{padding:62px 0}
+section{padding:50px 0}
+.photo{height:240px}
+.section-title{align-items:start}
 }
 </style>
 </head>
 
 <body>
-<div class="topbar">DISCOVER MORE · SHOP EVERYTHING · YOUR WORLD, ONE MARKETPLACE</div>
-
 <header>
-  <div class="headrow">
-    <a class="logo" href="#" aria-label="STARVOLT home">STAR<span>VOLT</span></a>
-    <div class="search">
-      <input id="searchInput" type="search" placeholder="Search products, events, cars..." aria-label="Search products and events">
-      <button onclick="searchProducts()">SEARCH</button>
-    </div>
-    <button class="headerbtn" onclick="openCart()">🛒 Basket (<span id="cartCount">0</span>)</button>
-  </div>
-  <nav id="categoryNav">
-    <button class="active" data-filter="All">All</button>
-    <button data-filter="Events">Events & Tickets</button>
-    <button data-filter="Celebrity">Celebrity World</button>
-    <button data-filter="Cars">Cars & Tesla</button>
-    <button data-filter="Food">Food & Sandwiches</button>
-    <button data-filter="Fashion">Fan IDs & T-Shirts</button>
-  </nav>
+<div class="wrap nav">
+<a class="brand" href="#home">STAR<b>VOLT</b></a>
+<nav aria-label="Main navigation">
+<a href="#shop">Shop</a>
+<a href="#events">Events</a>
+<a href="#celebrities">Celebrity World</a>
+<a href="#vehicles">Tesla</a>
+<a href="#account">Account</a>
+</nav>
+<div class="nav-actions">
+<a class="btn outline small" href="#cart">Cart <span class="cart-count" id="cartCount">0</span></a>
+<a class="btn small" href="#account">Sign in</a>
+</div>
+</div>
 </header>
 
 <main>
-  <section class="hero">
-    <div class="heroText">
-      <div class="eyebrow">WELCOME TO STARVOLT</div>
-      <h1>Discover More.<br>Shop Everything.</h1>
-      <p>Explore events, exclusive fan merchandise, electric cars, delicious food and more—all in one place.</p>
-      <button class="primary" onclick="document.getElementById('marketplace').scrollIntoView({behavior:'smooth'})">EXPLORE MARKETPLACE →</button>
-    </div>
-    <div class="heroImage">
-      <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
-           alt="Live concert and event crowd"
-           onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80'">
-    </div>
-  </section>
+<section class="hero" id="home">
+<div class="wrap hero-inner">
+<div class="eyebrow">Premium experiences · Global discovery</div>
+<h1>Discover more.<br><span>Experience extraordinary.</span></h1>
+<p>Explore live-event enquiries, celebrity-inspired fan experiences, premium merchandise concepts and electric vehicle opportunities — all in one polished destination.</p>
+<div class="actions">
+<a class="btn" href="#shop">Explore the collection ↗</a>
+<a class="btn outline" href="#events">Christmas tour dates</a>
+</div>
+<div class="tiny">STARVOLT is preparing its online checkout. No card payments are taken on this website yet.</div>
+</div>
+</section>
 
-  <div class="quickcats">
-    <button class="quickcat" onclick="setCategory('Events')"><span>🎟️</span>Events</button>
-    <button class="quickcat" onclick="setCategory('Celebrity')"><span>⭐</span>Celebrity</button>
-    <button class="quickcat" onclick="setCategory('Cars')"><span>🚘</span>Cars</button>
-    <button class="quickcat" onclick="setCategory('Food')"><span>🥪</span>Food</button>
-    <button class="quickcat" onclick="setCategory('Fashion')"><span>👕</span>Fan Merchandise</button>
-  </div>
+<section id="shop">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Browse the collection</div><h2>Explore <span class="gold">STARVOLT</span></h2></div>
+<p>Discover products and experiences by category. Add items to your local basket to preview your selection; checkout remains paused until a payment provider is approved.</p>
+</div>
 
-  <section id="marketplace">
-    <div class="sectionHead">
-      <div>
-        <h2 id="sectionTitle">Explore STARVOLT</h2>
-        <p id="resultCount">Discover products and experiences.</p>
-      </div>
-      <select id="sortSelect" aria-label="Sort products" onchange="renderProducts()" style="padding:10px;border:1px solid #ddd;border-radius:8px">
-        <option value="featured">Featured</option>
-        <option value="low">Price: low to high</option>
-        <option value="high">Price: high to low</option>
-        <option value="name">Name A–Z</option>
-      </select>
-    </div>
-    <div class="grid" id="productGrid"></div>
-    <div class="empty hidden" id="noResults">No matching items found. Try another search.</div>
-  </section>
+<div class="filters" role="group" aria-label="Filter products">
+<button class="filter active" data-filter="all">All</button>
+<button class="filter" data-filter="vehicle">Electric vehicles</button>
+<button class="filter" data-filter="event">Events</button>
+<button class="filter" data-filter="fan">Fan experiences</button>
+<button class="filter" data-filter="concept">Merch concepts</button>
+</div>
 
-  <section class="events">
-    <div class="sectionHead">
-      <div>
-        <h2>🎄 Alexander Klaws Christmas Tour</h2>
-        <p>Explore the listed tour dates and submit a ticket or booking request.</p>
-      </div>
-      <button class="primary" onclick="setCategory('Events')">VIEW EVENTS</button>
-    </div>
-    <div class="grid" id="eventGrid"></div>
-  </section>
+<div class="grid" id="productGrid">
+<article class="card product" data-category="vehicle">
+<div class="photo"><img src="assets/tesla-neon.jpg" alt="Dark Tesla-style electric car under blue and red neon lighting" loading="lazy"></div>
+<div class="body">
+<span class="chip">ELECTRIC MOBILITY</span>
+<h3>Tesla vehicle opportunities</h3>
+<p>Explore vehicle models and request verified availability, specification, final price and delivery terms. This is not an official Tesla dealership listing.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="tesla-neon" data-name="Tesla vehicle enquiry" data-category="vehicle">Add to basket</button>
+<a class="btn outline" href="#vehicles">View details</a>
+</div>
+</div>
+</article>
 
-  <section>
-    <div class="sectionHead">
-      <div>
-        <h2>How STARVOLT Works</h2>
-        <p>A simple shopping experience from browsing to order request.</p>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="cardBody"><h3>🔍 1. Discover</h3><p class="description">Search products, browse categories and explore event listings.</p></div></div>
-      <div class="card"><div class="cardBody"><h3>🛒 2. Add to Basket</h3><p class="description">Choose your items and review quantities and the sample total.</p></div></div>
-      <div class="card"><div class="cardBody"><h3>📦 3. Place Request</h3><p class="description">Enter your contact and delivery information directly on STARVOLT.</p></div></div>
-      <div class="card"><div class="cardBody"><h3>🤝 4. Confirmation</h3><p class="description">Availability, final price and payment arrangements must be confirmed.</p></div></div>
-    </div>
-  </section>
+<article class="card product" data-category="vehicle">
+<div class="photo"><img src="assets/tesla-showroom.jpg" alt="Electric vehicle displayed in a bright showroom" loading="lazy"></div>
+<div class="body">
+<span class="chip">VEHICLE GALLERY</span>
+<h3>Showroom inspiration</h3>
+<p>Browse the gallery and send a request for a verified quote. Images are illustrative; stock, pricing and delivery are not guaranteed.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="tesla-showroom" data-name="Showroom vehicle enquiry" data-category="vehicle">Add to basket</button>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="vehicle">
+<div class="photo"><img src="assets/tesla-models-collage.jpg" alt="Collage showing electric vehicle exterior and interior" loading="lazy"></div>
+<div class="body">
+<span class="chip">MODEL GALLERY</span>
+<h3>Model and interior gallery</h3>
+<p>See exterior and interior inspiration before requesting current model details, delivery country support and final pricing.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="tesla-gallery" data-name="Vehicle gallery enquiry" data-category="vehicle">Add to basket</button>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="fan">
+<div class="photo"><img src="assets/alexander-klaws-portrait.jpg" alt="Portrait photo supplied for the celebrity gallery" loading="lazy"></div>
+<div class="body">
+<span class="chip">CELEBRITY WORLD</span>
+<h3>Alexander Klaws fan experiences</h3>
+<p>Explore Alexander Klaws Christmas Tour tickets, fan experiences and customised merchandise through STARVOLT’s booking service.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="ak-experience" data-name="Alexander Klaws experience enquiry" data-category="fan">Add to basket</button>
+<a class="btn outline" href="#events">Tour dates</a>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="event">
+<div class="photo"><img src="assets/stage-performance.jpg" alt="Stage performance image supplied for the events gallery" loading="lazy"></div>
+<div class="body">
+<span class="chip">LIVE EXPERIENCES</span>
+<h3>Stage and performance gallery</h3>
+<p>Explore performance inspiration and enquire about event options. The image does not confirm an event, performer appearance or ticket availability.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="stage-gallery" data-name="Live experience enquiry" data-category="event">Add to basket</button>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="concept">
+<div class="photo"><img src="assets/vip-tour-badges.jpg" alt="VIP tour guest badges shown as a visual merchandise concept" loading="lazy"></div>
+<div class="body">
+<span class="chip">MERCH CONCEPT</span>
+<h3>VIP tour badge concept</h3>
+<p>Example visual only. A badge does not grant venue access or VIP status. Any real product or benefit must be authorised and confirmed in writing.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="vip-badge-concept" data-name="VIP badge concept enquiry" data-category="concept">Add to basket</button>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="concept">
+<div class="photo"><img src="assets/fan-card-concept.jpg" alt="Black and gold VIP membership permit design shown as an unofficial concept sample" loading="lazy"></div>
+<div class="body">
+<span class="chip">UNOFFICIAL SAMPLE</span>
+<h3>Fan card design concept</h3>
+<p>Visual concept only, not an official Henry Cavill membership card, endorsement, access pass or verified product. Not offered as an official card.</p>
+<div class="card-bottom">
+<button class="btn outline" type="button" disabled>Concept sample only</button>
+</div>
+</div>
+</article>
+
+<article class="card product" data-category="fan">
+<div class="photo"><img src="assets/stage-duet.jpg" alt="Stage duet image supplied for the celebrity experience gallery" loading="lazy"></div>
+<div class="body">
+<span class="chip">STAGE GALLERY</span>
+<h3>Performance moments</h3>
+<p>Browse the supplied stage gallery. Specific appearances, meet-and-greet access and merchandise require confirmation from the relevant rights holder or organiser.</p>
+<div class="card-bottom">
+<button class="btn add" data-id="stage-moment" data-name="Performance gallery enquiry" data-category="fan">Add to basket</button>
+</div>
+</div>
+</article>
+</div>
+
+<p class="gallery-note">Images supplied for this website are displayed for gallery and concept purposes. Product rights, artist permissions, inventory and vehicle availability must be confirmed before listing anything as an official product.</p>
+</div>
+</section>
+
+<section class="tour" id="events">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Exclusive holiday events · 2026</div><h2>Alexander Klaws <span class="gold">Christmas Tour</span></h2></div>
+<p>Explore the tour dates and request Standard, Premium or VIP tickets through STARVOLT’s booking service.</p>
+</div>
+
+<div class="notice">
+<strong>Authorised ticket bookings</strong> · Tickets are available across all categories.
+<strong>138 places remain</strong> across the tour.
+Standard and premium tickets range from <strong>£110–£499</strong>;
+VIP tickets range from <strong>£500–£1,450</strong>, depending on seat value.
+Select your preferred category and event to submit a booking request.
+</div>
+
+<div class="grid" id="tourGrid"></div>
+</div>
+</section>
+
+<section id="celebrities">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Fan culture</div><h2>Celebrity <span class="gold">World</span></h2></div>
+<p>Fan-inspired concepts, event discovery and booking enquiries in one place.</p>
+</div>
+<div class="two">
+<div class="panel">
+<h3>Customised fan T-shirts</h3>
+<p class="muted">Custom designs can be prepared only where the artwork and celebrity name/image are authorised. Size, delivery region, production time and final price need confirmation.</p>
+<button class="btn add" data-id="fan-shirt" data-name="Customised fan T-shirt enquiry" data-category="fan">Add T-shirt enquiry</button>
+</div>
+<div class="panel">
+<h3>Meet &amp; Greet interest</h3>
+<p class="muted">Send an interest request for consideration. A request is not a confirmed booking and does not guarantee access to an artist.</p>
+<a class="btn outline" href="#contact">Send interest request</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="vehicles">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Electric mobility</div><h2>Tesla <span class="gold">opportunities</span></h2></div>
+<p>Before any vehicle preorder, verify the seller, vehicle identification, exact specification, taxes, import costs, delivery arrangements and refund terms.</p>
+</div>
+<div class="two">
+<div class="panel">
+<h3>Vehicle request</h3>
+<p class="muted">Add a vehicle enquiry to your basket, then send your details through the interest form. Do not pay a deposit until the offer and seller are independently verified.</p>
+<button class="btn add" data-id="tesla-quote" data-name="Tesla quote request" data-category="vehicle">Add quote request</button>
+</div>
+<div class="panel">
+<h3>Buying versus investing</h3>
+<p class="muted">Buying a vehicle is different from buying company shares. STARVOLT does not provide investment advice or promise returns. Consider licensed financial services and local regulations before investing.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="cart">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Your selection</div><h2>Basket <span class="gold">preview</span></h2></div>
+<p>Items added here are stored only in this browser session. This is not an order and no payment will be taken.</p>
+</div>
+<div class="two">
+<div class="panel">
+<div id="cartList" class="cart-list"><div class="empty">Your basket is empty. Add a product or enquiry from the gallery above.</div></div>
+<div class="card-bottom">
+<button class="btn outline" id="clearCart" type="button">Clear basket</button>
+<button class="btn" id="checkoutBtn" type="button">Continue to checkout</button>
+</div>
+<p id="cartStatus" class="status muted" aria-live="polite">Checkout is paused while payment provider approval and secure server-side payment integration are pending.</p>
+</div>
+<div class="panel">
+<h3>What happens next?</h3>
+<ol class="muted">
+<li>Choose products or enquiry types.</li>
+<li>Send an interest request with your contact details.</li>
+<li>STARVOLT confirms availability, rights, price and fulfilment.</li>
+<li>Secure checkout will be enabled only after the payment provider approves the business and the server-side integration is tested.</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Next step</div><h2>Send an <span class="gold">interest request</span></h2></div>
+<p>Tell us what you are interested in. Do not enter card numbers, passwords or bank login details.</p>
+</div>
+<div class="two">
+<div class="panel">
+<form id="interestForm" class="form">
+<label>Full name<input name="name" required minlength="2" maxlength="120" autocomplete="name"></label>
+<label>Email address<input name="email" type="email" required maxlength="254" autocomplete="email"></label>
+<label>Country
+<select name="country" required>
+<option value="">Choose country/region</option>
+<option>Nigeria</option><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Germany</option><option>Other country</option>
+</select>
+</label>
+<label>What are you interested in?
+<select name="interest" required>
+<option value="">Choose one</option>
+<option>Alexander Klaws Christmas Tour</option>
+<option>Celebrity booking or Meet &amp; Greet</option>
+<option>Customised fan merchandise</option>
+<option>Tesla vehicle quote</option>
+<option>Other product</option>
+</select>
+</label>
+<label>Message<textarea name="message" maxlength="1500" placeholder="Tell us which item, city, size or vehicle model you are interested in."></textarea></label>
+<button class="btn" type="submit">Prepare email request</button>
+<p id="interestStatus" class="status muted" aria-live="polite"></p>
+</form>
+</div>
+<div class="panel">
+<h3>Personal booking support</h3>
+<p class="muted">Our team reviews booking and product requests and follows up with the relevant details, fulfilment arrangements and available payment options. Online card checkout is being prepared.</p>
+<p class="muted">For physical products, delivery arrangements are agreed before fulfilment. Digital products and ticket bookings are handled using the delivery details provided during the booking process.</p>
+<p class="small muted">This form prepares an email on your device; it does not send automatically unless your email app completes the send step.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="account">
+<div class="wrap">
+<div class="section-title">
+<div><div class="eyebrow">Customer access</div><h2>Your STARVOLT <span class="gold">account</span></h2></div>
+<p>Create an account or sign in to the current Supabase authentication service.</p>
+</div>
+<div class="two">
+<div class="panel">
+<h3>Sign in</h3>
+<form id="loginForm" class="form">
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password<input name="password" type="password" required autocomplete="current-password"></label>
+<button class="btn" type="submit">Sign in</button>
+</form>
+</div>
+<div class="panel">
+<h3>Create account</h3>
+<form id="signupForm" class="form">
+<label>Email<input name="email" type="email" required autocomplete="email"></label>
+<label>Password (8+ characters)<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+<button class="btn outline" type="submit">Create account</button>
+</form>
+</div>
+</div>
+<p id="authStatus" class="status" aria-live="polite"></p>
+<div class="panel">
+<div id="accountInfo" class="muted">Authentication is loading…</div>
+<button class="btn outline small hidden" id="logoutBtn" type="button">Sign out</button>
+</div>
+</div>
+</section>
 </main>
 
 <footer>
-  <div class="logo">STAR<span>VOLT</span></div>
-  <p>Discover More. Shop Everything.</p>
-  <p>Prices shown are sample USD prices for the website demo. Final prices, availability, bookings and delivery must be confirmed. No payment is collected on this page.</p>
-  <p>© <span id="year"></span> STARVOLT. All rights reserved.</p>
+<div class="wrap foot">
+<div><div class="brand">STAR<b>VOLT</b></div><div class="small">Discover more. Experience extraordinary.</div></div>
+<div class="small">© <span id="year"></span> STARVOLT. All rights reserved.<br>Online payment checkout is being prepared.</div>
+</div>
 </footer>
 
-<!-- Shopping basket -->
-<div class="overlay" id="cartOverlay" onclick="overlayClose(event,'cartOverlay')">
-  <div class="modal">
-    <div class="modalhead"><h2>Your Basket 🛒</h2><button class="close" onclick="closeModal('cartOverlay')">✕</button></div>
-    <div id="cartItems"></div>
-    <div class="total"><span>Estimated total</span><span id="cartTotal">$0.00</span></div>
-    <p class="notice">Sample USD pricing only. This is an order request, not a payment. Final prices and availability need confirmation.</p>
-    <button class="primary" style="width:100%" onclick="goCheckout()">PROCEED TO CHECKOUT</button>
-  </div>
-</div>
-
-<!-- On-site checkout -->
-<div class="overlay" id="checkoutOverlay" onclick="overlayClose(event,'checkoutOverlay')">
-  <div class="modal">
-    <div class="modalhead"><h2>Checkout</h2><button class="close" onclick="closeModal('checkoutOverlay')">✕</button></div>
-    <p class="notice">Submit your order request here. You will not be redirected to email and no payment is taken.</p>
-    <form id="checkoutForm">
-      <label>Full name *<input name="name" required autocomplete="name" maxlength="120"></label>
-      <label>Email address *<input type="email" name="email" required autocomplete="email" maxlength="200"></label>
-      <label>Phone number *<input name="phone" required autocomplete="tel" maxlength="40"></label>
-      <label>Country *
-        <input name="country" required autocomplete="country-name" maxlength="100" placeholder="Enter your country">
-      </label>
-      <label>Order type *
-        <select name="delivery" required>
-          <option value="Physical delivery">Physical product — delivery</option>
-          <option value="Ticket or booking">Event ticket or booking</option>
-          <option value="Digital item">Digital item</option>
-          <option value="Preorder">Preorder</option>
-        </select>
-      </label>
-      <label>Delivery address (for physical items)
-        <textarea name="address" autocomplete="street-address" maxlength="500" placeholder="Street, city, state"></textarea>
-      </label>
-      <label>Extra details (optional)
-        <textarea name="message" maxlength="1000" placeholder="Sizes, preferred event date, car model or other details"></textarea>
-      </label>
-      <div class="total"><span>Estimated total</span><span id="checkoutTotal">$0.00</span></div>
-      <button class="primary" type="submit">SUBMIT ORDER REQUEST</button>
-      <div id="checkoutStatus" aria-live="polite"></div>
-    </form>
-  </div>
-</div>
-
 <script>
-const money = amount => '$' + Number(amount).toFixed(2);
+"use strict";
 
-/*
-  DEMO USD PRICES:
-  Replace these sample amounts with your confirmed selling prices.
-  This website does not collect payment.
-*/
-const products = [
-  {
-    id:'ticket-cologne',name:'Alexander Klaws Christmas Tour — Cologne',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'23 Nov 2026 · Musical Dome, Köln. Submit a ticket request.',
-    image:'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-bremen',name:'Alexander Klaws Christmas Tour — Bremen',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'24 Nov 2026 · Metropol Theater, Bremen. Submit a ticket request.',
-    image:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-berlin',name:'Alexander Klaws Christmas Tour — Berlin',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'25 Nov 2026 · Tempodrom, Berlin. Submit a ticket request.',
-    image:'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-stuttgart',name:'Alexander Klaws Christmas Tour — Stuttgart',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'30 Nov 2026 · Stage Palladium Theater, Stuttgart.',
-    image:'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-frankfurt',name:'Alexander Klaws Christmas Tour — Frankfurt',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'2 Dec 2026 · Jahrhunderthalle, Frankfurt.',
-    image:'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-dusseldorf',name:'Alexander Klaws Christmas Tour — Düsseldorf',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'3 Dec 2026 · Tonhalle, Düsseldorf.',
-    image:'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-munich',name:'Alexander Klaws Christmas Tour — München',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'7 Dec 2026 · Deutsches Theater, München.',
-    image:'https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-hamburg',name:'Alexander Klaws Christmas Tour — Hamburg',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'14 Dec 2026 · Stage Theater an der Elbe, Hamburg.',
-    image:'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'ticket-oberhausen',name:'Alexander Klaws Christmas Tour — Oberhausen',
-    category:'Events',price:65,button:'PREORDER NOW',badge:'TOUR EVENT',
-    desc:'21 Dec 2026 · Metronom Theater, Oberhausen.',
-    image:'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'tesla-model',name:'Electric Car Enquiry',
-    category:'Cars',price:0,button:'BUY NOW',badge:'CAR ENQUIRY',
-    desc:'Ask about Tesla models, preorder availability and delivery. Final quote required.',
-    image:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'tesla-premium',name:'Tesla Preorder Request',
-    category:'Cars',price:0,button:'PREORDER NOW',badge:'PREORDER',
-    desc:'Send your preferred model, specification and destination for a quote.',
-    image:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'sandwich-chicken',name:'Classic Chicken Sandwich',
-    category:'Food',price:18,button:'BUY NOW',badge:'FOOD',
-    desc:'Sandwich order request. Availability and delivery to be confirmed.',
-    image:'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'sandwich-grilled',name:'Grilled Cheese Sandwich',
-    category:'Food',price:15,button:'BUY NOW',badge:'FOOD',
-    desc:'A delicious sandwich option. Confirm preparation and delivery details.',
-    image:'https://images.unsplash.com/photo-1553909489-cd47e0ef937f?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'custom-shirt',name:'Customised Celebrity T-Shirt',
-    category:'Fashion',price:25,button:'BUY NOW',badge:'CUSTOM MERCH',
-    desc:'Request a customised design. Specify your size and design preferences.',
-    image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'fan-id',name:'Celebrity Fan ID Request',
-    category:'Celebrity',price:12,button:'PURCHASE NOW',badge:'FAN MERCH',
-    desc:'Submit a fan ID request. Availability, details and fulfilment must be confirmed.',
-    image:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'meet-greet',name:'Celebrity Meet & Greet Enquiry',
-    category:'Celebrity',price:0,button:'BOOK NOW',badge:'BOOKING',
-    desc:'Send a booking enquiry. Availability and official booking details must be confirmed.',
-    image:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'concert-merch',name:'Concert Merchandise',
-    category:'Fashion',price:20,button:'BUY NOW',badge:'MERCHANDISE',
-    desc:'Explore concert merchandise. Product details and availability require confirmation.',
-    image:'https://images.unsplash.com/photo-1503341504253-dff4815485f1?auto=format&fit=crop&w=700&q=80'
-  },
-  {
-    id:'event-booking',name:'Event Booking Enquiry',
-    category:'Events',price:0,button:'BOOK NOW',badge:'EVENTS',
-    desc:'Ask about event availability, booking arrangements and ticket options.',
-    image:'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80'
-  }
+const SUPABASE_URL="https://sbhgunhmorjqvcprlqow.supabase.co";
+const SUPABASE_KEY="sb_publishable_SBFPRmpjO9InOHbrjuGrZg_OA0Ppfzu";
+const client=window.supabase?.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const tour=[
+["2026-11-23","Köln","Musical Dome"],
+["2026-11-24","Bremen","Metropol Theater"],
+["2026-11-25","Berlin","Tempodrom"],
+["2026-11-30","Stuttgart","Stage Palladium Theater"],
+["2026-12-02","Frankfurt","Jahrhunderthalle"],
+["2026-12-03","Düsseldorf","Tonhalle"],
+["2026-12-07","München","Deutsches Theater"],
+["2026-12-14","Hamburg","Stage Theater an der Elbe"],
+["2026-12-21","Oberhausen","Metronom Theater"]
 ];
 
-let activeCategory = 'All';
-let basket = {};
+const $=id=>document.getElementById(id);
+let basket=[];
 
-function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g, c => ({
-    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-  }[c]));
+function esc(s){
+return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
 
-function imageFallback(img){
-  img.onerror = null;
-  img.src = 'https://placehold.co/700x450/eeeafc/3b286f?text=STARVOLT';
+function showDate(s){
+return new Intl.DateTimeFormat("en-GB",{
+weekday:"short",day:"numeric",month:"short",year:"numeric",timeZone:"UTC"
+}).format(new Date(s+"T12:00:00Z"));
 }
 
-function renderProducts(){
-  const term = document.getElementById('searchInput').value.trim().toLowerCase();
-  let list = products.filter(p =>
-    (activeCategory === 'All' || p.category === activeCategory) &&
-    (p.name + ' ' + p.category + ' ' + p.desc).toLowerCase().includes(term)
-  );
+$("tourGrid").innerHTML=tour.map((t,i)=>`
+<article class="card tour-card">
+<div class="photo">
+<img src="${i%2===0?'assets/alexander-klaws-portrait.jpg':'assets/stage-performance.jpg'}" alt="Alexander Klaws Christmas Tour event gallery" loading="lazy">
+</div>
+<div class="body">
+<span class="chip">AUTHORISED TICKET BOOKINGS · 2026</span>
+<h3>${esc(t[1])}</h3>
+<p>${esc(t[2])}</p>
+<p class="tour-meta"><strong>${showDate(t[0])}</strong></p>
+<p><strong class="price">£110–£499</strong><br><span class="muted">Standard &amp; Premium</span></p>
+<p><strong class="price">£500–£1,450</strong><br><span class="muted">VIP · varies by seat value</span></p>
+<p class="muted">All ticket categories available · 138 places remaining across the tour.</p>
+<label>Choose ticket category
+<select class="tour-category" aria-label="Choose ticket category for ${esc(t[1])}">
+<option value="Standard">Standard · £110–£499</option>
+<option value="Premium">Premium · £110–£499</option>
+<option value="VIP">VIP · £500–£1,450</option>
+</select>
+</label>
+<div class="card-bottom">
+<button class="btn add tour-add" data-id="tour-${i}" data-name="Alexander Klaws Christmas Tour — ${esc(t[1])}" data-category="event">Request tickets</button>
+</div>
+</div>
+</article>
+`).join("");
 
-  const sort = document.getElementById('sortSelect').value;
-  if(sort === 'low') list.sort((a,b)=>a.price-b.price);
-  if(sort === 'high') list.sort((a,b)=>b.price-a.price);
-  if(sort === 'name') list.sort((a,b)=>a.name.localeCompare(b.name));
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
+document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+document.querySelectorAll(".product").forEach(c=>
+c.classList.toggle("hidden",b.dataset.filter!=="all"&&c.dataset.category!==b.dataset.filter)
+);
+}));
 
-  document.getElementById('sectionTitle').textContent =
-    activeCategory === 'All' ? 'Explore STARVOLT' : activeCategory + ' Collection';
-  document.getElementById('resultCount').textContent = list.length + ' items to explore';
-  document.getElementById('noResults').classList.toggle('hidden',list.length>0);
+document.addEventListener("click",e=>{
+const b=e.target.closest(".add");
+if(!b||b.disabled)return;
 
-  document.getElementById('productGrid').innerHTML = list.map(p => `
-    <article class="card">
-      <div class="photo">
-        <img src="${p.image}" alt="${escapeHTML(p.name)}" loading="lazy" onerror="imageFallback(this)">
-        <span class="badge">${escapeHTML(p.badge)}</span>
-      </div>
-      <div class="cardBody">
-        <span class="category">${escapeHTML(p.category)}</span>
-        <h3>${escapeHTML(p.name)}</h3>
-        <p class="description">${escapeHTML(p.desc)}</p>
-        <div class="price">${p.price ? money(p.price) : 'Request a quote'} ${p.price ? '<small>sample price</small>' : ''}</div>
-        <div class="cardActions">
-          <button class="buy" onclick="buyNow('${p.id}')">${escapeHTML(p.button)}</button>
-          <button class="add" onclick="addToCart('${p.id}')">+ BASKET</button>
-        </div>
-      </div>
-    </article>
-  `).join('');
+const id=b.dataset.id;
+const selector=b.closest(".tour-card")?.querySelector(".tour-category");
+const selectedCategory=selector?selector.value:null;
+const name=selectedCategory?`${b.dataset.name} — ${selectedCategory} ticket`:b.dataset.name;
+
+if(!basket.some(x=>x.id===id&&x.name===name)){
+basket.push({
+id:id+(selectedCategory?"-"+selectedCategory.toLowerCase():""),
+name,
+category:b.dataset.category
+});
 }
 
-function renderEvents(){
-  const dates = [
-    ['23 NOV 2026','Köln','Musical Dome'],
-    ['24 NOV 2026','Bremen','Metropol Theater'],
-    ['25 NOV 2026','Berlin','Tempodrom'],
-    ['30 NOV 2026','Stuttgart','Stage Palladium Theater'],
-    ['2 DEC 2026','Frankfurt','Jahrhunderthalle'],
-    ['3 DEC 2026','Düsseldorf','Tonhalle'],
-    ['7 DEC 2026','München','Deutsches Theater'],
-    ['14 DEC 2026','Hamburg','Stage Theater an der Elbe'],
-    ['21 DEC 2026','Oberhausen','Metronom Theater']
-  ];
-  const imgs = [
-    'photo-1501386761578-eac5c94b800a',
-    'photo-1492684223066-81342ee5ff30',
-    'photo-1459749411175-04bf5292ceea'
-  ];
-  document.getElementById('eventGrid').innerHTML = dates.map((d,i)=>`
-    <article class="card">
-      <div class="photo">
-        <img loading="lazy" alt="Concert event in ${escapeHTML(d[1])}"
-          src="https://images.unsplash.com/${imgs[i%imgs.length]}?auto=format&fit=crop&w=700&q=80"
-          onerror="imageFallback(this)">
-        <span class="badge">CHRISTMAS TOUR</span>
-      </div>
-      <div class="cardBody">
-        <div class="eventdate">${d[0]}</div>
-        <h3>Alexander Klaws — ${escapeHTML(d[1])}</h3>
-        <p class="description">${escapeHTML(d[2])}</p>
-        <button class="buy" onclick="buyNow('ticket-${['cologne','bremen','berlin','stuttgart','frankfurt','dusseldorf','munich','hamburg','oberhausen'][i]}')">PREORDER NOW</button>
-      </div>
-    </article>
-  `).join('');
-}
-
-function searchProducts(){renderProducts()}
-document.getElementById('searchInput').addEventListener('input',renderProducts);
-
-document.getElementById('categoryNav').addEventListener('click',e=>{
-  const btn=e.target.closest('button[data-filter]');
-  if(!btn)return;
-  setCategory(btn.dataset.filter);
+renderBasket();
+$("cartStatus").textContent="Your ticket selection has been added. Submit the booking request to arrange fulfilment; online card payment is not enabled yet.";
 });
 
-function setCategory(category){
-  activeCategory=category;
-  document.querySelectorAll('#categoryNav button').forEach(b=>
-    b.classList.toggle('active',b.dataset.filter===category)
-  );
-  renderProducts();
-  document.getElementById('marketplace').scrollIntoView({behavior:'smooth'});
+function renderBasket(){
+$("cartCount").textContent=basket.length;
+
+if(!basket.length){
+$("cartList").innerHTML='<div class="empty">Your basket is empty. Add a product or enquiry from the gallery above.</div>';
+return;
 }
 
-function addToCart(id){
-  const p=products.find(x=>x.id===id);
-  if(!p)return;
-  basket[id]=(basket[id]||0)+1;
-  updateCart();
-  openCart();
+$("cartList").innerHTML=basket.map((x,i)=>`
+<div class="cart-row">
+<span>${esc(x.name)}<br><small class="muted">${esc(x.category)}</small></span>
+<button type="button" data-remove="${i}" aria-label="Remove ${esc(x.name)}">Remove</button>
+</div>
+`).join("");
 }
 
-function buyNow(id){
-  const p=products.find(x=>x.id===id);
-  if(!p)return;
-  basket[id]=(basket[id]||0)+1;
-  updateCart();
-  goCheckout();
+$("cartList").addEventListener("click",e=>{
+const b=e.target.closest("[data-remove]");
+if(b){
+basket.splice(Number(b.dataset.remove),1);
+renderBasket();
 }
-
-function cartEntries(){
-  return Object.entries(basket).map(([id,qty])=>({
-    product:products.find(p=>p.id===id),qty
-  })).filter(x=>x.product && x.qty>0);
-}
-
-function total(){
-  return cartEntries().reduce((sum,x)=>sum+x.product.price*x.qty,0);
-}
-
-function updateCart(){
-  document.getElementById('cartCount').textContent=
-    Object.values(basket).reduce((s,n)=>s+n,0);
-  document.getElementById('cartTotal').textContent=money(total());
-  document.getElementById('checkoutTotal').textContent=money(total());
-
-  const entries=cartEntries();
-  document.getElementById('cartItems').innerHTML=entries.length?entries.map(x=>`
-    <div class="cartitem">
-      <div><strong>${escapeHTML(x.product.name)}</strong>
-      <small>${x.product.price?money(x.product.price)+' each':'Quote required'}</small></div>
-      <div class="qty">
-        <button onclick="changeQty('${x.product.id}',-1)">−</button>
-        <span>${x.qty}</span>
-        <button onclick="changeQty('${x.product.id}',1)">+</button>
-      </div>
-    </div>
-  `).join(''):'<div class="empty">Your basket is empty.</div>';
-}
-
-function changeQty(id,change){
-  basket[id]=(basket[id]||0)+change;
-  if(basket[id]<=0)delete basket[id];
-  updateCart();
-}
-
-function openCart(){
-  updateCart();
-  document.getElementById('cartOverlay').classList.add('open');
-}
-function closeModal(id){document.getElementById(id).classList.remove('open')}
-function overlayClose(e,id){if(e.target.id===id)closeModal(id)}
-function goCheckout(){
-  if(!cartEntries().length){alert('Your basket is empty. Add an item first.');return}
-  closeModal('cartOverlay');
-  document.getElementById('checkoutOverlay').classList.add('open');
-}
-
-document.getElementById('checkoutForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const entries=cartEntries();
-  if(!entries.length){alert('Your basket is empty.');return}
-
-  const fd=new FormData(this);
-  const order={
-    reference:'SV-'+Date.now().toString(36).toUpperCase(),
-    customer:{
-      name:fd.get('name'),
-      email:fd.get('email'),
-      phone:fd.get('phone'),
-      country:fd.get('country'),
-      delivery:fd.get('delivery'),
-      address:fd.get('address'),
-      message:fd.get('message')
-    },
-    items:entries.map(x=>({
-      id:x.product.id,
-      name:x.product.name,
-      quantity:x.qty,
-      sample_unit_price_usd:x.product.price
-    })),
-    sample_total_usd:total(),
-    status:'REQUEST SUBMITTED — AWAITING CONFIRMATION',
-    created_at:new Date().toISOString()
-  };
-
-  /*
-    IMPORTANT:
-    This demo creates a reference in the browser only.
-    It does NOT save orders to Supabase or send them to the seller.
-    Connect a secure database/backend before accepting real customer orders.
-  */
-  document.getElementById('checkoutStatus').innerHTML=
-    '<div class="status"><strong>Order request prepared!</strong><br>'+
-    'Reference: '+escapeHTML(order.reference)+'<br>'+
-    'Your request is shown as pending confirmation. No payment has been taken.'+
-    '<br><br><button type="button" class="primary" onclick="finishOrder()">DONE</button></div>';
-
-  try{sessionStorage.setItem('starvolt_demo_order',JSON.stringify(order))}catch(err){}
-  this.querySelector('button[type="submit"]').disabled=true;
 });
 
-function finishOrder(){
-  basket={};
-  updateCart();
-  document.getElementById('checkoutForm').reset();
-  document.getElementById('checkoutForm').querySelector('button[type="submit"]').disabled=false;
-  document.getElementById('checkoutStatus').innerHTML='';
-  closeModal('checkoutOverlay');
+$("clearCart").addEventListener("click",()=>{
+basket=[];
+renderBasket();
+$("cartStatus").textContent="Basket cleared.";
+});
+
+$("checkoutBtn").addEventListener("click",()=>{
+$("cartStatus").textContent="Checkout is not live yet. No payment was taken. Please submit an interest request so availability and final terms can be confirmed.";
+$("contact").scrollIntoView({behavior:"smooth"});
+
+const sel=document.querySelector('#interestForm [name="interest"]');
+if(sel&&basket.length){
+const cats=basket.map(x=>x.category);
+sel.value=cats.includes("vehicle")?"Tesla vehicle quote":
+cats.includes("event")?"Alexander Klaws Christmas Tour":
+cats.includes("concept")?"Customised fan merchandise":
+"Celebrity booking or Meet & Greet";
+}
+});
+
+$("interestForm").addEventListener("submit",e=>{
+e.preventDefault();
+const v=Object.fromEntries(new FormData(e.currentTarget).entries());
+
+const body=`STARVOLT interest request
+Name: ${v.name}
+Email: ${v.email}
+Country: ${v.country}
+Interest: ${v.interest}
+Basket: ${basket.map(x=>x.name).join(", ")||"Not specified"}
+Message: ${v.message||"None"}
+
+Please reply with the next steps for booking fulfilment and payment arrangements.`;
+
+const subject=encodeURIComponent("STARVOLT interest request — "+v.interest);
+const mailbody=encodeURIComponent(body);
+
+$("interestStatus").textContent="Opening your email app. Review the message and press Send there; it is not sent automatically.";
+window.location.href=`mailto:klawsalexander033@gmail.com?subject=${subject}&body=${mailbody}`;
+});
+
+if(client){
+
+$("loginForm").addEventListener("submit",async e=>{
+e.preventDefault();
+const v=Object.fromEntries(new FormData(e.currentTarget).entries());
+$("authStatus").textContent="Signing in…";
+
+const {data,error}=await client.auth.signInWithPassword({
+email:v.email,password:v.password
+});
+
+if(error){
+$("authStatus").className="status error";
+$("authStatus").textContent=error.message;
+return;
 }
 
-document.getElementById('year').textContent=new Date().getFullYear();
-renderProducts();
-renderEvents();
-updateCart();
+e.currentTarget.reset();
+$("authStatus").className="status success";
+$("authStatus").textContent="Signed in successfully.";
+updateAccount(data.session);
+});
+
+$("signupForm").addEventListener("submit",async e=>{
+e.preventDefault();
+const v=Object.fromEntries(new FormData(e.currentTarget).entries());
+$("authStatus").textContent="Creating account…";
+
+const {data,error}=await client.auth.signUp({
+email:v.email,password:v.password
+});
+
+if(error){
+$("authStatus").className="status error";
+$("authStatus").textContent=error.message;
+return;
+}
+
+e.currentTarget.reset();
+$("authStatus").className="status success";
+$("authStatus").textContent=data.session?"Account created.":"Account created; check your email for a confirmation link.";
+updateAccount(data.session);
+});
+
+$("logoutBtn").addEventListener("click",async()=>{
+await client.auth.signOut();
+updateAccount(null);
+$("authStatus").textContent="Signed out.";
+});
+
+async function updateAccount(session){
+if(!session?.user){
+$("accountInfo").textContent="You are not signed in.";
+$("logoutBtn").classList.add("hidden");
+return;
+}
+
+$("accountInfo").textContent="Signed in as "+session.user.email;
+$("logoutBtn").classList.remove("hidden");
+}
+
+client.auth.onAuthStateChange((_event,session)=>setTimeout(()=>updateAccount(session),0));
+client.auth.getSession().then(({data})=>updateAccount(data.session));
+
+}else{
+$("accountInfo").textContent="Account service could not load. Check your internet connection.";
+}
+
+$("year").textContent=new Date().getFullYear();
 </script>
 </body>
 </html>
